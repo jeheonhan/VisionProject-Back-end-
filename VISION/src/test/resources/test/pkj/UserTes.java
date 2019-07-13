@@ -16,10 +16,13 @@ import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Branch;
 import com.vision.erp.service.domain.HumanResourceCard;
 import com.vision.erp.service.domain.Product;
+import com.vision.erp.service.domain.Salary;
 import com.vision.erp.service.domain.User;
+import com.vision.erp.service.domain.WorkAttitude;
 import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementDAOrudwn;
 import com.vision.erp.service.user.UserDAO;
 import com.vision.erp.service.user.UserService;
+import com.vision.erp.service.user.impl.UserServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -32,9 +35,12 @@ public class UserTes{
 
 	@Resource(name = "userDAOImpl")
 	private UserDAO userDAO;
+
 	@Resource(name = "productionManagementDAOImplrudwn")
-	private ProductionManagementDAOrudwn productDAO;
-	
+	private ProductionManagementDAOrudwn productionDAO;
+
+	@Resource(name = "userServiceImpl")
+	private UserService userService;
 
 	//@Test
 	public void testSelectUserList() throws Exception {
@@ -110,7 +116,7 @@ public class UserTes{
 
 		branch.setBranchManagerName("ȫ�浿");
 		branch.setBranchManagerPhone("010-1111-1000");
-		
+
 
 		String forId = userDAO.proofMySelfForId2(branch);
 
@@ -145,9 +151,49 @@ public class UserTes{
 		user.setAccessMenuCodeNo("04");
 
 		System.out.println(user);
-		
+
 		userDAO.addUser(user);
 	}
+
+	//service Test ============================================================
+
+	//@Test
+	public void addUserService() throws Exception{
+
+		User user = new User();
+
+		user.setUserId("U1008");
+		user.setEmployeeNo("1005");
+		user.setPassword("0000");
+		user.setMemberCodeNo("01");
+		user.setMemberUsageStatusCodeNo("01");
+		user.setAccessMenuCodeNo("04");
+
+		System.out.println(user);
+
+		userService.addUser(user);
+	}
 	
-	
+	@Test
+	public void UserInfoMapService() throws Exception{
+
+//		Search search = new Search();
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		search.setSearchKeyword(find);
+//		
+//		HumanResourceCard humanResourceCard = humanResourceDAO.selectHumanResourceCardDetailByEmployeeNo(find);
+//		List<Salary> salary = accountingDAO.selectSalaryList(search);
+//		List<WorkAttitude> workAttitude = humanResourceDAO.selectWorkAttitudeList(search);
+//		Branch branch = businessSupportDAO.selectBranchDetail(find);
+//		
+//		map.put("humanResourceCard", humanResourceCard);
+//		map.put("salary", salary);
+//		map.put("workAttitude", workAttitude);
+//		map.put("branch", branch);
+		
+//		System.out.println(map);
+	}
+
+
+
 }

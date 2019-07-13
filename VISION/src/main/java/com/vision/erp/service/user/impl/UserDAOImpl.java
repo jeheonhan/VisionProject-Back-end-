@@ -20,6 +20,12 @@ public class UserDAOImpl implements UserDAO {
 	@Qualifier("sqlSession")
 	private SqlSession sqlSession;
 	
+	public void addUser(User user) throws Exception{
+		sqlSession.insert("UserMapper.insertUser",user);
+	}
+	
+	
+	
 	@Override
 	public void updatePassword(User user) throws Exception {
 		sqlSession.update("UserMapper.modifyPassword",user);	
@@ -55,10 +61,6 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
-	public void addUser(User user) throws Exception{
-		sqlSession.insert("UserMapper.insertUser",user);
-	}
-	
 	
 	@Override
 	public User selectUser(String userId) throws Exception {

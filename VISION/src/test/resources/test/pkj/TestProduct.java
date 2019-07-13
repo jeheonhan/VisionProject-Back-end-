@@ -27,14 +27,14 @@ import com.vision.erp.service.user.UserDAO;
 public class TestProduct{
 
 	@Resource(name = "productionManagementDAOImplrudwn")
-	private ProductionManagementDAOrudwn productDAO;
+	private ProductionManagementDAOrudwn productionDAO;
 
 	//@Test
 	public void testSelectDetailProduct() throws Exception {
 		Product product = new Product();
 		String productNo = "10006";
 
-		product = productDAO.selectDetailProduct(productNo);
+		product = productionDAO.selectDetailProduct(productNo);
 
 		System.out.println(product);
 
@@ -45,7 +45,7 @@ public class TestProduct{
 
 
 		List<Product> list 
-		= (List<Product>)productDAO.selectProductList();
+		= (List<Product>)productionDAO.selectProductList();
 
 		for(int i = 0; i<list.size(); i++) {
 			Product product = list.get(i);
@@ -65,7 +65,7 @@ public class TestProduct{
 		
 		System.out.println(product);
 
-		productDAO.updateProduct(product);
+		productionDAO.updateProduct(product);
 
 	}
 	
@@ -77,9 +77,9 @@ public class TestProduct{
 			product.setProductUsageStatusCodeNo("01");
 			System.out.println(product);
 
-			productDAO.updateUsageStatus(product);
+			productionDAO.updateUsageStatus(product);
 			
-			System.out.println(productDAO.selectDetailProduct("10006"));
+			System.out.println(productionDAO.selectDetailProduct("10006"));
 
 		}
 		
@@ -97,7 +97,7 @@ public class TestProduct{
 			
 			System.out.println(product);
 			
-			productDAO.addProduct(product);
+			productionDAO.addProduct(product);
 
 		}
 	

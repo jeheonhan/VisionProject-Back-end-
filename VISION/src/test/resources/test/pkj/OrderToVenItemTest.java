@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.HumanResourceCard;
 import com.vision.erp.service.domain.OrderToVendor;
+import com.vision.erp.service.domain.OrderToVendorProduct;
 import com.vision.erp.service.domain.Product;
 import com.vision.erp.service.domain.User;
 
@@ -30,7 +31,7 @@ public class OrderToVenItemTest{
 	@Resource(name = "productionManagementDAOImplrudwn")
 	private ProductionManagementDAOrudwn productionDAO;
 
-	
+
 	//@Test
 	public void selectOrderToVendorList() throws Exception {
 
@@ -44,7 +45,53 @@ public class OrderToVenItemTest{
 
 	}
 
-	
+	//@Test
+	public void addorderToVendorProduct() throws Exception {
+		OrderToVendorProduct orderToVendorProduct = new OrderToVendorProduct();
+
+		orderToVendorProduct.setOrderToVendorNo("10");
+		orderToVendorProduct.setProductNo("10006");
+		orderToVendorProduct.setPurchasePrice("400");
+		orderToVendorProduct.setQuantity("11");
+		orderToVendorProduct.setAmount("4400");
+		orderToVendorProduct.setOrderToVendorProductStatusCodeNo("01");
+
+		System.out.println("orderToVendorProduct :: " + orderToVendorProduct);
+
+		productionDAO.addorderToVendorProduct(orderToVendorProduct);
+
+	}
+
+	//@Test
+	public void orderToVendorDetailList() throws Exception {
+
+		OrderToVendorProduct orderToVendorProduct = new OrderToVendorProduct();
+
+		orderToVendorProduct.setOrderToVendorNo("10");
+
+		List<OrderToVendorProduct> list 
+		= (List<OrderToVendorProduct>)productionDAO.orderToVendorDetailList(orderToVendorProduct);
+
+
+		for(int i = 0; i<list.size(); i++) {
+			OrderToVendorProduct orderToVendorProduct1 = list.get(i);
+			System.out.println(orderToVendorProduct1);
+		}
+
+	}
+
+	//@Test
+	public void updateUsageStatus() throws Exception {
+		OrderToVendorProduct orderToVendorProduct = new OrderToVendorProduct();
+		orderToVendorProduct.setProductNo("10006");
+		orderToVendorProduct.setOrderToVendorProductStatusCodeNo("01");
+		System.out.println(orderToVendorProduct);
+
+		productionDAO.modifyOrderToVenItemCode( orderToVendorProduct);
+
+		
+
+	}
 
 
 

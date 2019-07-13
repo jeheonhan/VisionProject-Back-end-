@@ -84,4 +84,20 @@ public class ProductionManagementDAOImplrudwn implements ProductionManagementDAO
 		
 	}
 
+	@Override
+	public void addorderToVendorProduct(OrderToVendorProduct orderToVendorProduct) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert("OrderToVendorProductMapper.insertOrderToVenItem",orderToVendorProduct);
+	}
+
+	@Override
+	public List<OrderToVendorProduct> orderToVendorDetailList(OrderToVendorProduct orderToVendorProduct) throws Exception {
+		// TODO Auto-generated method stub
+	 return sqlSession.selectList("OrderToVendorProductMapper.orderToVendorDetailList",orderToVendorProduct);
+	}
+
+	
+	
+	
+
 }

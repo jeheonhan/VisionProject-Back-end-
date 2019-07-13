@@ -6,51 +6,61 @@
 		
 <mapper namespace="OrderToVendorMapper">
 
-	<resultMap id="ProductSelectMap" type="product" >
-		<result property="productNo"               column="PROD_NO"            jdbcType="VARCHAR"/>
-		<result property="productName"             column="PROD_NAME"          jdbcType="VARCHAR"/>
-		<result property="purchasePrice"           column="PURCHASE_PRICE"     jdbcType="VARCHAR"/>
-		<result property="salesPrice"              column="SAILES_PRICE"       jdbcType="VARCHAR"/>
-		<result property="quantity"                column="QUANTITY"           jdbcType="VARCHAR"/>
-		<result property="vendorNo"                column="VENDOR_NO"          jdbcType="VARCHAR"/>
-		<result property="productUsageStatusCodeNo" column="USAGE_STATUS_CODE_NO"          jdbcType="VARCHAR"/>
-		<result property="productUsageStatusCodeName" column="USAGE_STATUS_CODE_NAME"      jdbcType="VARCHAR"/>
+	<resultMap id="OrderToVendorSelectMap" type="orderToVendor" >
+		<result property="orderToVendorNo"               column="ORDER_TO_VENDOR_NO"                       jdbcType="VARCHAR"/>
+		<result property="statementNo"                   column="STATEMENT_NO"                             jdbcType="VARCHAR"/>
+		<result property="totalAmount"                   column="TOTAL_AMOUNT"                             jdbcType="VARCHAR"/>
+		<result property="orderToVendorDate"             column="ORDER_TO_VENDOR_DATE"                     jdbcType="VARCHAR"/>
+		<result property="orderToVenStatusCodeNo"     column="ORDER_TO_VEN_STATUS_CODE_NO"           jdbcType="VARCHAR"/>
+		<result property="orderToVenStatusCodeName"   column="ORDER_TO_VEN_STATUS_CODE_NAME"         jdbcType="VARCHAR"/>
 	</resultMap>
 
-	<insert id="insertProduct">
+	<insert id="insertOrderToVendor" parameterType="orderToVendor">
+
 		INSERT
-		  INTO	product
+		  INTO	order_to_vendor
 		  			(
-		  			PROD_NO,
-		  			PROD_NAME,
-		  			PURCHASE_PRICE,
-		  			SAILES_PRICE,
-		  			QUANTITY,
-		  			VENDOR_NO,
-		  			USAGE_STATUS_CODE_NO,
-		  			USAGE_STATUS_CODE_NAME
+		  			ORDER_TO_VENDOR_NO,
+		  			STATEMENT_NO,
+		  			TOTAL_AMOUNT,
+		  			ORDER_TO_VENDOR_DATE,
+		  			ORDER_TO_VEN_STATUS_CODE_NO
 		  			)
 		VALUES	
 				(
-					SEQ_PRODUCT_NO.NEXTVAL,
-					#{productName},
-					#{purchasePrice},
-					#{salesPrice},
-					#{quantity},
-					#{vendorNo},
-					#{USAGE_STATUS_CODE_NO},
-					#{USAGE_STATUS_CODE_NAME}
+					SEQ_VENDOR_NO.NEXTVAL,
+					#{statementNo},
+					#{totalAmount},
+					TO_CHAR(SYSDATE,'YYYY/MM/DD'),
+					#{orderToVenStatusCodeNo}
 				)
 	</insert>
 	
-	<update id="updateProduct" parameterType="product">
-		UPDATE product
+	<select id="selectOrderToVendorList" resultMap="OrderToVendorSelectMap">  
+		SELECT	ORDER_TO_VENDOR_NO,
+				STATEMENT_NO,
+				TOTAL_AMOUNT,
+				ORDER_TO_VENDOR_DATE,
+				ORDER_TO_VEN_STATUS_CODE_NO,
+				CODE_FUNCTION('orderCompany', ORDER_TO_VEN_STATUS_CODE_NO) AS ORDER_TO_VEN_STATUS_CODE_NAME
+		  FROM	order_To_Vendor
+	</select>
+	
+	
+	<update id="modifyOrderToVenCode" parameterType="orderToVendor">
+		UPDATE order_to_vendor
 			<set>
-				PURCHASE_PRICE = #{purchasePrice}
-				SAILES_PRICE = #{salesPrice}
-				QUANTITY = 	#{quantity}
+			<if test="orderToVenStatusCodeNo == '01'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '02'
+			</if>
+			<if test="orderToVenStatusCodeNo == '02'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '03'
+			</if>
+			<if test="orderToVenStatusCodeNo == '03'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '04'
+			</if>
 			</set>
-		WHERE PROD_NO = #{prodNo}
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
 	</update>
 	
 	

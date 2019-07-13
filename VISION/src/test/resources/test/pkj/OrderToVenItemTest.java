@@ -1,5 +1,7 @@
 package test.pkj;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -7,8 +9,14 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.vision.erp.common.Search;
+import com.vision.erp.service.domain.HumanResourceCard;
+import com.vision.erp.service.domain.OrderToVendor;
 import com.vision.erp.service.domain.Product;
+import com.vision.erp.service.domain.User;
+
 import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementDAOrudwn;
+import com.vision.erp.service.user.UserDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -17,20 +25,28 @@ import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementDAO
 		"classpath:config/servlet-context.xml",
 		"classpath:config/transaction-context.xml"
 })
-public class ProductTest{
+public class OrderToVenItemTest{
 
 	@Resource(name = "productionManagementDAOImplrudwn")
-	private ProductionManagementDAOrudwn productDAO;
+	private ProductionManagementDAOrudwn productionDAO;
+
 	
-	@Test
-	public void testSelectDetailProduct() throws Exception {
-		Product product = new Product();
-		String productNo = "10006";
-		
-		product = productDAO.selectDetailProduct(productNo);
-		
-		System.out.println(product);
-		
+	//@Test
+	public void selectOrderToVendorList() throws Exception {
+
+		List<OrderToVendor> list 
+		= (List<OrderToVendor>)productionDAO.selectOrderToVendorList();
+
+		for(int i = 0; i<list.size(); i++) {
+			OrderToVendor orderToVendor = list.get(i);
+			System.out.println(orderToVendor);
+		}
+
 	}
+
+	
+
+
+
 
 }

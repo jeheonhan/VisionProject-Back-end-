@@ -35,8 +35,11 @@
 			#{bankCodeNo},
 			#{accountHolder},
 			#{accountCategoryCodeNo},
-			'01'
+			'01',
 			#{reference}
+			<selectKey keyProperty="accountRegNo" resultType="string" order="AFTER">
+				SELECT seq_account_reg_no.CURRVAL FROM DUAL
+			</selectKey>
 		)
 	</insert>
 	
@@ -90,22 +93,20 @@
 		FROM
 			account
 		<where>
-			<choose>
-				<when test="searchKeyword != null and searchKeyword != ''">
-					AND account_reg_no = #{searchKeyword}
-					OR LOWER(reference) LIKE '%'||#{searchKeyword}||'%'
-				</when>		
-				<when test="usageCondition != null and usageCondition !=''">
-					AND	usage_status_code_no = #{usageCondition}
-				</when>
-			</choose>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				AND account_reg_no = #{searchKeyword}
+				OR LOWER(reference) LIKE '%'||#{searchKeyword}||'%'
+			</if>		
+			<if test="usageCondition != null and usageCondition !=''">
+				AND	usage_status_code_no = #{usageCondition}
+			</if>
 		</where>
 		ORDER BY account_reg_no ASC
 	</select>
 	
-	<select id="checkDuplicateAccount" parameterType="string" resultMap="accountSelectMap">
+	<select id="checkDuplicateAccount" parameterType="string" resultType="int">
 		SELECT
-			account_no
+			COUNT(*)
 		FROM
 			account
 		<where>

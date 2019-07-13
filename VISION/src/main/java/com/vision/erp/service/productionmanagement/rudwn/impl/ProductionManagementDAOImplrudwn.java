@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.vision.erp.service.domain.OrderToVendor;
+import com.vision.erp.service.domain.OrderToVendorProduct;
 import com.vision.erp.service.domain.Product;
 import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementDAOrudwn;
 
@@ -35,16 +37,51 @@ public class ProductionManagementDAOImplrudwn implements ProductionManagementDAO
 		
 	}
 
+	
+
 	@Override
 	public void updateUsageStatus(Product product) throws Exception {
 		sqlSession.update("ProductMapper.updateUsageStatus", product);
 		
 	}
 
+	
+
 	@Override
 	public List<Product> selectProductList() throws Exception {
 		
 		return sqlSession.selectList("ProductMapper.selectproductList");
+	}
+	
+
+	@Override
+	public String addOrderToVendor(OrderToVendor orderToVendor) throws Exception {
+		sqlSession.insert("OrderToVendorMapper.insertOrderToVendor", orderToVendor);
+		return orderToVendor.getStatementNo();
+	}
+	
+	@Override
+	public List<OrderToVendor> selectOrderToVendorList() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("OrderToVendorMapper.selectOrderToVendorList");
+	}
+	
+	@Override
+	public void modifyOrderToVenCode(OrderToVendor orderToVendor) throws Exception {
+		 sqlSession.update("OrderToVendorMapper.modifyOrderToVenCode",orderToVendor);
+		
+	}
+	
+	@Override
+	public void modifyOrderToVenItemCode(OrderToVendorProduct orderToVendorProduct) throws Exception {
+		sqlSession.update("OrderToVendorProductMapper.modifyOrderToVenItemCode",orderToVendorProduct);
+		
+	}
+
+	@Override
+	public void updateProductCount(Product product) throws Exception {
+		sqlSession.update("ProductMapper.updateProductCount", product);
+		
 	}
 
 }

@@ -21,17 +21,15 @@
 		GROUP BY 
 			salary_date
 		<where>
-			<choose>
-				<when test="minDate != null and maxDate != null and minDate != '' and maxDate != ''">
-					AND	salary_date BETWEEN #{minDate} AND #{maxDate}
-				</when>
-				<when test="maxDate != null and maxDate !=''">
-					AND	salary_date <![CDATA[ <= ]]> #{maxDate}
-				</when>
-				<when test="minDate != null and minDate !=''">
-					AND	salary_date <![CDATA[ >= ]]> #{minDate}
-				</when>
-			</choose>
+			<if test="minDate != null and maxDate != null and minDate != '' and maxDate != ''">
+				AND	salary_date BETWEEN #{minDate} AND #{maxDate}
+			</if>
+			<if test="maxDate != null and maxDate !=''">
+				AND	salary_date <![CDATA[ <= ]]> #{maxDate}
+			</if>
+			<if test="minDate != null and minDate !=''">
+				AND	salary_date <![CDATA[ >= ]]> #{minDate}
+			</if>
 		</where>
 		ORDER BY salary_date DESC
 	</select>

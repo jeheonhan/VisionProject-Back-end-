@@ -36,7 +36,7 @@
 			#{salaryDate},
 			#{employeeNo},
 			#{individualTotalSalary},
-			'01'
+			'01',
 			#{wage},
 			#{totalRegularWorkTime},
 			#{totalExtendWorkTime}
@@ -89,27 +89,25 @@
 		FROM
 			salary
 		<where>
-			<choose>
-				<when test="searchKeyword != null and searchKeyword != ''">
-					AND employee_no = #{searchKeyword}
-				</when>
-				<when test="minDate != null and maxDate != null and minDate != '' and maxDate != ''">
-					AND	salary_date BETWEEN #{minDate} AND #{maxDate}
-				</when>
-				<when test="maxDate != null and maxDate !=''">
-					AND	salary_date <![CDATA[ <= ]]> #{maxDate}
-				</when>
-				<when test="minDate != null and minDate !=''">
-					AND	salary_date <![CDATA[ >= ]]> #{minDate}
-				</when>
-			</choose>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				AND employee_no = #{searchKeyword}
+			</if>
+			<if test="minDate != null and maxDate != null and minDate != '' and maxDate != ''">
+				AND	salary_date BETWEEN #{minDate} AND #{maxDate}
+			</if>
+			<if test="maxDate != null and maxDate !=''">
+				AND	salary_date <![CDATA[ <= ]]> #{maxDate}
+			</if>
+			<if test="minDate != null and minDate !=''">
+				AND	salary_date <![CDATA[ >= ]]> #{minDate}
+			</if>
 		</where>
 		ORDER BY salary_date DESC
 	</select>
 	
-	<select id="checkDuplicateSalary" parameterType="string" resultMap="salarySelectMap">
+	<select id="checkDuplicateSalary" parameterType="string" resultType="int">
 		SELECT
-			salary_date
+			COUNT(*)
 		FROM
 			salary
 		<where>
@@ -123,12 +121,12 @@
 			hr.wage, 
 			vt.total_regular_work_time, 
 			vt.total_extend_work_time, 
-			salary_function(hr.wage,vt.total_regular_work_time,vt.total_extend_work_time) AS individual_salary
+			salary_function(hr.wage,vt.total_regular_work_time,vt.total_extend_work_time) AS individual_total_salary
 		FROM 
 			human_resource_card hr, (
 	    		SELECT 
 	    			employee_no, 
-	    			SUM(regular_work_time) total_regular_work_time , 
+	    			SUM(regular_work_time) total_regular_work_time, 
 	    			SUM(extends_work_time) total_extend_work_time
 	    		FROM 
 	    			duty_hours

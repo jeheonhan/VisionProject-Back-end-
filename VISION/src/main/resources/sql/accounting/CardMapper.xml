@@ -105,25 +105,23 @@
 		FROM
 			card c, human_resource_card hr
 		<where>
-			<choose>
-				<when test="true">
-					c.card_manager = hr.employee_no
-				</when>
-				<when test="searchKeyword != null and searchKeyword != ''">
-					AND c.card_reg_no = #{searchKeyword}
-					OR LOWER(c.card_name) LIKE '%'||#{searchKeyword}||'%'
-				</when>		
-				<when test="usageCondition != null and usageCondition !=''">
-					AND	c.usage_status_code_no = #{usageCondition}
-				</when>
-			</choose>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				c.card_reg_no = #{searchKeyword}
+				OR LOWER(c.card_name) LIKE '%'||#{searchKeyword}||'%'
+			</if>		
+			<if test="usageCondition != null and usageCondition !=''">
+				AND	c.usage_status_code_no = #{usageCondition}
+			</if>
+			<if test="true">
+				AND c.card_manager = hr.employee_no
+			</if>
 		</where>
 		ORDER BY card_reg_no ASC
 	</select>
 	
-	<select id="checkDuplicateCard" parameterType="string" resultMap="cardSelectMap">
+	<select id="checkDuplicateCard" parameterType="string" resultType="int">
 		SELECT
-			card_no
+			COUNT(*)
 		FROM
 			card
 		<where>

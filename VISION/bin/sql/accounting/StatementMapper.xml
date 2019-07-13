@@ -39,6 +39,9 @@
 			#{statementCategoryCodeNo},
 			'01',
 			#{statementDetail}
+			<selectKey keyProperty="statementNo" resultType="string" order="AFTER">
+				SELECT seq_statement_no.CURRVAL FROM DUAL
+			</selectKey>
 		)
 	</insert>
 	
@@ -88,23 +91,21 @@
 		FROM
 			statement
 		<where>
-			<choose>
-				<when test="searchCondition != null and searchCondition !=''">
-					statement_category_code_no = #{searchCondition}
-				</when>
-				<when test="usageCondition != null and usageCondition !=''">
-					AND	usage_status_code_no = #{usageCondition}
-				</when>
-				<when test="minDate != null and maxDate != null and minDate != '' and maxDate != ''">
-					AND	trade_date BETWEEN #{minDate} AND #{maxDate}
-				</when>
-				<when test="maxDate != null and maxDate !=''">
-					AND	trade_date <![CDATA[ <= ]]> #{maxDate}
-				</when>
-				<when test="minDate != null and minDate !=''">
-					AND	trade_date <![CDATA[ >= ]]> #{minDate}
-				</when>
-			</choose>
+			<if test="true">
+				usage_status_code_no = '01'
+			</if>
+			<if test="searchCondition != null and searchCondition !=''">
+				AND statement_category_code_no = #{searchCondition}
+			</if>
+			<if test="minDate != null and maxDate != null and minDate != '' and maxDate != ''">
+				AND	trade_date BETWEEN #{minDate} AND #{maxDate}
+			</if>
+			<if test="maxDate != null and maxDate !=''">
+				AND	trade_date <![CDATA[ <= ]]> #{maxDate}
+			</if>
+			<if test="minDate != null and minDate !=''">
+				AND	trade_date <![CDATA[ >= ]]> #{minDate}
+			</if>
 		</where>
 		ORDER BY statement_no ASC
 	</select>

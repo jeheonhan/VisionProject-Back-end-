@@ -6,6 +6,7 @@ import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Account;
 import com.vision.erp.service.domain.Card;
 import com.vision.erp.service.domain.Salary;
+import com.vision.erp.service.domain.SalaryBook;
 import com.vision.erp.service.domain.Statement;
 import com.vision.erp.service.domain.Vendor;
 
@@ -17,7 +18,7 @@ public interface AccountingDAO {
 	
 	public void updateVendor(Vendor vendor) throws Exception;
 	
-	public void updateVendorUsageStatus(String vendorUsageStatusCodeNo) throws Exception;
+	public void updateVendorUsageStatus(Vendor vendor) throws Exception;
 	
 	public List<Vendor> selectVendorList(Search search) throws Exception;
 
@@ -27,11 +28,11 @@ public interface AccountingDAO {
 	
 	public void updateAccount(Account account) throws Exception;
 	
-	public void updateAccountUsageStatus(String accountUsageStatusCodeNo) throws Exception;
+	public void updateAccountUsageStatus(Account account) throws Exception;
 	
 	public List<Account> selectAccountList(Search search) throws Exception;
 	
-	public Account checkDuplicateAccount(String accountNo) throws Exception;
+	public int checkDuplicateAccount(String accountNo) throws Exception;
 	
 	public void insertSalary(Salary salary) throws Exception;
 	
@@ -39,15 +40,15 @@ public interface AccountingDAO {
 	
 	public void updateSalary(Salary salary) throws Exception;
 	
-	public void updateSalaryStatus(String salaryStatusCodeNo) throws Exception;
+	public void updateSalaryStatus(Salary salary) throws Exception;
 	
 	public List<Salary> selectSalaryList(Search search) throws Exception;
 	
 	public List<Salary> calculateSalary(String salaryDate) throws Exception;
 	
-	public Salary checkDuplicateSalaryDate(String salaryDate) throws Exception;
+	public int checkDuplicateSalaryDate(String salaryDate) throws Exception;
 	
-	public Salary selectSalaryBookList(Search search) throws Exception;
+	public List<SalaryBook> selectSalaryBookList(Search search) throws Exception;
 	
 	public void insertStatement(Statement statement) throws Exception;
 	
@@ -55,7 +56,7 @@ public interface AccountingDAO {
 	
 	public void updateStatement(Statement statement) throws Exception;
 	
-	public void updateStatementUsageStatus(String statementUsageStatusCodeNo) throws Exception;
+	public void updateStatementUsageStatus(Statement statement) throws Exception;
 	
 	public List<Statement> selectStatementList(Search search) throws Exception;
 	
@@ -65,10 +66,10 @@ public interface AccountingDAO {
 	
 	public void updateCard(Card card) throws Exception;
 	
-	public void updateCardUsageStatus(String cardUsageStatusCodeNo) throws Exception;
+	public void updateCardUsageStatus(Card card) throws Exception;
 	
 	public List<Card> selectCardList(Search search) throws Exception;
 	
-	public Account checkDuplicateCard(String cardNo) throws Exception;
+	public int checkDuplicateCard(String cardNo) throws Exception;
 	
 }

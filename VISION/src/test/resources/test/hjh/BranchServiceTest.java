@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.vision.erp.service.branch.BranchDAO;
+import com.vision.erp.service.branch.BranchService;
 import com.vision.erp.service.domain.BranchDailySales;
 import com.vision.erp.service.domain.SalesMenu;
 import com.vision.erp.service.domain.SalesProduct;
@@ -22,10 +22,10 @@ import com.vision.erp.service.domain.SalesProduct;
 		"classpath:config/servlet-context.xml",
 		"classpath:config/transaction-context.xml"
 })
-public class BranchDAOTest{
+public class BranchServiceTest{
 
-	@Resource(name = "branchDAOImpl")
-	private BranchDAO branchDAO;
+	@Resource(name = "branchServiceImpl")
+	private BranchService branchService;
 	
 	private SalesProduct salesProduct;
 	private BranchDailySales branchDailySales;
@@ -35,28 +35,28 @@ public class BranchDAOTest{
 	private List<SalesMenu> salesMenuList;
 	
 	//@Test
-	public void testIsertDailySales() throws Exception {
+	public void testAddDailySales() throws Exception {
 		
 		salesProduct = new SalesProduct();
 		
-		salesProduct.setBranchNo("b1003");
-		salesProduct.setSalesDate("2019/06/08");
+		salesProduct.setBranchNo("b1020");
+		salesProduct.setSalesDate("2019/07/13");
 		salesProduct.setMenuNo("1");
 		salesProduct.setSalesAmount("125000");
 		salesProduct.setSalesQuantity("9");
 		
-		branchDAO.insertDailySales(salesProduct);
+		branchService.addDailySales(salesProduct);
 		
-		salesProduct.setBranchNo("b1003");
-		salesProduct.setSalesDate("2019/06/08");
+		salesProduct.setBranchNo("b1020");
+		salesProduct.setSalesDate("2019/07/13");
 		salesProduct.setMenuNo("2");
 		salesProduct.setSalesAmount("160000");
 		salesProduct.setSalesQuantity("10");
 		
-		branchDAO.insertDailySales(salesProduct);
+		branchService.addDailySales(salesProduct);
 		
 		salesProductList 
-			= (List<SalesProduct>)branchDAO.selectDailySalesDetail("b1003", "2019/06/08");
+			= (List<SalesProduct>)branchService.getBranchDailySalesDetail("b1020", "2019/07/13");
 		
 		for(int i = 0; i<salesProductList.size(); i++) {
 			SalesProduct salesProduct = salesProductList.get(i);
@@ -66,27 +66,25 @@ public class BranchDAOTest{
 	}
 	
 	//@Test
-	public void testSelectDailySalesDetail() throws Exception {
-		
-		String branchNo = "b1003";
-		String salesDate = "2019/06/08";
-		List<SalesProduct> list
-			= (List<SalesProduct>)branchDAO.selectDailySalesDetail(branchNo, salesDate);
-		
-		for(int i = 0; i<list.size(); i++) {
-			salesProduct = list.get(i);
+	public void testSelectDailySalesDetail() throws Exception {		
+			
+		salesProductList 
+		= (List<SalesProduct>)branchService.getBranchDailySalesDetail("b1020", "2019/07/13");
+	
+		for(int i = 0; i<salesProductList.size(); i++) {
+			SalesProduct salesProduct = salesProductList.get(i);
 			System.out.println(salesProduct);
 		}
 		
 	}
-	
+
 	//@Test
-	public void testSelectBranchDailySalesList() throws Exception {
+	public void testgetBranchDailySalesList() throws Exception {
 		
-		String branchNo = "b1003";
+		String branchNo = "b1020";
 		
 		branchDailySalesList = 
-				(List<BranchDailySales>)branchDAO.selectDailySalesList(branchNo);
+				(List<BranchDailySales>)branchService.getBranchDailySalesList(branchNo);
 		
 		for(int i = 0; i<branchDailySalesList.size(); i++) {
 			branchDailySales = branchDailySalesList.get(i);
@@ -96,7 +94,7 @@ public class BranchDAOTest{
 	}
 	
 	//@Test
-	public void testUpdateSalesProduct() throws Exception {
+	public void testModifySalesProduct() throws Exception {
 		
 		salesProduct = new SalesProduct();
 		
@@ -105,18 +103,18 @@ public class BranchDAOTest{
 		salesProduct.setSalesAmount("30000");
 		salesProduct.setSalesDate("19/07/13");
 		
-		branchDAO.updateSalesProduct(salesProduct);
+		branchService.modifySalesProduct(salesProduct);
 		
 		salesProduct.setSalesNumbering("5");
 		salesProduct.setSalesQuantity("30");
 		salesProduct.setSalesAmount("48000");
 		salesProduct.setSalesDate("19/07/13");
 		
-		branchDAO.updateSalesProduct(salesProduct);
+		branchService.modifySalesProduct(salesProduct);
 		
 		
 		salesProductList
-		= (List<SalesProduct>)branchDAO.selectDailySalesDetail("b1003", "19/07/13");
+		= (List<SalesProduct>)branchService.getBranchDailySalesDetail("b1003", "19/07/13");
 	
 		for(int i = 0; i<salesProductList.size(); i++) {
 			salesProduct = salesProductList.get(i);
@@ -124,13 +122,13 @@ public class BranchDAOTest{
 		}
 		
 	}
-	
+
+
 	@Test
-	public void testSelectSalesMenuList() throws Exception {
+	public void testgetSalesMenuList() throws Exception {
 		
 		salesMenuList = 
-				(List<SalesMenu>)branchDAO.selectSalesMenuList();
-		
+				(List<SalesMenu>)branchService.getSalesMenuList();
 		
 		for(int i = 0; i<salesMenuList.size(); i++) {
 			salesMenu = salesMenuList.get(i);

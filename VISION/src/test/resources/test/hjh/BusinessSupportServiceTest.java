@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vision.erp.common.Search;
 import com.vision.erp.service.businesssupport.BusinessSupportDAO;
+import com.vision.erp.service.businesssupport.BusinessSupportService;
 import com.vision.erp.service.domain.Branch;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,39 +22,38 @@ import com.vision.erp.service.domain.Branch;
 		"classpath:config/servlet-context.xml",
 		"classpath:config/transaction-context.xml"
 })
-public class BusinessSupportDAOTest{
+public class BusinessSupportServiceTest{
 
-	@Resource(name = "businessSupportDAOImpl")
-	private BusinessSupportDAO businessSupportDAO;
+	@Resource(name = "businessSupportServiceImpl")
+	private BusinessSupportService businessSupportService;
 	
 	private Branch branch;
 	private Search search;
 	private List<Branch> branchList;
 	
 	
-	//@Test
-	public void testInsertBranch() throws Exception {
+	@Test
+	public void testAddBranch() throws Exception {
 		
 		branch = new Branch();
 		
-		branch.setBranchName("Test03");
+		branch.setBranchName("Test05");
 		branch.setZipCode("12345");
-		branch.setAddress("Test03");
+		branch.setAddress("Test05");
 		branch.setDetailAdress("1111");
-		branch.setBusinessLicenseNo("123-12-12343");	//UNIQUE
-		branch.setBranchTel("111-111-1113");			//UNIQUE
-		branch.setBranchManagerPhone("010-1111-1113");		//UNIQUE
-		branch.setBranchManagerName("test02");
-		branch.setLocalCodeNo("05");
+		branch.setBusinessLicenseNo("123-12-12355");	//UNIQUE
+		branch.setBranchTel("111-111-1155");			//UNIQUE
+		branch.setBranchManagerPhone("010-1111-1155");		//UNIQUE
+		branch.setBranchManagerName("test05");
+		branch.setLocalCodeNo("07");
 		branch.setBranchStatusCodeNo("01");
 		
-		String branchNo = businessSupportDAO.insertBranch(branch);
-		
-		branch = businessSupportDAO.selectBranchDetail(branchNo);
+		branch = businessSupportService.addBranch(branch);
+
 		System.out.println("insert«— selectBranchDetail : " +branch);
 		
 	}
-	
+/*	
 	//@Test
 	public void testSelectBranchList() throws Exception {
 		
@@ -137,5 +137,5 @@ public class BusinessSupportDAOTest{
 		System.out.println("totalCount : "+totalCount);
 		
 	}
-
+*/
 }

@@ -28,11 +28,14 @@ public class ProductManagementServiceImplcodmsTest{
 	private ProductionManagementServicecodms codmsService;
 	
 	//주문서등록
-	//@Test
+	@Test
 	public void addOrderFromBranchTest() throws Exception{
 		OrderFromBranch ob = new OrderFromBranch();
 		ob.setOrderFromBranchTotalAmount("1300");
 		ob.setBranchNo("b1004");
+		ob.setBranchName("용산점");
+		ob.setOrderDate("2019/07/13");
+		ob.setAccountNo("138294382947");
 		List<OrderFromBranchProduct> list = new ArrayList<OrderFromBranchProduct>();
 		OrderFromBranchProduct op1 = new OrderFromBranchProduct("10005", "300", null, "3", "900");
 		OrderFromBranchProduct op2 = new OrderFromBranchProduct("10006", "400", null, "1", "400");
@@ -44,7 +47,7 @@ public class ProductManagementServiceImplcodmsTest{
 	}
 	
 	//주문서 상태 변경
-	@Test
+	//@Test
 	public void modifyOrderFromBranchStatusTest() throws Exception{
 //		codmsService.modifyOrderFromBranchStatus(orderFromBranch);
 	}

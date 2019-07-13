@@ -98,8 +98,12 @@ public class AccountingServiceImpl implements AccountingService{
 	public void addSalary(String salaryDate) throws Exception {
 		List<Salary> list = accountingDAO.calculateSalary(salaryDate);
 		
+		for(Salary salary : list) {
+			salary.setSalaryDate(salaryDate);
+			accountingDAO.insertSalary(salary);	
+		}
+		
 	}
-
 
 	@Override
 	public Salary getSalaryDetail(String salaryNumbering) throws Exception {

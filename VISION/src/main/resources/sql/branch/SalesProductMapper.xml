@@ -75,7 +75,7 @@
 	 		SALES_AMOUNT = #{salesAmount},
 	 		SALES_DATE = #{salesDate}
 	 	</set>
-	 	WHERE	BRANCH_NO = #{branchNo}
+	 	WHERE	SALES_PRODUCT_NUMBERING = #{salesNumbering}
 	 	
 	 </update>
 	 

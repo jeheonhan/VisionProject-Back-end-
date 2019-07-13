@@ -27,7 +27,7 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 	@Resource(name="productionManagementDAOImplrudwn")
 	private ProductionManagementDAOrudwn productionManagementDAOrudwn;
 	
-	//@Resource(name="accountingDAOImpl")
+	@Resource(name="accountingDAOImpl")
 	private AccountingDAO accountingDAO;
 	
 	//[지점] 주문서등록
@@ -113,7 +113,8 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 	private OrderFromBranchProduct calculateOrderFromBranchProduct(OrderFromBranchProduct op) throws Exception{
 		Product product = productionManagementDAOrudwn.selectDetailProduct(op.getProductNo());
 		op.setPrice(product.getSalesPrice());
-		op.setOrderFromBranchProductAmount(""+(Integer.parseInt(product.getSalesPrice())*Integer.parseInt(op.getOrderFromBranchProductAmount())));
+		op.setOrderFromBranchProductAmount(""+(Integer.parseInt(product.getSalesPrice())*Integer.parseInt(op.getOrderFromBranchProductQuantity())));
+		System.out.println("CalculateOrderFromBranchProduct() : "+op);
 		return op;
 	}
 	
@@ -126,7 +127,9 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 		statement.setStatementDetail("주문");
 		statement.setAccountNo(orderFromBranch.getAccountNo());
 		statement.setTradeAmount(orderFromBranch.getOrderFromBranchTotalAmount());
+		System.out.println("Pre Hi");
 		accountingDAO.insertStatement(statement);
+		System.out.println("Post Hi");
 		
 		return statement;
 	}

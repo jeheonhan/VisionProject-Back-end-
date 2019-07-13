@@ -44,7 +44,7 @@
 		VALUES	 
 			(SEQ_NOTICE_NO.NEXTVAL , 
 			#{employeeNo} , 
-			TO_CHAR(SYSDATE, 'YY/MM/DD') , 
+			TO_CHAR(SYSDATE, 'YYYY/MM/DD') , 
 			#{noticeTitle} , 			 
 			#{content} , 
 			#{readAuthority}, 

@@ -23,7 +23,6 @@ public class BranchDAOImpl implements BranchDAO{
 	@Override
 	public void insertDailySales(SalesProduct salesProduct) throws Exception {
 		sqlSession.insert("SalesProductMapper.insertSalesProduct", salesProduct);
-		System.out.println("salesNumbering »Æ¿Œ : "+salesProduct.getSalesNumbering());
 	}
 
 	@Override
@@ -41,12 +40,12 @@ public class BranchDAOImpl implements BranchDAO{
 
 	@Override
 	public void updateSalesProduct(SalesProduct salesProduct) throws Exception {
-		sqlSession.update("SalesProductMapper", salesProduct);
+		sqlSession.update("SalesProductMapper.updateSalesProduct", salesProduct);
 	}
 
 	@Override
 	public List<SalesMenu> selectSalesMenuList() throws Exception {
-		return sqlSession.selectList("SalesMenuMapper");
+		return sqlSession.selectList("SalesMenuMapper.selectMenuList");
 	}
 
 	

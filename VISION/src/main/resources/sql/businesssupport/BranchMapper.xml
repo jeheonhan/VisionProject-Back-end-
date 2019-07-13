@@ -46,7 +46,7 @@
 			#{branchManagerName} , 
 			#{branchManagerPhone} , 
 			#{branchTel} , 
-			TO_CHAR(SYSDATE, 'YY/MM/DD'), 
+			TO_CHAR(SYSDATE, 'YYYY/MM/DD'), 
 			#{localCodeNo} , 
 			#{zipCode}, 
 			#{address}, 
@@ -91,10 +91,10 @@
 	 	WHERE BRANCH_NO = #{branchNo}	 
 	 </update>
 	 
-	 <update id="updateBranchUsageCode" parameterType="string">
+	 <update id="updateBranchUsageCode" parameterType="branch">
 	 	UPDATE branch
 	 	<set>
-	 		USAGE_STATUS_CODE = #{value}
+	 		USAGE_STATUS_CODE = #{branchStatusCodeNo}
 	 	</set>
 	 	WHERE BRANCH_NO = #{branchNo}
 	 </update>

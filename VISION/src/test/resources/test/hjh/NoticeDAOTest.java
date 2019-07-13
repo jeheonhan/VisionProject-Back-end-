@@ -51,7 +51,7 @@ public class NoticeDAOTest{
 		System.out.println(notice);
 	}
 		
-	@Test
+	//@Test
 	public void testSelectToitalCount() throws Exception {
 		
 		search = new Search();

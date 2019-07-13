@@ -15,7 +15,7 @@
 	
 	<select id="selectSalaryBookList" parameterType="search" resultMap="salaryBookSelectMap">
 		SELECT 
-			salary_date, SUM(individual_total_salary) total_salary
+			salary_date, salary_book_funcion(salary_date) AS salary_book_name, SUM(individual_total_salary) total_salary
 		FROM 
 			salary
 		GROUP BY 

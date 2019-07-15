@@ -27,7 +27,8 @@
 	 	SELECT	MENU_NO,
 				MENU_NAME,
 				MENU_PRICE
-		FROM	sales_menu	 	
+		FROM	sales_menu	
+		ORDER BY MENU_NO ASC 	
 	 </select>
 	 
 	 <update id="updateMenu"	parameterType="salesMenu">

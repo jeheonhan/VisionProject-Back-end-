@@ -40,8 +40,9 @@ public class BusinessSupportDAOImpl implements BusinessSupportDAO {
 	}
 
 	@Override
-	public List<Branch> selectBranchList(Search saerch) throws Exception {
-		return sqlSession.selectList("BranchMapper.selectBranchList");
+	public List<Branch> selectBranchList(Search search) throws Exception {
+		
+		return sqlSession.selectList("BranchMapper.selectBranchList", search);
 	}
 
 	@Override

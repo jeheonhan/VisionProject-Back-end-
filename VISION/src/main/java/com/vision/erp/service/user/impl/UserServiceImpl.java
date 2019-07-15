@@ -52,18 +52,18 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDAO.selectUserList(search);
 	}
-	//내정보보기(메소드이용)인사카드/근태/급여이력/지점정보
+	//내정보보기(메소드이용)인사카드/근태/급여이력/지점정보(내 메소드 쓰는거아님)
 	@Override
-	public Map selectUser(String find) throws Exception {
+	public Map<String,Object> selectInfo(String employeeNo) throws Exception {
 		
 		Search search = new Search();
 		Map<String, Object> map = new HashMap<String, Object>();
-		search.setSearchKeyword(find);
+		search.setSearchKeyword(employeeNo);
 		
-		HumanResourceCard humanResourceCard = humanResourceDAO.selectHumanResourceCardDetailByEmployeeNo(find);
+		HumanResourceCard humanResourceCard = humanResourceDAO.selectHumanResourceCardDetailByEmployeeNo(employeeNo);
 		List<Salary> salary = accountingDAO.selectSalaryList(search);
 		List<WorkAttitude> workAttitude = humanResourceDAO.selectWorkAttitudeList(search);
-		Branch branch = businessSupportDAO.selectBranchDetail(find);
+		Branch branch = businessSupportDAO.selectBranchDetail(employeeNo);
 		
 		map.put("humanResourceCard", humanResourceCard);
 		map.put("salary", salary);
@@ -82,26 +82,31 @@ public class UserServiceImpl implements UserService {
 	//사원아이디확인
 	@Override
 	public String proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDAO.proofMySelfForId1(hrcInfo);
 	}
 	//사원비밀번호확인
 	@Override
 	public String proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDAO.proofMySelfForPassword1(hrcInfo);
 	}
 	//점장아이디왁인
 	@Override
 	public String proofMySelfForId2(Branch branch) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDAO.proofMySelfForId2(branch);
 	}
 	//점장비밀번호확인
 	@Override
 	public String proofMySelfForPassword2(Branch branch) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.proofMySelfForPassword2(branch);
+	}
+	@Override
+	public User selectUser(String userId) throws Exception {
+		
+		return userDAO.selectUser(userId);
 	}
 	
 	

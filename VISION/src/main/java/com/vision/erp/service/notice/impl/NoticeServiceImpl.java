@@ -57,7 +57,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void convertNoticeStatusCode(Notice notice) throws Exception {
+	public void convertNoticeUsageStatus(Notice notice) throws Exception {
 		noticeDAO.updateNoticeUsageCode(notice);
 	}
 

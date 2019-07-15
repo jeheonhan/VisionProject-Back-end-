@@ -57,7 +57,7 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 	}
 
 	@Override
-	public Branch getBranch(String branchNo) throws Exception {
+	public Branch getBranchDetail(String branchNo) throws Exception {
 		
 		Branch branch = new Branch();
 		branch = businessSupportDAO.selectBranchDetail(branchNo);
@@ -84,7 +84,7 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 	}
 
 	@Override
-	public void convertBranchUsageStaus(Branch branch) throws Exception {		
+	public void convertBranchUsageStatus(Branch branch) throws Exception {		
 		businessSupportDAO.updateBranchUsageStatus(branch);		
 	}
 

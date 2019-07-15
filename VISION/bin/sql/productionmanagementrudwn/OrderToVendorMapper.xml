@@ -18,6 +18,11 @@
 	<insert id="insertOrderToVendor" parameterType="orderToVendor">
 
 		INSERT
+		
+		<selectKey keyProperty="orderToVendorNo" resultType="string" order="BEFORE">
+   			 select SEQ_ORDER_TO_VENDOR_NO.nextval FROM ORDER_TO_VENDOR
+ 		 </selectKey>
+		
 		  INTO	order_to_vendor
 		  			(
 		  			ORDER_TO_VENDOR_NO,
@@ -28,7 +33,7 @@
 		  			)
 		VALUES	
 				(
-					SEQ_VENDOR_NO.NEXTVAL,
+					#{orderToVendorNo},
 					#{statementNo},
 					#{totalAmount},
 					TO_CHAR(SYSDATE,'YYYY/MM/DD'),

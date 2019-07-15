@@ -20,7 +20,7 @@
 	      <result property="numbering" column="ORDER_BRANCH_PRODUCT_NUMBERING" jdbcType="VARCHAR"/>
 	      <result property="productNo" column="PRODUCT_NO" jdbcType="VARCHAR"/>
 	      <result property="productName" column="PRODUCT_Name" jdbcType="VARCHAR"/>
-	      <result property="price" column="sales_price" jdbcType="VARCHAR"/>
+	      <result property="price" column="order_price" jdbcType="VARCHAR"/>
 	      <result property="orderFromBranchProductStatusCodeNo" column="ORDER_BRANCH_PROD_STATUS_CODE" jdbcType="VARCHAR"/>
 	      <result property="orderFromBranchProductStatusCodeName" column="ORDER_PROD_STATUS_NAME" jdbcType="VARCHAR"/>
 	      <result property="orderFromBranchNo" column="ORDER_FROM_BRANCH_NO" jdbcType="VARCHAR"/>
@@ -50,7 +50,7 @@
 					seq_order_from_branch_no.nextval
 				, 	#{branchNo}
 				, 	#{statementNo}
-				, 	TO_CHAR(SYSDATE, 'YYYY/MM/DD')
+				, 	#{orderDate}
 				, 	#{orderFromBranchTotalAmount}
 				, 	'01'
 					)

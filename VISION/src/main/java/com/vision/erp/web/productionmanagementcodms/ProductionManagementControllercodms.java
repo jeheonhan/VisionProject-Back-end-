@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vision.erp.common.Search;
+import com.vision.erp.service.accounting.AccountingService;
 import com.vision.erp.service.domain.OrderFromBranch;
 import com.vision.erp.service.domain.OrderFromBranchProduct;
 import com.vision.erp.service.productionmanagement.codms.ProductionManagementServicecodms;
@@ -23,11 +24,11 @@ public class ProductionManagementControllercodms {
 	@Resource(name = "productionManagementServiceImplcodms")
 	private ProductionManagementServicecodms codmsService;
 	
-//	@Resource(name = "productionManagementServiceImplrudwn")
+	@Resource(name = "productionManagementServiceImplrudwn")
 	private ProductionManagementServicerudwn rudwnService;
 	
-//	@Resource(name = "accountingServiceImpl")
-//	private AccountingServiceImpl accountingService;
+	@Resource(name = "accountingServiceImpl")
+	private AccountingService accountingService;
 
 
 	//constructor
@@ -58,16 +59,16 @@ public class ProductionManagementControllercodms {
 	
 	//[주문요청] - 준비화면 띄우기 : 계좌번호 가져오기, 물품목록 가져오기
 	@RequestMapping(value="/pm/addOrderFromBranchPreparing")
-	public Map addOrderFromBranchPreparing() throws Exception{
-		Map map = new HashMap();
+	public Map<String, List> addOrderFromBranchPreparing() throws Exception{
+		Map<String, List> map = new HashMap<String, List>();
 		//물품목록 가져오기
 //		map.put("productList", rudwnService.getProductList());
 		
 		//계좌번호 가져오기
-		Search search = new Search();
+//		Search search = new Search();
 		//계좌 사용처 02주문
 //		search.setSearchKeyword("02");
-//		map.put("accountList", accountService.getAccountList(search));
+//		map.put("accountList", accountingService.getAccountList(search));
 		
 		return map;
 	}

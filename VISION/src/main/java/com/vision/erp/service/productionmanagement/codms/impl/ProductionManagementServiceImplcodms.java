@@ -1,5 +1,6 @@
 package com.vision.erp.service.productionmanagement.codms.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 	@Resource(name="accountingDAOImpl")
 	private AccountingDAO accountingDAO;
 	
+	//method
 	//[지점] 주문서등록
 	@Override
 	public void addOrderFromBranch(OrderFromBranch orderFromBranch) throws Exception {
@@ -40,10 +42,15 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 		for(OrderFromBranchProduct op : orderFromBranch.getOrderFromBranchProductList()) {
 			OrderFromBranchProduct resultOp = calculateOrderFromBranchProduct(op);
 			finalList.add(resultOp);
-			orderFromBranchTotalAmount += Integer.parseInt(op.getPrice());
+			orderFromBranchTotalAmount += Integer.parseInt(resultOp.getOrderFromBranchProductAmount());
 		}
 		orderFromBranch.setOrderFromBranchProductList(finalList);
 		orderFromBranch.setOrderFromBranchTotalAmount(""+orderFromBranchTotalAmount);
+		
+		//오늘 날짜로 주문일자 입력하기
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy/mm/dd");
+		String date = format.format (System.currentTimeMillis());
+		orderFromBranch.setOrderDate(date);
 		
 		//전표등록하고 주문서에 전표번호 저장하기
 		orderFromBranch.setStatementNo(addStatement(orderFromBranch).getStatementNo());
@@ -66,13 +73,20 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 		//주문서상태 변경하기
 		productionManagementDAOcodms.updateOrderFromBranchStatus(orderFromBranch);
 		
-		//주문취소시 주문물품 출하철회하기
-		if(orderFromBranch.getOrderFromBranchStatusCodeNo()=="04") {
+		//취소요청시 주문물품 출하철회하기
+		if(orderFromBranch.getOrderFromBranchStatusCodeNo().equals("04")) {
 			for(OrderFromBranchProduct op : orderFromBranch.getOrderFromBranchProductList()) {
 				//주문물품상태(출하대기01, 출하완료02, 출하철회03)
 				op.setOrderFromBranchProductStatusCodeNo("03");
 				productionManagementDAOcodms.updateOrderFromBranchProductStatus(op);
 			}
+		}
+		
+		//취소확정시 전표 취소하기
+		if(orderFromBranch.getOrderFromBranchStatusCodeNo().equals("05")) {
+			Statement stmt = accountingDAO.selectStatementDetail(orderFromBranch.getStatementNo());
+			stmt.setStatementUsageStatusCodeNo("02");
+			accountingDAO.updateStatementUsageStatus(stmt);
 		}
 	}
 
@@ -82,7 +96,7 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 		return productionManagementDAOcodms.selectOrderFromBranchList(search);
 	}
 
-	//[본사, 지점]주문서 상세보기
+	//[본사, 지점]주문서 상세보기 주문서번호 searchKeyword에 채우기
 	@Override
 	public OrderFromBranch getOrderFromBranchDetail(Search search) throws Exception {
 		// TODO Auto-generated method stub
@@ -93,19 +107,32 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 	//주문서번호, 물품번호 있어야함
 	@Override
 	public void modifyOrderFromBranchProductStatus(OrderFromBranchProduct orderFromBranchProduct) throws Exception {
-		// TODO Auto-generated method stub
 		//물품상태변경하기
 		productionManagementDAOcodms.updateOrderFromBranchProductStatus(orderFromBranchProduct);
 		
-		//주문서의 물품이 전부 출하완료라면 주문서상태 변경
 		if(orderFromBranchProduct.getOrderFromBranchProductStatusCodeNo().equals("02")) {
-			int notDeliveredYet = productionManagementDAOcodms.selectOrderFromBranchProduct(orderFromBranchProduct.getOrderFromBranchNo());
-			if(notDeliveredYet==0) {
-				OrderFromBranch ob = new OrderFromBranch();
-				ob.setOrderFromBranchStatusCodeNo("02");
-				ob.setOrderFromBranchNo(orderFromBranchProduct.getOrderFromBranchNo());
-				productionManagementDAOcodms.updateOrderFromBranchStatus(ob);
-			}
+			//주문서의 물품이 첫 출하라면 주문서 상태를 주문진행으로 변경
+			changeOrderFromBranchStatus(orderFromBranchProduct, "03");
+			//모든 물품 출하완료시 주문서상태 주문완료로 변경
+			changeOrderFromBranchStatus(orderFromBranchProduct, "02");
+		}
+		
+	}
+	
+	//출하시 주문서상태 변경
+	private void changeOrderFromBranchStatus(OrderFromBranchProduct orderFromBranchProduct, String orderFromBranchStatusCodeNo) throws Exception{
+		//주문물품에 해당되는 주문서 가져오기
+		Search search = new Search();
+		search.setSearchKeyword(orderFromBranchProduct.getOrderFromBranchNo());
+		OrderFromBranch ob = productionManagementDAOcodms.selectOrderFromBranchDetail(search);
+		
+		//주문서에 해당되는 미배송물품 개수 확인하기
+		int notDeliveredYet = productionManagementDAOcodms.selectOrderFromBranchProduct(ob.getOrderFromBranchNo());
+		
+		//if(모든 물품 출하완료시 주문서상태 주문완료로 변경 || 첫 물품 출하시 주문서 상태 주문진행으로 변경)
+		if(notDeliveredYet==0 || (ob.getOrderFromBranchStatusCodeNo().equals("01")&&orderFromBranchProduct.getOrderFromBranchProductStatusCodeNo().equals("02"))) {
+			ob.setOrderFromBranchStatusCodeNo(orderFromBranchStatusCodeNo);
+			productionManagementDAOcodms.updateOrderFromBranchStatus(ob);
 		}
 	}
 
@@ -127,9 +154,7 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 		statement.setStatementDetail("주문");
 		statement.setAccountNo(orderFromBranch.getAccountNo());
 		statement.setTradeAmount(orderFromBranch.getOrderFromBranchTotalAmount());
-		System.out.println("Pre Hi");
 		accountingDAO.insertStatement(statement);
-		System.out.println("Post Hi");
 		
 		return statement;
 	}

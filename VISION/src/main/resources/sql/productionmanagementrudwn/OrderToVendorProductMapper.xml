@@ -71,7 +71,7 @@
 
 	</select>
 
-	<update id="modifyOrderToVenItemCode" parameterType="string">
+	<update id="modifyOrderToVenItemCode" parameterType="orderToVendorProduct">
 		UPDATE order_to_vendor_product
 		<set>
 			<if test="orderToVendorProductStatusCodeNo == '01'">

@@ -13,8 +13,10 @@ public interface UserService {
 	public void addUser(User user) throws Exception;
 
 	public List<User> selectUserList(Search search) throws Exception;
+	
+	public User selectUser(String userId) throws Exception;
 
-	public Map<String, Object> selectUser(String userId) throws Exception;
+	public Map<String, Object> selectInfo(String find) throws Exception;
 
 	public void updatePassword(User user) throws Exception; 
 

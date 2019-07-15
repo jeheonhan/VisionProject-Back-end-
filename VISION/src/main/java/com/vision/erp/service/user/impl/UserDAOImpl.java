@@ -54,6 +54,8 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("UserMapper.proofMySelfForPassword2",branch);
 	}
+	
+	
 
 	@Override
 	public List<User> selectUserList(Search search) throws Exception {

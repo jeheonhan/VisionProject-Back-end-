@@ -52,7 +52,7 @@
 			#{address}, 
 			#{detailAdress}, 
 			#{businessLicenseNo},
-			#{branchStatusCodeNo}, 
+			'01', 
 			#{branchName})
 	 </insert>
 	 
@@ -115,20 +115,20 @@
 			BRANCH_NAME, 
 			CODE_FUNCTION('local', LOCAL_CODE_NO) AS LOCAL_CODE_NAME
 		FROM 	branch
-			<if test="searchCondition != null"> 	 								
-				<where>
+			<if test="searchCondition != null"> 
+				<where>	 								
 					<choose>
 						<when test="searchCondition == 0 and searchKeyword != '' ">	 										 
 							BRANCH_NO = #{searchKeyword}
 						</when>
 						<when test="searchCondition == 1 and searchKeyword != '' ">	 										
-							BRANCH_NAME LIKE '%'||#{searchKeyword}||'%'
+							BRANCH_NAME LIKE ('%'||#{searchKeyword}||'%')
 						</when>
-						<otherwise>
-							LOCAL_CODE_NO LIKE '%'||#{searchKeyword}||'%'
-						</otherwise>
-					</choose>	 										
-				</where>
+						<when test="searchCondition == 2 and searchKeyword != '' ">
+							LOCAL_CODE_NO = #{searchKeyword}
+						</when>
+					</choose>
+				</where>	 										
 			</if>
 		ORDER BY BRANCH_REG_DATE DESC		
 	 </select>
@@ -140,8 +140,8 @@
 		 			BRANCH_NAME, 
 		 			LOCAL_CODE_NO
 		 		FROM branch	 			
-	 			<if test="searchCondition != null">
-	 				<where>
+	 			<if test="searchCondition != null">	
+	 				<where> 				 				
 	 					<choose>	 					
 		 					<when test="searchCondition == 0 and searchKeyword != '' "> 
 								BRANCH_NO = #{searchKeyword}
@@ -149,11 +149,12 @@
 							<when test="searchCondition == 1 and searchKeyword != '' "> 
 								BRANCH_NAME LIKE ('%'||#{searchKeyword}||'%')
 							</when>
-							<otherwise> 
+							<when test="searchCondition == 2 and searchKeyword != '' "> 
 								LOCAL_CODE_NO = #{searchKeyword}
-							</otherwise> 
+							</when>
 						</choose>
-	 				</where>
+					</where>
+	 				
 	 			</if> ) countTable
 	 				
 	 </select>	 	 

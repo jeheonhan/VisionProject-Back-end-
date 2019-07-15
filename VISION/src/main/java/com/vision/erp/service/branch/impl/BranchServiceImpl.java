@@ -19,8 +19,10 @@ public class BranchServiceImpl implements BranchService{
 	private BranchDAO branchDAO;
 
 	@Override
-	public void addDailySales(SalesProduct salesProduct) throws Exception {		
-		branchDAO.insertDailySales(salesProduct);
+	public List<SalesProduct> addDailySales(List<SalesProduct> salesProductList) throws Exception {		
+		branchDAO.insertDailySales(salesProductList);
+		
+		return salesProductList;
 	}
 
 	@Override
@@ -34,8 +36,8 @@ public class BranchServiceImpl implements BranchService{
 	}
 
 	@Override
-	public void modifySalesProduct(SalesProduct salesProduct) throws Exception {
-		branchDAO.updateSalesProduct(salesProduct);
+	public void modifySalesProduct(List<SalesProduct> salesProductList) throws Exception {
+		branchDAO.updateSalesProduct(salesProductList);
 	}
 
 	@Override

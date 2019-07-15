@@ -9,12 +9,12 @@ public interface BusinessSupportService {
 	
 	public Branch addBranch(Branch branch) throws Exception;
 	
-	public Branch getBranch(String branchNo) throws Exception;
+	public Branch getBranchDetail(String branchNo) throws Exception;
 	
 	public Map<String, Object> getBranchList(Search search) throws Exception;
 	
 	public void modifyBranch(Branch branch) throws Exception;
 	
-	public void convertBranchUsageStaus(Branch branch) throws Exception;
+	public void convertBranchUsageStatus(Branch branch) throws Exception;
 
 }

@@ -22,7 +22,7 @@ public class CodeDAOImpl implements CodeDAO {
 	@Override
 	public List<Code> selectGroupCodeList(Search search) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("CodeMapper.selectGroupCodeList");
+		return sqlSession.selectList("CodeMapper.selectGroupCodeList", search);
 	}
 
 	//코드 등록

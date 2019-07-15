@@ -46,7 +46,7 @@
 			#{employeeNo} , 
 			TO_CHAR(SYSDATE, 'YYYY/MM/DD') , 
 			#{noticeTitle} , 			 
-			#{content} , 
+			#{content:VARCHAR} , 
 			#{readAuthority}, 
 			'0', 
 			'01')
@@ -81,7 +81,7 @@
 	 	<set>
 			EMPLOYEE_NO = #{employeeNo},
 			NOTICE_TITLE = #{noticeTitle}, 
-			NOTICE_CONTENTS = #{content}, 
+			NOTICE_CONTENTS = #{content:VARCHAR}, 
 			READ_AUTHORITY = #{readAuthority}
 	 	</set>
 	 	WHERE	NOTICE_NO = #{noticeNo}	 
@@ -115,7 +115,7 @@
 	 	FROM	notice, human_resource_card
 			<where>
 				notice.EMPLOYEE_NO = human_resource_card.EMPLOYEE_NO
-					<if test="searchCondition != null">
+					<if test="searchCondition != null or searchCondition != '' ">
 						<choose>
 							<when test="searchCondition == 0 and searchKeyword != '' ">	 										 
 								AND	notice.NOTICE_TITLE LIKE '%'||#{searchKeyword}||'%'
@@ -123,9 +123,9 @@
 							<when test="searchCondition == 1 and searchKeyword != '' ">	 										
 								AND	human_resource_card.EMPLOYEE_NAME LIKE '%'||#{searchKeyword}||'%'
 							</when>
-							<otherwise>
+							<when test="searchCondition == 2 and searchKeyword != '' ">
 								AND	notice.USAGE_STATUS_CODE = #{searchKeyword}
-							</otherwise>
+							</when>
 						</choose>
 					</if>	 										
 			</where>
@@ -149,9 +149,9 @@
 								<when test="searchCondition == 1 and searchKeyword != '' ">	 										
 									AND	human_resource_card.EMPLOYEE_NAME LIKE ('%'||#{searchKeyword}||'%')
 								</when>
-								<otherwise>
+								<when test="searchCondition == 2 and searchKeyword != '' ">
 									AND	notice.USAGE_STATUS_CODE = #{searchKeyword}
-								</otherwise>
+								</when>
 							</choose>
 						</if> 
 	 				</where> ) countTable

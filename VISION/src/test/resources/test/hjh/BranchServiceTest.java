@@ -45,7 +45,7 @@ public class BranchServiceTest{
 		salesProduct.setSalesAmount("125000");
 		salesProduct.setSalesQuantity("9");
 		
-		branchService.addDailySales(salesProduct);
+		//branchService.addDailySales(salesProduct);
 		
 		salesProduct.setBranchNo("b1020");
 		salesProduct.setSalesDate("2019/07/13");
@@ -53,7 +53,7 @@ public class BranchServiceTest{
 		salesProduct.setSalesAmount("160000");
 		salesProduct.setSalesQuantity("10");
 		
-		branchService.addDailySales(salesProduct);
+		//branchService.addDailySales(salesProduct);
 		
 		salesProductList 
 			= (List<SalesProduct>)branchService.getBranchDailySalesDetail("b1020", "2019/07/13");
@@ -103,14 +103,14 @@ public class BranchServiceTest{
 		salesProduct.setSalesAmount("30000");
 		salesProduct.setSalesDate("19/07/13");
 		
-		branchService.modifySalesProduct(salesProduct);
+		//branchService.modifySalesProduct(salesProduct);
 		
 		salesProduct.setSalesNumbering("5");
 		salesProduct.setSalesQuantity("30");
 		salesProduct.setSalesAmount("48000");
 		salesProduct.setSalesDate("19/07/13");
 		
-		branchService.modifySalesProduct(salesProduct);
+		//branchService.modifySalesProduct(salesProduct);
 		
 		
 		salesProductList
@@ -124,7 +124,7 @@ public class BranchServiceTest{
 	}
 
 
-	@Test
+	//@Test
 	public void testgetSalesMenuList() throws Exception {
 		
 		salesMenuList = 

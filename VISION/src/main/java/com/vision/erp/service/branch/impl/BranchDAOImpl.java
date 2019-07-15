@@ -21,8 +21,8 @@ public class BranchDAOImpl implements BranchDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public void insertDailySales(SalesProduct salesProduct) throws Exception {
-		sqlSession.insert("SalesProductMapper.insertSalesProduct", salesProduct);
+	public void insertDailySales(List<SalesProduct> salesProductList) throws Exception {
+		sqlSession.insert("SalesProductMapper.insertSalesProduct", salesProductList);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class BranchDAOImpl implements BranchDAO{
 	}
 
 	@Override
-	public void updateSalesProduct(SalesProduct salesProduct) throws Exception {
-		sqlSession.update("SalesProductMapper.updateSalesProduct", salesProduct);
+	public void updateSalesProduct(List<SalesProduct> salesProductList) throws Exception {
+		sqlSession.update("SalesProductMapper.updateSalesProduct", salesProductList);
 	}
 
 	@Override

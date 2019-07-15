@@ -15,7 +15,7 @@ public interface UserDAO {
 	//안보여줄거임
 	public List<User> selectUserList(Search search) throws Exception;
 
-	//내 정보보기
+	//로그인
 	public User selectUser(String userId) throws Exception;
 
 	//비밀번호변경하기

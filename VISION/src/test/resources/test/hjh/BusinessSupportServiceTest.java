@@ -2,6 +2,7 @@ package test.hjh;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vision.erp.common.Search;
-import com.vision.erp.service.businesssupport.BusinessSupportDAO;
 import com.vision.erp.service.businesssupport.BusinessSupportService;
 import com.vision.erp.service.domain.Branch;
 
@@ -22,6 +22,7 @@ import com.vision.erp.service.domain.Branch;
 		"classpath:config/servlet-context.xml",
 		"classpath:config/transaction-context.xml"
 })
+
 public class BusinessSupportServiceTest{
 
 	@Resource(name = "businessSupportServiceImpl")
@@ -30,6 +31,7 @@ public class BusinessSupportServiceTest{
 	private Branch branch;
 	private Search search;
 	private List<Branch> branchList;
+	private Map<String, Object> map;
 	
 	
 	@Test
@@ -53,78 +55,85 @@ public class BusinessSupportServiceTest{
 		System.out.println("insertÇÑ selectBranchDetail : " +branch);
 		
 	}
-/*	
+	
 	//@Test
-	public void testSelectBranchList() throws Exception {
+	public void testGetBranchList() throws Exception {
 		
 		search = new Search();
 		
-		branchList 
-				= (List<Branch>)businessSupportDAO.selectBranchList(search);
+		search.setSearchCondition("1");
+		search.setSearchKeyword("´ë");
 		
+		map = (Map<String, Object>)businessSupportService.getBranchList(search);
+		
+		branchList = (List<Branch>)map.get("branchList");
+
+		int totalCount = (Integer)map.get("totalCount");
+		
+		System.out.println("List ¼ö : "+totalCount);
 		for(int i = 0; i<branchList.size(); i++) {
 			branch = branchList.get(i);
 			System.out.println(branch);
 		}
 		
 	}
-	
+
 	//@Test
-	public void testSelectBranchDetail() throws Exception {
+	public void testGetBranchDetail() throws Exception {
 		
 		branch = new Branch();
 		
 		String branchNo = "b1003";
 		
-		branch = businessSupportDAO.selectBranchDetail(branchNo);		
+		branch = businessSupportService.getBranchDetail(branchNo);		
 		System.out.println("BranchDtail : "+branch);
 		
 	}
 	
 	//@Test
-	public void testUpdateBranch() throws Exception {
+	public void testModifyBranch() throws Exception {
 		
 		branch = new Branch();
 		
 		branch.setBranchNo("b1024");
-		branch.setBranchName("Test03");
-		branch.setZipCode("12345");
-		branch.setAddress("Test03");
-		branch.setDetailAdress("1111");
-		branch.setBusinessLicenseNo("123-12-12343");	//UNIQUE
-		branch.setBranchTel("111-111-1113");			//UNIQUE
-		branch.setBranchManagerPhone("010-1111-1113");		//UNIQUE
-		branch.setBranchManagerName("test02");
-		branch.setLocalCodeNo("05");
+		branch.setBranchName("Test06");
+		branch.setZipCode("12346");
+		branch.setAddress("Test06");
+		branch.setDetailAdress("66666");
+		branch.setBusinessLicenseNo("123-12-12666");	//UNIQUE
+		branch.setBranchTel("111-111-1116");			//UNIQUE
+		branch.setBranchManagerPhone("010-1111-1116");		//UNIQUE
+		branch.setBranchManagerName("test06");
+		branch.setLocalCodeNo("08");
 		branch.setBranchStatusCodeNo("01");
 		
-		businessSupportDAO.updateBranch(branch);
+		businessSupportService.modifyBranch(branch);
 		
-		branch = businessSupportDAO.selectBranchDetail("b1024");
+		branch = businessSupportService.getBranchDetail("b1024");
 		
 		System.out.println(branch);	
 		
 		
 	}
 	
-	@Test
-	public void testUpdateBranchUsageCode() throws Exception {
+	//@Test
+	public void testModifyBranchUsageCode() throws Exception {
 		
 		branch = new Branch();
 		
 		branch.setBranchNo("b1024");
-		branch.setBranchStatusCodeNo("02");
+		branch.setBranchStatusCodeNo("01");
 		
-		businessSupportDAO.updateBranchUsageStatus(branch);
+		businessSupportService.convertBranchUsageStatus(branch);
 		
-		branch = businessSupportDAO.selectBranchDetail("b1024");
+		branch = businessSupportService.getBranchDetail("b1024");
 		
 		System.out.println(branch);
 		
 	}
 	
 	//@Test
-	public void testSelectTotalCount() throws Exception {
+	public void testGetTotalCount() throws Exception {
 		
 		search = new Search();
 		
@@ -132,10 +141,14 @@ public class BusinessSupportServiceTest{
 		search.setSearchKeyword("est");
 		
 		System.out.println(search);
-		int totalCount = businessSupportDAO.selectTotalCount(search);
+		map = (Map<String, Object>)businessSupportService.getBranchList(search);
+		
+		branchList = (List<Branch>)map.get("branchList");
+		
+		int totalCount = (Integer)map.get("totalCount");
 		
 		System.out.println("totalCount : "+totalCount);
 		
 	}
-*/
+
 }

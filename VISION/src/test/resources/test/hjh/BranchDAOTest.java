@@ -45,7 +45,7 @@ public class BranchDAOTest{
 		salesProduct.setSalesAmount("125000");
 		salesProduct.setSalesQuantity("9");
 		
-		branchDAO.insertDailySales(salesProduct);
+		//branchDAO.insertDailySales(salesProduct);
 		
 		salesProduct.setBranchNo("b1003");
 		salesProduct.setSalesDate("2019/06/08");
@@ -53,7 +53,7 @@ public class BranchDAOTest{
 		salesProduct.setSalesAmount("160000");
 		salesProduct.setSalesQuantity("10");
 		
-		branchDAO.insertDailySales(salesProduct);
+		//branchDAO.insertDailySales(salesProduct);
 		
 		salesProductList 
 			= (List<SalesProduct>)branchDAO.selectDailySalesDetail("b1003", "2019/06/08");
@@ -105,14 +105,14 @@ public class BranchDAOTest{
 		salesProduct.setSalesAmount("30000");
 		salesProduct.setSalesDate("19/07/13");
 		
-		branchDAO.updateSalesProduct(salesProduct);
+		//branchDAO.updateSalesProduct(salesProduct);
 		
 		salesProduct.setSalesNumbering("5");
 		salesProduct.setSalesQuantity("30");
 		salesProduct.setSalesAmount("48000");
 		salesProduct.setSalesDate("19/07/13");
 		
-		branchDAO.updateSalesProduct(salesProduct);
+		//branchDAO.updateSalesProduct(salesProduct);
 		
 		
 		salesProductList

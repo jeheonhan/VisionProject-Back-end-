@@ -39,7 +39,7 @@
 		)
 		VALUES
 		(
-		#{productNo},
+		seq_product_no.nextval,
 		#{productName},
 		#{purchasePrice},
 		#{salesPrice},

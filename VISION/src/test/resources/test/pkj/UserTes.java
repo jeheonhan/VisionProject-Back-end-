@@ -9,16 +9,22 @@ import javax.annotation.Resource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.vision.erp.common.Search;
+import com.vision.erp.service.accounting.AccountingDAO;
+import com.vision.erp.service.businesssupport.BusinessSupportDAO;
 import com.vision.erp.service.domain.Branch;
 import com.vision.erp.service.domain.HumanResourceCard;
 import com.vision.erp.service.domain.Product;
 import com.vision.erp.service.domain.Salary;
 import com.vision.erp.service.domain.User;
 import com.vision.erp.service.domain.WorkAttitude;
+import com.vision.erp.service.humanresource.HumanResourceDAO;
+import com.vision.erp.service.humanresource.HumanResourceService;
 import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementDAOrudwn;
 import com.vision.erp.service.user.UserDAO;
 import com.vision.erp.service.user.UserService;
@@ -36,13 +42,27 @@ public class UserTes{
 	@Resource(name = "userDAOImpl")
 	private UserDAO userDAO;
 
-	@Resource(name = "productionManagementDAOImplrudwn")
-	private ProductionManagementDAOrudwn productionDAO;
+//	@Resource(name = "productionDAOImpl")
+//	private ProductionManagementDAOrudwn productionDAO;
 
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
 
-	//@Test
+	@Autowired
+	@Qualifier("humanResourceDAOImpl")
+	private HumanResourceDAO humanResourceDAO;
+
+	@Autowired
+	@Qualifier("accountingDAOImpl")
+	private AccountingDAO accountingDAO;
+
+	@Autowired
+	@Qualifier("businessSupportDAOImpl")
+	private BusinessSupportDAO businessSupportDAO;
+
+
+
+	@Test
 	public void testSelectUserList() throws Exception {
 
 		Search search = new Search();
@@ -155,7 +175,9 @@ public class UserTes{
 		userDAO.addUser(user);
 	}
 
-	//service Test ============================================================
+	//service Test =============================================================================================
+	//service Test =============================================================================================
+	//service Test =============================================================================================
 
 	//@Test
 	public void addUserService() throws Exception{
@@ -173,26 +195,86 @@ public class UserTes{
 
 		userService.addUser(user);
 	}
-	
-	@Test
+
+	//@Test
 	public void UserInfoMapService() throws Exception{
 
-//		Search search = new Search();
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		search.setSearchKeyword(find);
-//		
-//		HumanResourceCard humanResourceCard = humanResourceDAO.selectHumanResourceCardDetailByEmployeeNo(find);
-//		List<Salary> salary = accountingDAO.selectSalaryList(search);
-//		List<WorkAttitude> workAttitude = humanResourceDAO.selectWorkAttitudeList(search);
-//		Branch branch = businessSupportDAO.selectBranchDetail(find);
-//		
-//		map.put("humanResourceCard", humanResourceCard);
-//		map.put("salary", salary);
-//		map.put("workAttitude", workAttitude);
-//		map.put("branch", branch);
+		Search search = new Search();
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		search.setSearchKeyword("박경주");
 		
-//		System.out.println(map);
+		
+
+		HumanResourceCard humanResourceCard = humanResourceDAO.selectHumanResourceCardDetailByEmployeeNo("1000");
+		List<Salary> salary = accountingDAO.selectSalaryList(search);
+		List<WorkAttitude> workAttitude = humanResourceDAO.selectWorkAttitudeList(search);
+		Branch branch = businessSupportDAO.selectBranchDetail("b1003");
+
+		map.put("humanResourceCard", humanResourceCard);
+		map.put("salary", salary);
+		map.put("workAttitude", workAttitude);
+		map.put("branch", branch);
+
+		System.out.println(map.toString());
 	}
+
+	//@Test
+	public void updatePasswordService() throws Exception{
+
+		User user = new User();
+		user.setUserId("U1008");
+		user.setPassword("0000");
+		
+		userService.updatePassword(user);
+
+	}
+	
+	//@Test
+	public void findIdService1() throws Exception {
+		HumanResourceCard hrcInfo = new HumanResourceCard();
+		
+		hrcInfo.setEmployeeName("박경주");
+		hrcInfo.setEmployeePhone("010-2255-5786");
+		
+		String id = userService.proofMySelfForId1(hrcInfo);
+		System.out.println("check :: " + id);
+	}
+	
+	//@Test
+	public void findIdService2() throws Exception {
+		Branch branch = new Branch();
+		
+		branch.setBranchManagerName("홍길동");
+		branch.setBranchManagerPhone("010-1111-1000");
+		
+		String id = userService.proofMySelfForId2(branch);
+		System.out.println("check :: " + id);
+	}
+	
+	
+	//@Test
+		public void findPasswordService1() throws Exception {
+			HumanResourceCard hrcInfo = new HumanResourceCard();
+			
+			hrcInfo.setEmployeeName("박경주");
+			hrcInfo.setEmployeePhone("010-2255-5786");
+			
+			String password = userService.proofMySelfForPassword1(hrcInfo);
+			System.out.println("check :: " + password);
+		}
+		
+		//@Test
+		public void findPasswordService2() throws Exception {
+			Branch branch = new Branch();
+			
+			branch.setBranchManagerName("홍길동");
+			branch.setBranchManagerPhone("010-1111-1000");
+			
+			String password = userService.proofMySelfForPassword2(branch);
+			System.out.println("check :: " + password);
+		}
+
 
 
 

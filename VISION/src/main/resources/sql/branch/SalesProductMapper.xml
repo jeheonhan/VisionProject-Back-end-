@@ -22,7 +22,7 @@
 		<result property="dailyTotalAmount" column="DAILY_TOTAL_AMOUNT" jdbcType="VARCHAR"/>
 	</resultMap>
 	
-	<insert 	id="insertSalesProduct"		parameterType="salesProduct" >
+	<insert 	id="insertSalesProduct"		parameterType="list" >
 	
 		<selectKey	keyProperty="salesNumbering"	resultType="string"	order="AFTER">
 			SELECT	SEQ_SALES_PRODUCT_NUMBERING.CURRVAL	FROM dual
@@ -38,13 +38,15 @@
 			SALES_AMOUNT, 
 			SALES_QUANTITY	 )
 		VALUES	 
-		(	
-			SEQ_SALES_PRODUCT_NUMBERING.NEXTVAL , 
-			#{branchNo} , 
-			#{salesDate} , 
-			#{menuNo} , 
-			#{salesAmount} , 
-			#{salesQuantity}	)
+		<foreach item = "salesProduct" collection="list">
+			(	
+				SEQ_SALES_PRODUCT_NUMBERING.NEXTVAL , 
+				#{salesProduct.branchNo} , 
+				#{salesProduct.salesDate} , 
+				#{salesProduct.menuNo} , 
+				#{salesProduct.salesAmount} , 
+				#{salesProduct.salesQuantity}	)
+		</foreach>
 	 </insert>
 	 
 	 <select id="selectDailySalesDetail"	parameterType="map"		resultMap="salesProductSelectMap">
@@ -55,7 +57,8 @@
 			SALES_PRODUCT.SALES_QUANTITY, 
 			SALES_PRODUCT.SALES_AMOUNT, 
 			SALES_PRODUCT.SALES_DATE, 
-			SALES_PRODUCT.BRANCH_NO
+			SALES_PRODUCT.BRANCH_NO,
+			SALES_PRODUCT.MENU_NO
 		FROM
 			SALES_MENU, SALES_PRODUCT
 		WHERE

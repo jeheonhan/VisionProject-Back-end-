@@ -8,13 +8,13 @@ import com.vision.erp.service.domain.SalesProduct;
 
 public interface BranchDAO {
 	
-	public void insertDailySales(SalesProduct salesProduct) throws Exception;
+	public void insertDailySales(List<SalesProduct> salesProductList) throws Exception;
 	
 	public List<SalesProduct> selectDailySalesDetail(String branchNo, String salesDate) throws Exception;
 	
 	public List<BranchDailySales> selectDailySalesList(String branchNo) throws Exception;
 	
-	public void updateSalesProduct(SalesProduct salesProduct) throws Exception;
+	public void updateSalesProduct(List<SalesProduct> salesProductList) throws Exception;
 	
 	public List<SalesMenu> selectSalesMenuList() throws Exception;
 

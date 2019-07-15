@@ -21,7 +21,7 @@
 		FROM code
 		<where>
 			code_usage_status = 'Y' 
-			<if test="searchKeyword!=null">
+			<if test="searchKeyword != null">
 		AND group_code=#{searchKeyword}
 			</if>
 		</where>
@@ -64,7 +64,7 @@
 			<if test="searchCondition==0">
 				code_usage_status = 'Y' 
 			</if>
-			<if test="searchCondigion==1">
+			<if test="searchCondition==1">
 				code_usage_status = 'N'
 			</if>
 			AND group_code = #{searchKeyword}
@@ -103,7 +103,7 @@
 	 <select 	id="selectLatestCodeNo"	parameterType="string"	resultMap="codeSelectMap">
 		SELECT	group_code
 			,	group_code_name
-			, 	MAX(code_no)
+			, 	MAX(code_no) code_no
 		FROM code 
 		<where>
 				group_code = #{value} 

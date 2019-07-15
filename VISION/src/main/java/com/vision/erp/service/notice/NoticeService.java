@@ -17,7 +17,7 @@ public interface NoticeService {
 	
 	public void modifyNotice(Notice notice) throws Exception;
 	
-	public void convertNoticeStatusCode(Notice notice) throws Exception;
+	public void convertNoticeUsageStatus(Notice notice) throws Exception;
 	
 	public List<NoticeHeader> getNoticeHeaderList() throws Exception;
 }

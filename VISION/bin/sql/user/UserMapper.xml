@@ -37,7 +37,7 @@
 					#{branchNo:VARCHAR},
 					#{memberCodeNo},
 					#{memberUsageStatusCodeNo},
-					#{accessMenuCodeNo}
+					#{accessMenuCodeNo:VARCHAR}
 				)
 	</insert>
 	

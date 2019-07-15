@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,9 +50,9 @@ public class CodeController {
 	
 	//[코드그룹별조회] - 코드 등록요청시 코드번호 자동생성
 	//등록하려는 그룹코드 가져오기
-	@RequestMapping(value="/code/addCodePreparing")
-	public void addCodePreparing(String groupCode) throws Exception{
-		codeService.generateCodeNo(groupCode);
+	@RequestMapping(value="/code/addCodePreparing/{groupCode}")
+	public String addCodePreparing(@PathVariable String groupCode) throws Exception{
+		return codeService.generateCodeNo(groupCode);
 	}
 	
 	//[코드그룹별조회] - 코드명 중복확인 그룹코드, 코드명 필요
@@ -71,10 +72,16 @@ public class CodeController {
 		codeService.addCode(code);
 	}
 	
-	//[코드그룹별조회] - 코드수정하기
+	//[코드그룹별조회] - 코드수정하기 그룹코드, 코드번호, 코드명 필요
 	@RequestMapping(value="/code/modifyCode")
 	public void modifyCode(@RequestBody Code code) throws Exception{
 		codeService.modifyCode(code);
+	}
+	
+	//[코드그룹별조회] - 코드 수정시 하나의 코드 가져오기 그룹코드, 코드명 필요
+	@RequestMapping(value="/code/getCode")
+	public Code getCode(@RequestBody Code code) throws Exception {
+		return codeService.checkDuplicateCodeNo(code);
 	}
 
 }

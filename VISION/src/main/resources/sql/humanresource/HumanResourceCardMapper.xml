@@ -50,6 +50,8 @@
 		<result property="profileImage" column="PROFILE_IMAGE" jdbcType="VARCHAR"/>
 		<result property="signatureImage" column="SIGNATURE_IMAGE" jdbcType="VARCHAR"/>
 		<result property="wage" column="WAGE" jdbcType="VARCHAR"/>
+		<result property="joinDate" column="JOIN_DATE" jdbcType="VARCHAR"/>
+		<result property="employeeEmail" column="EMAIL" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 <!-- ////////////////////////////////////////////////////////////////////////////////////// -->
@@ -193,6 +195,8 @@
 	  		 ,	PROFILE_IMAGE
 	  		 ,	SIGNATURE_IMAGE
 	  		 ,	WAGE
+	  		 ,	JOIN_DATE
+	  		 ,	EMAIL
 	  	  FROM	HUMAN_RESOURCE_CARD
 	  	  
 	  	  <where>
@@ -211,6 +215,8 @@
 	  		 ,	PROFILE_IMAGE
 	  		 ,	SIGNATURE_IMAGE
 	  		 ,	WAGE
+	  		 ,	JOIN_DATE
+	  		 ,	EMAIL
 	  	  FROM	HUMAN_RESOURCE_CARD
 	  	  
 	  	  <where>

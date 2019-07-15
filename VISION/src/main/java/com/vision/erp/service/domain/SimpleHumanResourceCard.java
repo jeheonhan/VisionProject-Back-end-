@@ -12,6 +12,8 @@ public class SimpleHumanResourceCard {
 	private String profileImage;
 	private String signatureImage;
 	private String wage;
+	private String joinDate;
+	private String employeeEmail;
 	
 	//constructor
 	public SimpleHumanResourceCard() {
@@ -80,14 +82,31 @@ public class SimpleHumanResourceCard {
 	public void setWage(String wage) {
 		this.wage = wage;
 	}
-	
-	//toString
+	public String getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(String joinDate) {
+		this.joinDate = joinDate;
+	}
+
+	public String getEmployeeEmail() {
+		return employeeEmail;
+	}
+
+	public void setEmployeeEmail(String employeeEmail) {
+		this.employeeEmail = employeeEmail;
+	}
+
 	@Override
 	public String toString() {
 		return "SimpleHumanResourceCard [employeeNo=" + employeeNo + ", employeeName=" + employeeName
 				+ ", departCodeNo=" + departCodeNo + ", departCodeName=" + departCodeName + ", rankCodeNo=" + rankCodeNo
 				+ ", rankCodeName=" + rankCodeName + ", employeePhone=" + employeePhone + ", profileImage="
-				+ profileImage + ", signatureImage=" + signatureImage + ", wage=" + wage + "]";
+				+ profileImage + ", signatureImage=" + signatureImage + ", wage=" + wage + ", joinDate=" + joinDate
+				+ ", employeeEmail=" + employeeEmail + "]";
 	}
+
+	
 
 }

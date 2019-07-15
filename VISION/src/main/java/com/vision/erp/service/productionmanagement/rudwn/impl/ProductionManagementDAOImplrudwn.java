@@ -13,7 +13,7 @@ import com.vision.erp.service.domain.Product;
 import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementDAOrudwn;
 
 
-@Repository
+@Repository("productionManagementDAOImplrudwn")
 public class ProductionManagementDAOImplrudwn implements ProductionManagementDAOrudwn {
 
 	@Autowired
@@ -53,7 +53,7 @@ public class ProductionManagementDAOImplrudwn implements ProductionManagementDAO
 		return sqlSession.selectList("ProductMapper.selectproductList");
 	}
 	
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public String addOrderToVendor(OrderToVendor orderToVendor) throws Exception {
 		sqlSession.insert("OrderToVendorMapper.insertOrderToVendor", orderToVendor);

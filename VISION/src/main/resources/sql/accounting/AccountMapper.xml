@@ -93,6 +93,9 @@
 		FROM
 			account
 		<where>
+			<if test="searchCondition != null and searchCondition != ''">
+				AND account_category_code_no = #{searchCondition}
+			</if>
 			<if test="searchKeyword != null and searchKeyword != ''">
 				AND account_reg_no = #{searchKeyword}
 				OR LOWER(reference) LIKE '%'||#{searchKeyword}||'%'

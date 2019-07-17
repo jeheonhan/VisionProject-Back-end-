@@ -24,17 +24,15 @@ public class BranchController {
 	@RequestMapping(value = "/branch/addDailySales", method = RequestMethod.POST)
 	public List<SalesProduct> addDailySales(@RequestBody List<SalesProduct> salesProductList) throws Exception {
 		
-		//각 메뉴에 대한 판매수량, 판매금액, 매출일자, 메뉴번호를 list로 받음 
-//		for(int i=0; i<salesProductList.size(); i++) {
-//			salesProductList.set(i, branchService.addDailySales(salesProductList.get(i)));
-//			System.out.println(salesProductList);
-//		}
+		String branchNo = salesProductList.get(1).getBranchNo();
+		String salesDate = salesProductList.get(1).getSalesDate();
 		
-		salesProductList = branchService.addDailySales(salesProductList);
-		
-		System.out.println(salesProductList);
-		
-		return salesProductList;
+		if(branchService.getBranchDailySalesDetail(branchNo, salesDate).isEmpty() ) {			
+			salesProductList = branchService.addDailySales(salesProductList);			
+			return salesProductList;
+		}else {
+			return null;
+		}
 		
 	}
 	
@@ -67,15 +65,17 @@ public class BranchController {
 	@RequestMapping(value = "/branch/modifySalesProduct", method = RequestMethod.POST)
 	public List<SalesProduct> modifySalesProduct(@RequestBody List<SalesProduct> salesProductList) throws Exception {
 		
-//		for(int i=0; i<salesProductList.size(); i++) {
-//			branchService.modifySalesProduct(salesProductList.get(i));
-//			salesProductList.set(i, salesProductList.get(i));
-//			System.out.println(salesProductList);
-//		}
+		String branchNo = salesProductList.get(1).getBranchNo();
+		String salesDate = salesProductList.get(1).getSalesDate();
 		
-		branchService.modifySalesProduct(salesProductList);
-		
-		return salesProductList;
+		if(branchService.getBranchDailySalesDetail(branchNo, salesDate).isEmpty() ) {			
+			branchService.modifySalesProduct(salesProductList);
+			salesProductList = branchService.getBranchDailySalesDetail(branchNo, salesDate);
+			return salesProductList;
+			
+		}else {
+			return null;
+		}
 		
 	}
 

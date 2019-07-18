@@ -21,10 +21,10 @@
 		<result property="detailAddress" 				column="detail_address" 			jdbcType="VARCHAR"/>
 		
 		<association property="vendorAccount" javaType="account">
-			<result property="bankCodeNo" 		column="bank_code_no"/>
-			<result property="bankCodeName" 	column="bank_code_name"/>
-			<result property="accountNo" 		column="vendor_account_no"/>
-			<result property="accountHolder" 	column="account_holder"/>
+			<result property="bankCodeNo" 		column="bank_code_no" 			jdbcType="VARCHAR"/>
+			<result property="bankCodeName" 	column="bank_code_name"			jdbcType="VARCHAR"/>
+			<result property="accountNo" 		column="vendor_account_no"		jdbcType="VARCHAR"/>
+			<result property="accountHolder" 	column="account_holder"			jdbcType="VARCHAR"/>
 		</association>
 	</resultMap>
 	

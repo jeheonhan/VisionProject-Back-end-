@@ -34,7 +34,7 @@ public class AccountingController {
 	public void addVendor(@RequestBody Vendor vendor) throws Exception{
 		
 		System.out.println("/accounting/addVendor");
-		
+		System.out.println("들어온 vendor domain 값"+vendor);
 		accountingService.addVendor(vendor);
 	}
 	

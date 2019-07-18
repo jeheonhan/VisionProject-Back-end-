@@ -81,32 +81,32 @@ public class UserServiceImpl implements UserService {
 	}
 	//사원아이디확인
 	@Override
-	public String proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception {
+	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception {
 		
 		return userDAO.proofMySelfForId1(hrcInfo);
 	}
 	//사원비밀번호확인
 	@Override
-	public String proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception {
+	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception {
 		
 		return userDAO.proofMySelfForPassword1(hrcInfo);
 	}
 	//점장아이디왁인
 	@Override
-	public String proofMySelfForId2(Branch branch) throws Exception {
+	public User proofMySelfForId2(Branch branch) throws Exception {
 		
 		return userDAO.proofMySelfForId2(branch);
 	}
 	//점장비밀번호확인
 	@Override
-	public String proofMySelfForPassword2(Branch branch) throws Exception {
+	public User proofMySelfForPassword2(Branch branch) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.proofMySelfForPassword2(branch);
 	}
 	@Override
-	public User selectUser(String userId) throws Exception {
+	public User selectUser(User user) throws Exception {
 		
-		return userDAO.selectUser(userId);
+		return userDAO.selectUser(user);
 	}
 	
 	

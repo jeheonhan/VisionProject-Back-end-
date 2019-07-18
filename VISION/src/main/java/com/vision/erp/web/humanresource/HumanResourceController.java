@@ -93,7 +93,7 @@ public class HumanResourceController {
 	
 	//인사카드 수정
 	@RequestMapping(value = "/hr/modifyHumanResourceCard",method = RequestMethod.POST)
-	public void modifyHumanResourceCard(HumanResourceCard humanResourceCard) throws Exception{
+	public void modifyHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("hr/modifyHumanResourceCard");
 		
 		humanResourceService.modifyHumanResourceCard(humanResourceCard);
@@ -102,7 +102,7 @@ public class HumanResourceController {
 	
 	//근태 등록
 	@RequestMapping(value = "/hr/addWorkAttitude", method = RequestMethod.POST)
-	public void addWorkAttitude(WorkAttitude workAttitude) throws Exception{
+	public void addWorkAttitude(@RequestBody WorkAttitude workAttitude) throws Exception{
 		System.out.println("/hr/addWorkAttitude");
 		
 		humanResourceService.addWorkAttitude(workAttitude);
@@ -110,7 +110,7 @@ public class HumanResourceController {
 	
 	//근태 목록조회
 	@RequestMapping(value = "/hr/getWorkAttitudeList", method = RequestMethod.POST)
-	public List<WorkAttitude> getWorkAttitudeList(Search search) throws Exception{
+	public List<WorkAttitude> getWorkAttitudeList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getWorkAttitudeList");
 		
 		List<WorkAttitude> list 
@@ -121,7 +121,7 @@ public class HumanResourceController {
 	
 	//근태 수정
 	@RequestMapping(value = "/hr/modifyWorkAttitude", method = RequestMethod.POST)
-	public void modifyWorkAttitude(WorkAttitude workAttitude) throws Exception{
+	public void modifyWorkAttitude(@RequestBody WorkAttitude workAttitude) throws Exception{
 		System.out.println("/hr/modifyWorkAttitude");
 		
 		humanResourceService.modifyWorkAttitude(workAttitude);
@@ -149,7 +149,7 @@ public class HumanResourceController {
 	
 	//근태코드 목록조회
 	@RequestMapping(value = "/hr/getWorkAttitudeCodeList", method = RequestMethod.POST)
-	public List<WorkAttitudeCode> getWorkAttitudeCodeList(Search search) throws Exception{
+	public List<WorkAttitudeCode> getWorkAttitudeCodeList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getWorkAttitudeCodeList");
 		
 		List<WorkAttitudeCode> list = humanResourceService.getWorkAttitudeCodeList(search);
@@ -159,7 +159,7 @@ public class HumanResourceController {
 	
 	//근태코드 수정
 	@RequestMapping(value = "/hr/modifyWorkAttitudeCode", method = RequestMethod.POST)
-	public void modifyWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception{
+	public void modifyWorkAttitudeCode(@RequestBody WorkAttitudeCode workAttitudeCode) throws Exception{
 		System.out.println("/hr/modifyWorkAttitudeCode");
 		
 		humanResourceService.modifyWorkAttitudeCode(workAttitudeCode);
@@ -175,15 +175,18 @@ public class HumanResourceController {
 	
 	//발령등록
 	@RequestMapping(value = "/hr/addAppointment", method = RequestMethod.POST)
-	public void addAppointment(Appointment appointment) throws Exception{
+	public void addAppointment(@RequestBody Appointment appointment) throws Exception{
 		System.out.println("/hr/addAppointment");
 		
+		if(appointment.getReference() == null) {
+			appointment.setReference("참고 없음");
+		}
 		humanResourceService.addAppointment(appointment);
 	}
 	
 	//발령 목록조회
-	@RequestMapping(value = "/hr/getAppointmentList", method = RequestMethod.GET)
-	public List<Appointment> getAppointmentList(Search search) throws Exception{
+	@RequestMapping(value = "/hr/getAppointmentList", method = RequestMethod.POST)
+	public List<Appointment> getAppointmentList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getAppointmentList");
 		
 		List<Appointment> list 
@@ -194,7 +197,7 @@ public class HumanResourceController {
 	
 	//발령 수정
 	@RequestMapping(value = "/hr/modifyAppointment", method = RequestMethod.POST)
-	public void modifyAppointment(Appointment appointment) throws Exception{
+	public void modifyAppointment(@RequestBody Appointment appointment) throws Exception{
 		System.out.println("/hr/modifyAppointment");
 		
 		humanResourceService.modifyAppointment(appointment);
@@ -218,7 +221,7 @@ public class HumanResourceController {
 	
 	//부서 등록
 	@RequestMapping(value = "/hr/addDepartment", method = RequestMethod.POST)
-	public void addDepartment(Department department) throws Exception{
+	public void addDepartment(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/addDepartment");
 		
 		humanResourceService.addDepartment(department);
@@ -226,7 +229,7 @@ public class HumanResourceController {
 	
 	//부서 목록조회
 	@RequestMapping(value = "/hr/getDepartmentList", method = RequestMethod.POST)
-	public List<Department> getDepartmentList(Search search) throws Exception{
+	public List<Department> getDepartmentList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getDepartmentList");
 		
 		List<Department> list = humanResourceService.getDepartmentList(search);
@@ -236,7 +239,7 @@ public class HumanResourceController {
 	
 	//부서 수
 	@RequestMapping(value = "/hr/modifyDepartment", method = RequestMethod.POST)
-	public void modifyDepartment(Department department) throws Exception{
+	public void modifyDepartment(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/modifyDepartment");
 		
 		humanResourceService.modifyDepartment(department);
@@ -263,7 +266,7 @@ public class HumanResourceController {
 	
 	//출근시간 등록
 	@RequestMapping(value = "/hr/addCommute", method = RequestMethod.POST)
-	public void addCommute(Commute commute) throws Exception{
+	public void addCommute(@RequestBody Commute commute) throws Exception{
 		System.out.println("/hr/addCommute");
 		
 		humanResourceService.addCommute(commute);

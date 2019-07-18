@@ -16,21 +16,21 @@ public interface UserDAO {
 	public List<User> selectUserList(Search search) throws Exception;
 
 	//로그인
-	public User selectUser(String userId) throws Exception;
+	public User selectUser(User user) throws Exception;
 
 	//비밀번호변경하기
 	public void updatePassword(User user) throws Exception; 
 
 	//인증
-	public String proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
+	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
 
 	//인증
-	public String proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
+	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
 
 	//인증
-	public String proofMySelfForId2(Branch branch) throws Exception;
+	public User proofMySelfForId2(Branch branch) throws Exception;
 
 	//인증
-	public String proofMySelfForPassword2(Branch branch) throws Exception;
+	public User proofMySelfForPassword2(Branch branch) throws Exception;
 
 }

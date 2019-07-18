@@ -11,10 +11,19 @@ public class OrderToVendorProduct {
 	private String orderToVendorProductStatusCodeNo;
 	private String orderToVendorProductStatusCodeName;
 	private String productName;
+	private String countForcode;
 	
 	
 	public String getProductName() {
 		return productName;
+	}
+
+	public String getCountForcode() {
+		return countForcode;
+	}
+
+	public void setCountForcode(String countForcode) {
+		this.countForcode = countForcode;
 	}
 
 	public void setProductName(String productName) {
@@ -106,9 +115,11 @@ public class OrderToVendorProduct {
 				+ orderToVendorNo + ", productNo=" + productNo + ", purchasePrice=" + purchasePrice + ", quantity="
 				+ quantity + ", amount=" + amount + ", orderToVendorProductStatusCodeNo="
 				+ orderToVendorProductStatusCodeNo + ", orderToVendorProductStatusCodeName="
-				+ orderToVendorProductStatusCodeName + ", productName=" + productName + "]";
+				+ orderToVendorProductStatusCodeName + ", productName=" + productName + ", countForcode=" + countForcode
+				+ "]";
 	}
 
+	
 	
 
 	

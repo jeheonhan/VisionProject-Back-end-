@@ -14,18 +14,18 @@ public interface UserService {
 
 	public List<User> selectUserList(Search search) throws Exception;
 	
-	public User selectUser(String userId) throws Exception;
+	public User selectUser(User user) throws Exception;
 
 	public Map<String, Object> selectInfo(String find) throws Exception;
 
 	public void updatePassword(User user) throws Exception; 
 
-	public String proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
+	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
 
-	public String proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
+	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
 
-	public String proofMySelfForId2(Branch branch) throws Exception;
+	public User proofMySelfForId2(Branch branch) throws Exception;
 
-	public String proofMySelfForPassword2(Branch branch) throws Exception;
+	public User proofMySelfForPassword2(Branch branch) throws Exception;
 
 }

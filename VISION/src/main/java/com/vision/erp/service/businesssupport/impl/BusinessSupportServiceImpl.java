@@ -62,6 +62,7 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 		Branch branch = new Branch();
 		branch = businessSupportDAO.selectBranchDetail(branchNo);
 		return branch;
+		
 	}
 
 	@Override
@@ -85,7 +86,20 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 
 	@Override
 	public void convertBranchUsageStatus(Branch branch) throws Exception {		
-		businessSupportDAO.updateBranchUsageStatus(branch);		
+		
+		if(branch.getBranchStatusCodeNo().equals("01")) {
+			
+			branch.setBranchStatusCodeNo("02");
+			businessSupportDAO.updateBranchUsageStatus(branch);
+			
+		}else if(branch.getBranchStatusCodeNo().equals("02")) {
+			
+			branch.setBranchStatusCodeNo("01");
+			businessSupportDAO.updateBranchUsageStatus(branch);
+			
+		}
+		
+		
 	}
-
+	
 }

@@ -20,13 +20,18 @@ public class BranchServiceImpl implements BranchService{
 
 	@Override
 	public List<SalesProduct> addDailySales(List<SalesProduct> salesProductList) throws Exception {		
+		
 		branchDAO.insertDailySales(salesProductList);
 		
+		salesProductList = branchDAO.selectDailySalesDetail(salesProductList.get(1).getBranchNo(), salesProductList.get(1).getSalesDate());
+		
 		return salesProductList;
+		
 	}
 
 	@Override
 	public List<SalesProduct> getBranchDailySalesDetail(String branchNo, String salesDate) throws Exception {
+		
 		return branchDAO.selectDailySalesDetail(branchNo, salesDate);
 	}
 

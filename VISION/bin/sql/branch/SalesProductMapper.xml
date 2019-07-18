@@ -24,10 +24,6 @@
 	
 	<insert 	id="insertSalesProduct"		parameterType="list" >
 	
-		<selectKey	keyProperty="salesNumbering"	resultType="string"	order="AFTER">
-			SELECT	SEQ_SALES_PRODUCT_NUMBERING.CURRVAL	FROM dual
-		</selectKey>
-	
 	 	INSERT
 		INTO sales_product
 		( 
@@ -37,16 +33,21 @@
 			MENU_NO , 
 			SALES_AMOUNT, 
 			SALES_QUANTITY	 )
-		VALUES	 
-		<foreach item = "salesProduct" collection="list">
-			(	
-				SEQ_SALES_PRODUCT_NUMBERING.NEXTVAL , 
-				#{salesProduct.branchNo} , 
-				#{salesProduct.salesDate} , 
-				#{salesProduct.menuNo} , 
-				#{salesProduct.salesAmount} , 
-				#{salesProduct.salesQuantity}	)
+			
+		SELECT SEQ_SALES_PRODUCT_NUMBERING.NEXTVAL, insert_column.*	
+		FROM(
+		<foreach item = "item" collection="list" separator="UNION ALL " >
+		
+			SELECT
+				#{item.branchNo}, 
+				#{item.salesDate}, 
+				#{item.menuNo}, 
+				#{item.salesAmount}, 
+				#{item.salesQuantity}
+			FROM dual		
 		</foreach>
+		) insert_column
+		
 	 </insert>
 	 
 	 <select id="selectDailySalesDetail"	parameterType="map"		resultMap="salesProductSelectMap">
@@ -71,15 +72,18 @@
 			SALES_PRODUCT.MENU_NO ASC
 	 </select>
 	 
-	 <update id="updateSalesProduct"	parameterType="salesProduct">
-	 	UPDATE	sales_product
-	 	<set>
-	 		SALES_QUANTITY = #{salesQuantity},
-	 		SALES_AMOUNT = #{salesAmount},
-	 		SALES_DATE = #{salesDate}
-	 	</set>
-	 	WHERE	SALES_PRODUCT_NUMBERING = #{salesNumbering}
+	 <update id="updateSalesProduct"	parameterType="list">
+	 	<foreach item="item" collection="list" separator=";" open="DECLARE BEGIN" close="; END;">
 	 	
+		 	UPDATE	sales_product
+		 	<set>
+		 		SALES_QUANTITY = #{item.salesQuantity},
+		 		SALES_AMOUNT = #{item.salesAmount},
+		 		SALES_DATE = #{item.salesDate}
+		 	</set>
+	 		WHERE	SALES_PRODUCT_NUMBERING = #{item.salesNumbering}
+	 		
+	 	</foreach>	 	
 	 </update>
 	 
 	 <select id="selectBranchDailySalesList"	parameterType="string"	resultMap="branchDailySalesSelectMap">

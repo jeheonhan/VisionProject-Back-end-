@@ -22,6 +22,7 @@ public class BranchDAOImpl implements BranchDAO{
 
 	@Override
 	public void insertDailySales(List<SalesProduct> salesProductList) throws Exception {
+		
 		sqlSession.insert("SalesProductMapper.insertSalesProduct", salesProductList);
 	}
 

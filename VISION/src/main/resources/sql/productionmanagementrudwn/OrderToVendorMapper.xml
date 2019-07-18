@@ -19,8 +19,8 @@
 
 		INSERT
 		
-		<selectKey keyProperty="orderToVendorNo" resultType="string" order="BEFORE">
-   			 select SEQ_ORDER_TO_VENDOR_NO.nextval FROM ORDER_TO_VENDOR
+		<selectKey keyProperty="orderToVendorNo" resultType="string" order="AFTER">
+   			 select SEQ_ORDER_TO_VENDOR_NO.CURRVAL FROM dual
  		 </selectKey>
 		
 		  INTO	order_to_vendor
@@ -33,7 +33,7 @@
 		  			)
 		VALUES	
 				(
-					#{orderToVendorNo},
+					SEQ_ORDER_TO_VENDOR_NO.nextval,
 					#{statementNo},
 					#{totalAmount},
 					TO_CHAR(SYSDATE,'YYYY/MM/DD'),
@@ -56,17 +56,32 @@
 		UPDATE order_to_vendor
 			<set>
 			<if test="orderToVenStatusCodeNo == '01'">
-				ORDER_TO_VEN_STATUS_CODE_NO = '02'
-			</if>
-			<if test="orderToVenStatusCodeNo == '02'">
-				ORDER_TO_VEN_STATUS_CODE_NO = '03'
-			</if>
-			<if test="orderToVenStatusCodeNo == '03'">
 				ORDER_TO_VEN_STATUS_CODE_NO = '04'
 			</if>
 			</set>
 		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
 	</update>
+	
+	<update id="modifyOrderToVenCode1" parameterType="orderToVendor">
+		UPDATE order_to_vendor
+			<set>
+			<if test="orderToVenStatusCodeNo == '01'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '03'
+			</if>
+			</set>
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+	</update>
+	
+	<update id="modifyOrderToVenCode2" parameterType="orderToVendor">
+		UPDATE order_to_vendor
+			<set>
+			<if test="orderToVenStatusCodeNo == '01'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '02'
+			</if>
+			</set>
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+	</update>
+	
 	
 	
 

@@ -58,14 +58,23 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public void convertNoticeUsageStatus(Notice notice) throws Exception {
-		noticeDAO.updateNoticeUsageCode(notice);
+		
+		if(notice.getNoticeStatusCodeNo().equals("01")) {
+			
+			notice.setNoticeStatusCodeNo("02");
+			noticeDAO.updateNoticeUsageCode(notice);
+			
+		}else if(notice.getNoticeStatusCodeNo().equals("02")) {
+			
+			notice.setNoticeStatusCodeNo("01");
+			noticeDAO.updateNoticeUsageCode(notice);
+			
+		}
 	}
 
 	@Override
 	public List<NoticeHeader> getNoticeHeaderList() throws Exception {
 		return noticeDAO.selectHeaderNameList();
 	}
-	
-	
 
 }

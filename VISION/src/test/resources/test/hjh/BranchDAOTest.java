@@ -1,6 +1,7 @@
 package test.hjh;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -34,35 +35,34 @@ public class BranchDAOTest{
 	private List<BranchDailySales> branchDailySalesList;
 	private List<SalesMenu> salesMenuList;
 	
-	//@Test
+	@Test
 	public void testIsertDailySales() throws Exception {
 		
 		salesProduct = new SalesProduct();
+		SalesProduct salesProduct2 = new SalesProduct();
+		salesProductList = new ArrayList<SalesProduct>();
 		
-		salesProduct.setBranchNo("b1003");
-		salesProduct.setSalesDate("2019/06/08");
+		salesProduct.setBranchNo("b1024");
+		salesProduct.setSalesDate("2019/07/17");
 		salesProduct.setMenuNo("1");
-		salesProduct.setSalesAmount("125000");
-		salesProduct.setSalesQuantity("9");
-		
-		//branchDAO.insertDailySales(salesProduct);
-		
-		salesProduct.setBranchNo("b1003");
-		salesProduct.setSalesDate("2019/06/08");
-		salesProduct.setMenuNo("2");
-		salesProduct.setSalesAmount("160000");
+		salesProduct.setSalesAmount("150000");
 		salesProduct.setSalesQuantity("10");
 		
-		//branchDAO.insertDailySales(salesProduct);
+		salesProductList.add(salesProduct);
+		System.out.println(salesProductList);
 		
-		salesProductList 
-			= (List<SalesProduct>)branchDAO.selectDailySalesDetail("b1003", "2019/06/08");
+		salesProduct2.setBranchNo("b1024");
+		salesProduct2.setSalesDate("2019/07/17");
+		salesProduct2.setMenuNo("2");
+		salesProduct2.setSalesAmount("160000");
+		salesProduct2.setSalesQuantity("10");
 		
-		for(int i = 0; i<salesProductList.size(); i++) {
-			SalesProduct salesProduct = salesProductList.get(i);
-			System.out.println(salesProduct);
-		}
+		salesProductList.add(salesProduct2);
 		
+		System.out.println(salesProductList);
+		
+		branchDAO.insertDailySales(salesProductList);
+
 	}
 	
 	//@Test
@@ -125,7 +125,7 @@ public class BranchDAOTest{
 		
 	}
 	
-	@Test
+	//@Test
 	public void testSelectSalesMenuList() throws Exception {
 		
 		salesMenuList = 

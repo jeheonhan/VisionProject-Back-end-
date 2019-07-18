@@ -81,23 +81,23 @@ public class UserTes{
 	public void testSelectUser() throws Exception{
 		String userId = "U1000";
 
-		User user = userDAO.selectUser(userId);
+		//User user = userDAO.selectUser(userId);
 
-		System.out.println(user);
+		//System.out.println(user);
 	}
 
 	//@Test
 	public void updatePassword() throws Exception{
 
 		String userId = "U1001";
-		User user = userDAO.selectUser(userId);
+		//User user = userDAO.selectUser(userId);
 
-		System.out.println(user);
+		//System.out.println(user);
 
-		user.setPassword("1234");
+		//user.setPassword("1234");
 
-		System.out.println(user);
-		userDAO.updatePassword(user);
+		//System.out.println(user);
+		//userDAO.updatePassword(user);
 
 	}
 
@@ -109,7 +109,7 @@ public class UserTes{
 		hrcInfo.setEmployeeName("박경주");
 		hrcInfo.setEmployeePhone("010-2255-5786");
 
-		String forId = userDAO.proofMySelfForId1(hrcInfo);
+		User forId = userDAO.proofMySelfForId1(hrcInfo);
 
 		System.out.println("forId :: " + forId);
 
@@ -123,7 +123,7 @@ public class UserTes{
 		hrcInfo.setEmployeeName("박경주");
 		hrcInfo.setEmployeePhone("010-2255-5786");
 
-		String forPassword = userDAO.proofMySelfForPassword1(hrcInfo);
+		User forPassword = userDAO.proofMySelfForPassword1(hrcInfo);
 
 		System.out.println("forPassword :: " + forPassword);
 
@@ -138,7 +138,7 @@ public class UserTes{
 		branch.setBranchManagerPhone("010-1111-1000");
 
 
-		String forId = userDAO.proofMySelfForId2(branch);
+		User forId = userDAO.proofMySelfForId2(branch);
 
 		System.out.println("forId :: " + forId);
 
@@ -152,7 +152,7 @@ public class UserTes{
 		branch.setBranchManagerName("홍길동");
 		branch.setBranchManagerPhone("010-1111-1000");
 
-		String forPassword = userDAO.proofMySelfForPassword2(branch);
+		User forPassword = userDAO.proofMySelfForPassword2(branch);
 
 		System.out.println("forPassword :: " + forPassword);
 
@@ -237,7 +237,7 @@ public class UserTes{
 		hrcInfo.setEmployeeName("박경주");
 		hrcInfo.setEmployeePhone("010-2255-5786");
 		
-		String id = userService.proofMySelfForId1(hrcInfo);
+		User id = userService.proofMySelfForId1(hrcInfo);
 		System.out.println("check :: " + id);
 	}
 	
@@ -248,7 +248,7 @@ public class UserTes{
 		branch.setBranchManagerName("홍길동");
 		branch.setBranchManagerPhone("010-1111-1000");
 		
-		String id = userService.proofMySelfForId2(branch);
+		User id = userService.proofMySelfForId2(branch);
 		System.out.println("check :: " + id);
 	}
 	
@@ -260,7 +260,7 @@ public class UserTes{
 			hrcInfo.setEmployeeName("박경주");
 			hrcInfo.setEmployeePhone("010-2255-5786");
 			
-			String password = userService.proofMySelfForPassword1(hrcInfo);
+			User password = userService.proofMySelfForPassword1(hrcInfo);
 			System.out.println("check :: " + password);
 		}
 		
@@ -271,7 +271,7 @@ public class UserTes{
 			branch.setBranchManagerName("홍길동");
 			branch.setBranchManagerPhone("010-1111-1000");
 			
-			String password = userService.proofMySelfForPassword2(branch);
+			User password = userService.proofMySelfForPassword2(branch);
 			System.out.println("check :: " + password);
 		}
 

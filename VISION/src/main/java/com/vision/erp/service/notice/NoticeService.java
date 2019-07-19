@@ -1,7 +1,6 @@
 package com.vision.erp.service.notice;
 
 import java.util.List;
-import java.util.Map;
 
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Notice;
@@ -13,7 +12,7 @@ public interface NoticeService {
 	
 	public Notice getNoticeDetail(String noticeNo) throws Exception;
 	
-	public Map<String, Object> getNoticeList(Search search) throws Exception;
+	public List<Notice> getNoticeList(Search search) throws Exception;
 	
 	public void modifyNotice(Notice notice) throws Exception;
 	

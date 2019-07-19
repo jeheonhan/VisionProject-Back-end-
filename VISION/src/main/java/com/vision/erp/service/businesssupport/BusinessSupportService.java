@@ -1,6 +1,6 @@
 package com.vision.erp.service.businesssupport;
 
-import java.util.Map;
+import java.util.List;
 
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Branch;
@@ -11,7 +11,7 @@ public interface BusinessSupportService {
 	
 	public Branch getBranchDetail(String branchNo) throws Exception;
 	
-	public Map<String, Object> getBranchList(Search search) throws Exception;
+	public List<Branch> getBranchList(Search search) throws Exception;
 	
 	public void modifyBranch(Branch branch) throws Exception;
 	

@@ -14,6 +14,7 @@ public class Branch {
 	private String localCodeNo;
 	private String localCodeName;
 	private String branchStatusCodeNo;
+	private String branchStatus;
 	private String branchRegDate;
 	
 	//constructor
@@ -117,6 +118,14 @@ public class Branch {
 
 	public void setBranchStatusCodeNo(String branchStatusCodeNo) {
 		this.branchStatusCodeNo = branchStatusCodeNo;
+	}	
+
+	public String getBranchStatus() {
+		return branchStatus;
+	}
+
+	public void setBranchStatus(String branchStatus) {
+		this.branchStatus = branchStatus;
 	}
 
 	public String getBranchRegDate() {
@@ -133,7 +142,8 @@ public class Branch {
 				+ address + ", detailAdress=" + detailAdress + ", businessLicenseNo=" + businessLicenseNo
 				+ ", branchTel=" + branchTel + ", branchManagerPhone=" + branchManagerPhone + ", branchManagerName="
 				+ branchManagerName + ", localCodeNo=" + localCodeNo + ", localCodeName=" + localCodeName
-				+ ", branchStatusCodeNo=" + branchStatusCodeNo + ", branchRegDate=" + branchRegDate + "]";
+				+ ", branchStatusCodeNo=" + branchStatusCodeNo + ", branchStatus=" + branchStatus + ", branchRegDate="
+				+ branchRegDate + "]";
 	}
-	
+
 }

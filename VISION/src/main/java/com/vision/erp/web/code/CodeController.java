@@ -51,8 +51,8 @@ public class CodeController {
 	//[코드그룹별조회] - 코드 등록요청시 코드번호 자동생성
 	//등록하려는 그룹코드 가져오기
 	@RequestMapping(value="/code/addCodePreparing/{groupCode}")
-	public String addCodePreparing(@PathVariable String groupCode) throws Exception{
-		return codeService.generateCodeNo(groupCode);
+	public Code addCodePreparing(@PathVariable String groupCode) throws Exception{
+		return new Code().setCodeNo(codeService.generateCodeNo(groupCode));
 	}
 	
 	//[코드그룹별조회] - 코드명 중복확인 그룹코드, 코드명 필요

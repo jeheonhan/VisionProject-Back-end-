@@ -1,8 +1,6 @@
 package com.vision.erp.service.businesssupport.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -66,17 +64,19 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 	}
 
 	@Override
-	public Map<String, Object> getBranchList(Search search) throws Exception {
-		
-		Map<String, Object> map = new HashMap<String, Object>();
+	public List<Branch> getBranchList(Search search) throws Exception {
 		
 		List<Branch> branchList = businessSupportDAO.selectBranchList(search);
-		map.put("branchList", branchList);
 		
-		int totalCount = businessSupportDAO.selectTotalCount(search);
-		map.put("totalCount", totalCount);
+		for(int i=0; i<branchList.size(); i++) {
+			if(branchList.get(i).getBranchStatusCodeNo().equals("01")) {
+				branchList.get(i).setBranchStatus("¿µ¾÷Áß");
+			}else if(branchList.get(i).getBranchStatusCodeNo().equals("02")) {
+				branchList.get(i).setBranchStatus("Æó¾÷");
+			}			
+		}
 		
-		return map;
+		return branchList;
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package com.vision.erp.web.notice;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -35,7 +34,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/notice/getNoticeList", method = RequestMethod.POST)
-	public Map<String, Object> getNoticeList(@RequestBody Search search) throws Exception {
+	public List<Notice> getNoticeList(@RequestBody Search search) throws Exception {
 		
 		return noticeService.getNoticeList(search);
 	}

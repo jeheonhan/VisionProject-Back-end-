@@ -1,8 +1,6 @@
 package com.vision.erp.service.notice.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -38,17 +36,11 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public Map<String, Object> getNoticeList(Search search) throws Exception {
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		int totalCount = noticeDAO.selectTotalCount(search);
-		map.put("totalCount", totalCount);
+	public List<Notice> getNoticeList(Search search) throws Exception {
 		
 		List<Notice> noticeList = noticeDAO.selectNoticeList(search);
-		map.put("noticeList", noticeList);
 		
-		return map;
+		return noticeList;
 	}
 
 	@Override

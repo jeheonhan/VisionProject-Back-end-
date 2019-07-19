@@ -1,6 +1,6 @@
 package com.vision.erp.web.businesssupport;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -33,7 +33,7 @@ public class BusinessSupportController {
 	}
 	
 	@RequestMapping(value = "/bs/getBranchList", method = RequestMethod.POST)
-	public Map<String, Object> getBranchList(@RequestBody Search search) throws Exception {
+	public List<Branch> getBranchList(@RequestBody Search search) throws Exception {
 		
 		return businessSupportService.getBranchList(search);
 	}

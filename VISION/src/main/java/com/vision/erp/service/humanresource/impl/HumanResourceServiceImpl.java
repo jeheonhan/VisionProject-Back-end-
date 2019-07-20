@@ -30,30 +30,42 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	@Resource(name = "humanResourceDAOImpl")
 	private HumanResourceDAO humanResourceDAO;
 	
-	//@Resource(name = "accountingDAOImpl")
+	@Resource(name = "accountingDAOImpl")
 	private AccountingDAO accountingDAO;
 	
-	//@Resource(name = "userDAOImpl")
+	@Resource(name = "userDAOImpl")
 	private UserDAO userDAO;
 	
-	//@Resource(name = "codeDAOImpl")
+	@Resource(name = "codeDAOImpl")
 	private CodeDAO codeDAO;
 	
 	
 	//나중에 확인///////////////////////////////////////////////////
 	@Override
 	public void addHumanResourceCard(HumanResourceCard humanResourceCard) throws Exception {
-		accountingDAO.insertAccount(humanResourceCard.getAccount());
-		humanResourceCard.getAccount().getAccountNo();
-		humanResourceDAO.insertHumanResourceCard(humanResourceCard);
-		User user = new User();
 		
+		//급여통장 등록
+		Account account = humanResourceCard.getAccount();
+		account.setAccountHolder(humanResourceCard.getEmployeeName());
+		account.setAccountCategoryCodeNo("05");
+		account.setReference("급여통장");
+		account.setAccountNo(account.getAccountNo().replaceAll("-", ""));
+		accountingDAO.insertAccount(account);
+		
+		//인사카드 등록
+		humanResourceCard.setAccount(account);
+		humanResourceCard.setResignation("N");
+		humanResourceDAO.insertHumanResourceCard(humanResourceCard);
+		
+		//회원가입
+		User user = new User();
 		user.setEmployeeNo(humanResourceCard.getEmployeeNo());
-		//user.setAccessMenuCodeNo(accessMenuCodeNo);
+		user.setAccessMenuCodeNo(humanResourceCard.getDepartCodeNo());
 		user.setMemberCodeNo("01");
 		user.setMemberUsageStatusCodeNo("01");
 		user.setPassword("0000");
-		user.setUserId("U"+humanResourceCard.getEmployeeName());
+		user.setUserId("U"+humanResourceCard.getEmployeeNo());
+		user.setProfileImage(humanResourceCard.getProfileImage());
 		userDAO.addUser(user);
 	}
 

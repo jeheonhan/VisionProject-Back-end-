@@ -1,5 +1,8 @@
 package com.vision.erp.service.domain;
 
+import java.util.List;
+import java.util.Map;
+
 public class HumanResourceCard {
 	//field
 	private String employeeNo;
@@ -25,6 +28,8 @@ public class HumanResourceCard {
     private String contractFile;
     private String wage;
     private String refer;
+    private Map<String, Object> profileFile;
+    private Map<String, Object> signatureFile;
     
     //constructor
 	public HumanResourceCard() {
@@ -166,13 +171,29 @@ public class HumanResourceCard {
 		this.wage = wage;
 	}
 	
-	
 	public String getRefer() {
 		return refer;
 	}
 
 	public void setRefer(String refer) {
 		this.refer = refer;
+	}
+
+	
+	public Map<String, Object> getProfileFile() {
+		return profileFile;
+	}
+
+	public void setProfileFile(Map<String, Object> profileFile) {
+		this.profileFile = profileFile;
+	}
+
+	public Map<String, Object> getSignatureFile() {
+		return signatureFile;
+	}
+
+	public void setSignatureFile(Map<String, Object> signatureFile) {
+		this.signatureFile = signatureFile;
 	}
 
 	@Override
@@ -184,11 +205,10 @@ public class HumanResourceCard {
 				+ ", resignDate=" + resignDate + ", resignReason=" + resignReason + ", account=" + account
 				+ ", zipCode=" + zipCode + ", address=" + address + ", detailAddress=" + detailAddress
 				+ ", profileImage=" + profileImage + ", signatureImage=" + signatureImage + ", contractFile="
-				+ contractFile + ", wage=" + wage + ", refer=" + refer + "]";
+				+ contractFile + ", wage=" + wage + ", refer=" + refer + ", profileFile=" + profileFile
+				+ ", signatureFile=" + signatureFile + "]";
 	}
-
-	//toString
-
+	
     
     
 }

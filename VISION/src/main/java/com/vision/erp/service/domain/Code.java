@@ -50,8 +50,9 @@ public class Code {
 	public String getCodeNo() {
 		return codeNo;
 	}
-	public void setCodeNo(String codeNo) {
+	public Code setCodeNo(String codeNo) {
 		this.codeNo = codeNo;
+		return this;
 	}
 	public String getCodeName() {
 		return codeName;

@@ -15,7 +15,7 @@
 		<result property="memberCodeName"           column="MEMBER_CODE_NAME"                    jdbcType="VARCHAR"/>
 		<result property="memberUsageStatusCodeNo"     column="USAGE_STATUS_CODE_NO"       jdbcType="VARCHAR"/>
 		<result property="accessMenuCodeNo"           column="ACCESS_MENU_CODE_NO"               jdbcType="VARCHAR"/>
-		<result property="profileImage"           column="PROFILE_NAME"               jdbcType="VARCHAR"/>
+		<result property="profileImage"           column="PROFILE_IMAGE"               jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<insert id="insertUser" parameterType="user">
@@ -64,7 +64,7 @@
 				CODE_FUNCTION('member', MEMBER_CODE_NO) AS MEMBER_CODE_NAME,
 				users.USAGE_STATUS_CODE_NO,
 				users.ACCESS_MENU_CODE_NO,
-				users.PROFILE_NAME
+				human_resource_card.PROFILE_IMAGE
 		  FROM	 users  join human_resource_card on users.employee_no = human_resource_card.employee_no
 		WHERE user_id = #{userId} and
 			 PASSWORD = #{password}

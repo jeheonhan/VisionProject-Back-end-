@@ -27,8 +27,8 @@ public class UserController {
 
 
 	//로그인하기위해 내 정보불러옴
-	@RequestMapping(value="/user/getUser",method=RequestMethod.POST)
-	public User gerUser(@RequestBody User user) throws Exception{
+	@RequestMapping(value="/user/loginUser",method=RequestMethod.POST)
+	public User loginUser(@RequestBody User user) throws Exception{
 			
 
 			User dbuser = userService.selectUser(user);
@@ -37,8 +37,10 @@ public class UserController {
 				dbuser.setPassword(null);
 				return  dbuser;
 			}
+			user.setUserId(null);
+			user.setPassword(null);
 			
-			return null;
+			return user;
 	}
 
 	//사원아이디찾기

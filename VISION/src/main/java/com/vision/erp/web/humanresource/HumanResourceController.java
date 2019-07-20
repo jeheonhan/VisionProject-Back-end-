@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vision.erp.common.ImageFileUpload;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Appointment;
 import com.vision.erp.service.domain.Commute;
@@ -35,6 +36,14 @@ public class HumanResourceController {
 		
 		//Accounting이 아직 미구현됨
 		//User가 아직 미구현됨
+		
+		Map<String, Object> profileMap = humanResourceCard.getProfileFile();
+		Map<String, Object> signatureMap = humanResourceCard.getSignatureFile();
+		
+		humanResourceCard.setProfileImage(ImageFileUpload.fileUpload(profileMap));
+		humanResourceCard.setSignatureImage(ImageFileUpload.fileUpload(signatureMap));
+		
+		
 		humanResourceService.addHumanResourceCard(humanResourceCard);
 		
 	}

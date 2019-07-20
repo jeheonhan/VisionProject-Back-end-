@@ -96,7 +96,7 @@
 				,	#{detailAddress}
 				,	#{profileImage}
 				,	#{signatureImage}
-				,	#{contractFile}
+				,	#{contractFile:VARCHAR}
 				,	#{wage}
 				,	#{refer}
 				,	#{resignation}
@@ -105,7 +105,7 @@
 					
 		<selectKey keyProperty="employeeNo" resultType="string" order="AFTER">
 			SELECT	SEQ_EMPLOYEE_NO.CURRVAL
-			  FROM	DUAL;
+			  FROM	DUAL
 		</selectKey>
 	</insert>
 	

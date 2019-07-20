@@ -39,7 +39,7 @@
 			#{reference}
 			<selectKey keyProperty="accountRegNo" resultType="string" order="AFTER">
 				SELECT seq_account_reg_no.CURRVAL FROM DUAL
-			</selectKey>
+			</selectKey> 
 		)
 	</insert>
 	

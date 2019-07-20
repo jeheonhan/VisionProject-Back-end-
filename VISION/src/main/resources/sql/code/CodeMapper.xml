@@ -61,13 +61,10 @@
 			 ,  code_usage_status	
 		FROM code 
 		<where>
-			<if test="searchCondition==0">
-				code_usage_status = 'Y' 
-			</if>
-			<if test="searchCondition==1">
-				code_usage_status = 'N'
-			</if>
-			AND group_code = #{searchKeyword}
+				group_code = #{searchKeyword}
+				<if test="searchCondition==null">
+			AND code_usage_status = 'Y'
+				</if>
 		</where>
 		ORDER BY code_no ASC
 	 </select>

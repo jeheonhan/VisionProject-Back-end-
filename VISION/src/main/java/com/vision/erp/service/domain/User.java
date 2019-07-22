@@ -11,6 +11,9 @@ public class User {
 	private String memberUsageStatusCodeNo;
 	private String accessMenuCodeNo;
 	private String profileImage;
+	private String employeeName;
+	private String branchName;
+	
 	public String getUserId() {
 		return userId;
 	}

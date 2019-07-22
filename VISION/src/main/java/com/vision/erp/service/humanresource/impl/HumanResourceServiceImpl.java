@@ -96,6 +96,7 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 	@Override
 	public void addWorkAttitude(WorkAttitude workAttitude) throws Exception {
+		workAttitude.setUsageStatusCodeNo("Y");
 		humanResourceDAO.insertWorkAttitude(workAttitude);
 	}
 

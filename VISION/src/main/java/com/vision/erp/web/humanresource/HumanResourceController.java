@@ -34,8 +34,6 @@ public class HumanResourceController {
 	public void addHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("/hr/addHumanResourceCard");
 		
-		//Accounting이 아직 미구현됨
-		//User가 아직 미구현됨
 		
 		Map<String, Object> profileMap = humanResourceCard.getProfileFile();
 		Map<String, Object> signatureMap = humanResourceCard.getSignatureFile();

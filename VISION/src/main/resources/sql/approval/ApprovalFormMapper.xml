@@ -24,7 +24,14 @@
 	<!-- 결재서양식 리스트 가져오기 -->
 	<select	id="selectApprovalFormList" resultMap="approvalFormSelectMap">
 		SELECT
-		approval_form_no, approval_form_name, approval_form, FORM_USAGE_STATUS_CODE, CODE_FUNCTION('record', FORM_USAGE_STATUS_CODE) usage_code_name, REGISTRANT_EMPLOYEE_NO, REGISTRANT_EMPLOYEE_NAME, use_count
+			approval_form_no
+		  , approval_form_name
+		  , approval_form
+		  , FORM_USAGE_STATUS_CODE
+		  , CODE_FUNCTION('record', FORM_USAGE_STATUS_CODE) usage_code_name
+		  , REGISTRANT_EMPLOYEE_NO
+		  , REGISTRANT_EMPLOYEE_NAME
+		  , use_count
 		FROM approval_Form
 		WHERE form_usage_status_code = '01'
 		ORDER BY approval_form_no DESC
@@ -33,8 +40,26 @@
 	<!-- 결재서양식 등록하기, 복제하기 -->
 	<insert 	id="insertApprovalForm"		parameterType="approvalForm" >
 	 	INSERT
-		INTO approval_form( approval_form_no, approval_form_name, approval_form, FORM_USAGE_STATUS_CODE, REGISTRANT_EMPLOYEE_NO, REGISTRANT_EMPLOYEE_NAME, use_count) 
-		VALUES (	seq_approval_form_no.nextval, #{approvalFormTitle} , #{approvalForm}, '01', #{registrantEmployeeNo}, #{registrantEmployeeName}, '0' )
+		INTO approval_form
+			( 
+			approval_form_no
+		  , approval_form_name
+		  , approval_form
+		  , form_usage_status_code
+		  , registrant_employee_no
+		  , registrant_employee_name
+		  , use_count
+		  	) 
+		VALUES 
+			(	
+			seq_approval_form_no.nextval
+		  , #{approvalFormTitle} 
+		  , #{approvalForm}
+		  , '01'
+		  , #{registrantEmployeeNo}
+		  , #{registrantEmployeeName}
+		  , '0' 
+		 	 )
 	</insert>
 	
 	<!-- 결재서양식 수정하기 -->

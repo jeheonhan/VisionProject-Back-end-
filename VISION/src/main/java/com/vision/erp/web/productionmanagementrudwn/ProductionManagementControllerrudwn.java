@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vision.erp.common.Search;
+import com.vision.erp.service.accounting.AccountingService;
+import com.vision.erp.service.domain.Account;
 import com.vision.erp.service.domain.InteProduction;
 import com.vision.erp.service.domain.OrderToVendor;
 import com.vision.erp.service.domain.OrderToVendorProduct;
@@ -31,12 +34,29 @@ public class ProductionManagementControllerrudwn {
 	@Autowired
 	@Qualifier("productionManagementServiceImplrudwn")
 	private ProductionManagementServicerudwn productionManagementServicerudwn;
+	
+	@Resource(name = "accountingServiceImpl")
+	private AccountingService accountingService;
 
+	
+	@RequestMapping(value="/pm/addProductPreparing",method=RequestMethod.GET)
+	public List<Account> addOrderFromBranchPreparing() throws Exception{
+		
+		List<Account> list = new ArrayList<Account>();
+		
+					 Search search = new Search();
+	
+					 search.setSearchCondition("01");
+					 list =  accountingService.getAccountList(search);
 
+		return list;
+	}
 
 	@RequestMapping(value = "/pm/addProduct",method=RequestMethod.POST)
 	public void addProduct(@RequestBody Product product)throws Exception{
+		System.out.println("¿Ô³Ä.");
 		System.out.println("product ::" + product);
+		product.setProductUsageStatusCodeNo("01");
 		productionManagementServicerudwn.addProduct(product);
 	}
 
@@ -114,16 +134,16 @@ public class ProductionManagementControllerrudwn {
 	@RequestMapping(value = "/pm/modifyOrderToVenItemCode",method=RequestMethod.POST)
 	public void modifyOrderToVenItemCode(@RequestBody OrderToVendorProduct orderToVendorProduct) throws Exception{
 
-		
+
 		Product product = new Product();
 
 		product.setProductNo(orderToVendorProduct.getProductNo());
 		product.setQuantity(orderToVendorProduct.getQuantity());
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("product", product);
 		map.put("orderToVendorProduct", orderToVendorProduct);
-		
+
 		productionManagementServicerudwn.modifyOrderToVenItemCode(map);
 	}
 

@@ -59,6 +59,13 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 		
 		Branch branch = new Branch();
 		branch = businessSupportDAO.selectBranchDetail(branchNo);
+		
+		if(branch.getBranchStatusCodeNo().equals("01")) {
+			branch.setBranchStatus("¿µ¾÷Áß");
+		}else if(branch.getBranchStatusCodeNo().equals("02")) {
+			branch.setBranchStatus("Æó¾÷");
+		}
+		
 		return branch;
 		
 	}

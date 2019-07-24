@@ -42,7 +42,7 @@ public class BusinessSupportServiceTest{
 		branch.setBranchName("Test05");
 		branch.setZipCode("12345");
 		branch.setAddress("Test05");
-		branch.setDetailAdress("1111");
+		branch.setDetailAddress("1111");
 		branch.setBusinessLicenseNo("123-12-12355");	//UNIQUE
 		branch.setBranchTel("111-111-1155");			//UNIQUE
 		branch.setBranchManagerPhone("010-1111-1155");		//UNIQUE
@@ -99,7 +99,7 @@ public class BusinessSupportServiceTest{
 		branch.setBranchName("Test06");
 		branch.setZipCode("12346");
 		branch.setAddress("Test06");
-		branch.setDetailAdress("66666");
+		branch.setDetailAddress("66666");
 		branch.setBusinessLicenseNo("123-12-12666");	//UNIQUE
 		branch.setBranchTel("111-111-1116");			//UNIQUE
 		branch.setBranchManagerPhone("010-1111-1116");		//UNIQUE

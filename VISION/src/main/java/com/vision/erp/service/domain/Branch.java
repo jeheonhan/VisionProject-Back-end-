@@ -6,7 +6,7 @@ public class Branch {
 	private String branchName;
 	private String zipCode;
 	private String address;
-	private String detailAdress;
+	private String detailAddress;
 	private String businessLicenseNo;
 	private String branchTel;
 	private String branchManagerPhone;
@@ -23,7 +23,6 @@ public class Branch {
 		// TODO Auto-generated constructor stub
 	}
 
-	//getter, setter
 	public String getBranchNo() {
 		return branchNo;
 	}
@@ -56,12 +55,12 @@ public class Branch {
 		this.address = address;
 	}
 
-	public String getDetailAdress() {
-		return detailAdress;
+	public String getDetailAddress() {
+		return detailAddress;
 	}
 
-	public void setDetailAdress(String detailAdress) {
-		this.detailAdress = detailAdress;
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 
 	public String getBusinessLicenseNo() {
@@ -118,7 +117,7 @@ public class Branch {
 
 	public void setBranchStatusCodeNo(String branchStatusCodeNo) {
 		this.branchStatusCodeNo = branchStatusCodeNo;
-	}	
+	}
 
 	public String getBranchStatus() {
 		return branchStatus;
@@ -139,11 +138,12 @@ public class Branch {
 	@Override
 	public String toString() {
 		return "Branch [branchNo=" + branchNo + ", branchName=" + branchName + ", zipCode=" + zipCode + ", address="
-				+ address + ", detailAdress=" + detailAdress + ", businessLicenseNo=" + businessLicenseNo
+				+ address + ", detailAddress=" + detailAddress + ", businessLicenseNo=" + businessLicenseNo
 				+ ", branchTel=" + branchTel + ", branchManagerPhone=" + branchManagerPhone + ", branchManagerName="
 				+ branchManagerName + ", localCodeNo=" + localCodeNo + ", localCodeName=" + localCodeName
 				+ ", branchStatusCodeNo=" + branchStatusCodeNo + ", branchStatus=" + branchStatus + ", branchRegDate="
 				+ branchRegDate + "]";
 	}
-
+	
+	
 }

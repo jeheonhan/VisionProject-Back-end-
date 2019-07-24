@@ -10,6 +10,8 @@ public class Department {
 	private String departUsageStatusCodeNo;
 	private String departUsageStatusCodeName;
 	private String usageStatusCodeNo;
+	private String departInfo;
+	private String countEmployee;
 	
 	//constructor
 	public Department() {
@@ -74,13 +76,33 @@ public class Department {
 	}
 
 	
+	public String getDepartInfo() {
+		return departInfo;
+	}
+
+	public void setDepartInfo(String departInfo) {
+		this.departInfo = departInfo;
+	}
+
+	public String getCountEmployee() {
+		return countEmployee;
+	}
+
+	public void setCountEmployee(String countEmployee) {
+		this.countEmployee = countEmployee;
+	}
+
 	@Override
 	public String toString() {
 		return "Department [departCodeNo=" + departCodeNo + ", departCodeName=" + departCodeName + ", accessMenuCodeNo="
 				+ accessMenuCodeNo + ", accessMenuCodeName=" + accessMenuCodeName + ", departUsageStatusCodeNo="
 				+ departUsageStatusCodeNo + ", departUsageStatusCodeName=" + departUsageStatusCodeName
-				+ ", usageStatusCodeNo=" + usageStatusCodeNo + "]";
+				+ ", usageStatusCodeNo=" + usageStatusCodeNo + ", departInfo=" + departInfo + ", countEmployee="
+				+ countEmployee + "]";
 	}
+
+	
+
 
 	
 	

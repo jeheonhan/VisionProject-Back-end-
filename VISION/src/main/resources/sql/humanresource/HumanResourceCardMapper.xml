@@ -228,6 +228,10 @@
 	  	  
 	</select>
 	
+	<select id="countEmployeeByDepartment" parameterType="string" resultType="int">
+		SELECT	
+	</select>
+	
 	<update id="updateHumanResourceCard" parameterType="humanResourceCard">
 		UPDATE	HUMAN_RESOURCE_CARD
 		   SET	
@@ -257,5 +261,6 @@
 		   		EMPLOYEE_NO 	= 	#{employeeNo}
 		   	</where>
 	</update>
+	
 
 </mapper>

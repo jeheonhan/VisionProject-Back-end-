@@ -184,13 +184,9 @@ public class HumanResourceDAOImpl implements HumanResourceDAO {
 	}
 
 	@Override
-	public void updateDepartmentUsageStatus(String departCodeNo, String status) throws Exception {
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("departCodeNo", departCodeNo);
-		map.put("status",status);
+	public void updateDepartmentUsageStatus(Department department) throws Exception {
 		
-		sqlSession.update("DepartmentMapper.updateDepartmentUsageStatus", map);
+		sqlSession.update("DepartmentMapper.updateDepartmentUsageStatus", department);
 	}
 
 

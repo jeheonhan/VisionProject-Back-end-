@@ -36,6 +36,8 @@ public interface HumanResourceDAO {
 	
 	public void insertWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;
 	
+	public WorkAttitudeCode selectWorkAttitudeCodeByWorkAttitudeCodeNo(String workAttitudeCodeNo) throws Exception;
+	
 	public List<WorkAttitudeCode> selectWorkAttitudeCodeList(Search search) throws Exception;
 	
 	public void updateWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;

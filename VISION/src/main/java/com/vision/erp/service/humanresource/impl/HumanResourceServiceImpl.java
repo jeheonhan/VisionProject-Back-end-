@@ -117,7 +117,14 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 	@Override
 	public void addWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception {
+		workAttitudeCode.setUsageStatusCode("01");
 		humanResourceDAO.insertWorkAttitudeCode(workAttitudeCode);
+	}
+	
+	@Override
+	public WorkAttitudeCode getWorkAttitudeCodeByWorkAttitudeCodeNo(String workAttitudeCodeNo) throws Exception {
+		
+		return humanResourceDAO.selectWorkAttitudeCodeByWorkAttitudeCodeNo(workAttitudeCodeNo);
 	}
 
 	@Override
@@ -209,5 +216,7 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	public void addDutyHours(DutyHours dutyHours) throws Exception {
 		humanResourceDAO.insertDutyHours(dutyHours);
 	}
+
+	
 
 }

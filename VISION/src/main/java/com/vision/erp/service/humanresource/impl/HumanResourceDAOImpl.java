@@ -99,6 +99,13 @@ public class HumanResourceDAOImpl implements HumanResourceDAO {
 
 		sqlSession.insert("WorkAttitudeCodeMapper.insertWorkAttitudeCode", workAttitudeCode);
 	}
+	
+	@Override
+	public WorkAttitudeCode selectWorkAttitudeCodeByWorkAttitudeCodeNo(String workAttitudeCodeNo) throws Exception {
+		
+		return sqlSession.selectOne("WorkAttitudeCodeMapper.selectWorkAttitudeCode", workAttitudeCodeNo);
+	}
+
 
 	@Override
 	public List<WorkAttitudeCode> selectWorkAttitudeCodeList(Search search) throws Exception {
@@ -217,6 +224,7 @@ public class HumanResourceDAOImpl implements HumanResourceDAO {
 	public String selectSignatureImageByEmployeeNo(String employeeNo) throws Exception {
 		return null;
 	}
+
 
 	
 

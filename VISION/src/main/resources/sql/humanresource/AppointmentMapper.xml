@@ -109,10 +109,10 @@
 		   SET	APPOINTMENT_DATE			=	#{appointDate}
 		   	 ,	APPOINTMENT_DEPART_CODE_NO	=	#{appointDepartCodeNo}
 		   	 ,	APPOINTMENT_RANK_CODE_NO	=	#{appointRankCodeNo}
-		   	 ,	REFER						=	#{reference}
+		   	 ,	REFER						=	#{reference:VARCHAR}
 		   		
 	  <where>
-	  			EMPLOYEE_NO = #{employeeNo}
+	  			APPOINTMENT_NO	=	#{appointNo}
 	  </where>
 	</update>
 	
@@ -120,7 +120,7 @@
 		UPDATE	APPOINTMENT
 		   SET	APPOINTMENT_STATUS_CODE_NO	=	#{status}
 	   <where>
-	   			APPOINTMENT_NO	=	#{appointmentNo}
+	   			APPOINTMENT_NO	=	#{appointNo}
 	   </where>
 	</update>
 

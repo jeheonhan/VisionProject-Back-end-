@@ -34,7 +34,7 @@
 		  			)
 		VALUES	
 					(
-					SEQ_WORK_ATTITUDE_CODE.NEXTVAL
+					#{workAttitudeCodeNo}
 				,	#{workAttitudeCodeName}
 				,	#{commuteApplyCode}
 				,	#{applyStartTime}
@@ -44,6 +44,18 @@
 				,	#{usageStatusCodeNo}
 					)
 	</insert>
+	
+	<select id="selectWorkAttitudeCode" parameterType="string" resultMap="WorkAttitudeCodeSelectMap">
+		SELECT	WORK_ATTITUDE_CODE
+	 		 ,	WORK_ATTITUDE_CODE_NAME
+	 		 ,	COMMUTE_APPLY_CODE
+	 		 ,	APPLY_START_TIME
+	 		 ,	APPLY_END_TIME
+	 		 ,	WORK_TYPE
+	 		 ,	CODE_FUNCTION('workDayOfWeek', WORK_DAY_OF_WEEK) AS WORK_DAY_OF_WEEK
+	 	  FROM	WORK_ATTITUDE_CODE
+	 	 WHERE	WORK_ATTITUDE_CODE	=	#{value}
+	</select>
 	
 	<select id="selectWorkAttitudeCodeList" parameterType="search" resultMap="WorkAttitudeCodeSelectMap">
 	 	SELECT	WORK_ATTITUDE_CODE

@@ -154,6 +154,14 @@ public class HumanResourceController {
 		
 	}
 	
+	//근태코드 상세조회
+	@RequestMapping(value = "/hr/getWorkAttitudeCodeDetail/{workAttitudeCodeNo}", method = RequestMethod.GET)
+	public WorkAttitudeCode getWorkAttitudeCodeDetail(@PathVariable String workAttitudeCodeNo) throws Exception{
+		System.out.println("/hr/getWorkAttitudeCodeDetail/{workAttitudeCodeNo}");
+		
+		return humanResourceService.getWorkAttitudeCodeByWorkAttitudeCodeNo(workAttitudeCodeNo);
+	}
+	
 	//근태코드 목록조회
 	@RequestMapping(value = "/hr/getWorkAttitudeCodeList", method = RequestMethod.POST)
 	public List<WorkAttitudeCode> getWorkAttitudeCodeList(@RequestBody Search search) throws Exception{

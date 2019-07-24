@@ -36,6 +36,8 @@ public interface HumanResourceService {
 	
 	public void addWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;
 	
+	public WorkAttitudeCode getWorkAttitudeCodeByWorkAttitudeCodeNo(String workAttitudeCodeNo) throws Exception;
+	
 	public List<WorkAttitudeCode> getWorkAttitudeCodeList(Search search) throws Exception;
 	
 	public void modifyWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;

@@ -128,17 +128,17 @@ public class Approval {
 	
 
 	public String getTotalApproverCount() {
-		if(fifthApprover!=null) {
+		if(fifthApprover!=null&&fifthApprover.getEmployeeNo()!=null) {
 			return "5";
-		}else if(fourthApprover!=null) {
+		}else if(fourthApprover!=null&&fourthApprover.getEmployeeNo()!=null) {
 			return "4";
-		}else if(thirdApprover!=null) {
+		}else if(thirdApprover!=null&&thirdApprover.getEmployeeNo()!=null) {
 			return "3";
-		}else if(fourthApprover!=null) {
+		}else if(secondApprover!=null&&secondApprover.getEmployeeNo()!=null) {
 			return "2";
+		}else{
+			return totalApproverCount;
 		}
-		
-		return totalApproverCount;
 	}
 
 
@@ -150,7 +150,7 @@ public class Approval {
 	@Override
 	public String toString() {
 		return "Approval [approvalNo=" + approvalNo + ", approvalTitle=" + approvalTitle + ", approvalContent="
-				+ approvalContent + ", submitDate=" + submitDate + ", firstApprover=" + firstApprover
+				+ approvalContent.isEmpty() + ", submitDate=" + submitDate + ", firstApprover=" + firstApprover
 				+ ", secondApprover=" + secondApprover + ", thirdApprover=" + thirdApprover + ", fourthApprover="
 				+ fourthApprover + ", fifthApprover=" + fifthApprover + ", approvalFormNo=" + approvalFormNo
 				+ ", approvalStatusCodeNo=" + approvalStatusCodeNo + ", approvalStatusCodeName="

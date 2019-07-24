@@ -42,7 +42,7 @@
 	<insert 	id="insertApprover"		parameterType="approver" >
 	 	INSERT
 		INTO approver( approver_numbering, approval_no, employee_no, ordinal, approval_status, rank_code_name, signature_image ) 
-		VALUES	 ( seq_approver_numbering.nextval, #{approvalNo}, #{employeeNo}, #{ordinal}, '0', #{rankCodeName : VARCHAR}, #{signatureImage : VARCHAR})
+		VALUES	 ( seq_approver_numbering.nextval, #{approvalNo}, #{employeeNo}, #{ordinal}, #{approvalStatus}, #{rankCodeName : VARCHAR}, #{signatureImage : VARCHAR})
 	</insert>
 	
 	<!-- 결재자 가져오기 -->

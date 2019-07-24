@@ -74,7 +74,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 		// TODO Auto-generated method stub
 		//결재서 등록하기
 		approvalDAO.insertApproval(approval);
-		System.out.println("ApprovalServiceImpl.addApproval() : "+approval);
 		
 		//selectkey로 결재서번호 받아옴
 		String approvalNo = approval.getApprovalNo();
@@ -82,24 +81,26 @@ public class ApprovalServiceImpl implements ApprovalService {
 		//결재서 번호에 맞는 결재자 등록하기, 화면과 연결시 ordinal 잘 들어왔는지 확인하기
 		//1차결재자 등록
 		//approvalDAO.insertApprover(approval.getFirstApprover().setApprovalNo(approvalNo));
-		approvalDAO.insertApprover(getFullApprover(approval.getFirstApprover(), approvalNo));
+		approvalDAO.insertApprover(getFullApprover(approval.getFirstApprover(), approvalNo).setApprovalStatus("1"));
+		//총결재자수
+		String totalApproverCount = approval.getTotalApproverCount();
 		//2차결재자 등록
-		switch(approval.getTotalApproverCount()) {
+		switch(totalApproverCount) {
 		case "2" :	case "3" :	case "4" :	case "5" :
 			approvalDAO.insertApprover(getFullApprover(approval.getSecondApprover(), approvalNo));
 		}
 		//3차결재자 등록
-		switch(approval.getTotalApproverCount()) {
+		switch(totalApproverCount) {
 		case "3" :	case "4" :	case "5" :
 			approvalDAO.insertApprover(getFullApprover(approval.getThirdApprover(), approvalNo));
 		}
 		//4차결재자 등록
-		switch(approval.getTotalApproverCount()) {
+		switch(totalApproverCount) {
 		case "4" :	case "5" :
 			approvalDAO.insertApprover(getFullApprover(approval.getFourthApprover(), approvalNo));
 		}
 		//5차결재자 등록
-		switch(approval.getTotalApproverCount()) {
+		switch(totalApproverCount) {
 		case "5" :
 			approvalDAO.insertApprover(getFullApprover(approval.getFifthApprover(), approvalNo));
 		}

@@ -39,7 +39,7 @@ public class BusinessSupportDAOTest{
 		branch.setBranchName("Test03");
 		branch.setZipCode("12345");
 		branch.setAddress("Test03");
-		branch.setDetailAdress("1111");
+		branch.setDetailAddress("1111");
 		branch.setBusinessLicenseNo("123-12-12343");	//UNIQUE
 		branch.setBranchTel("111-111-1113");			//UNIQUE
 		branch.setBranchManagerPhone("010-1111-1113");		//UNIQUE
@@ -90,7 +90,7 @@ public class BusinessSupportDAOTest{
 		branch.setBranchName("Test03");
 		branch.setZipCode("12345");
 		branch.setAddress("Test03");
-		branch.setDetailAdress("1111");
+		branch.setDetailAddress("1111");
 		branch.setBusinessLicenseNo("123-12-12343");	//UNIQUE
 		branch.setBranchTel("111-111-1113");			//UNIQUE
 		branch.setBranchManagerPhone("010-1111-1113");		//UNIQUE

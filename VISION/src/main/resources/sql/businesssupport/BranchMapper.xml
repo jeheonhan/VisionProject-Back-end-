@@ -10,7 +10,7 @@
 		<result property="branchName" column="BRANCH_NAME" jdbcType="VARCHAR"/>
 		<result property="zipCode" column="ZIP_CODE" jdbcType="VARCHAR"/>
 		<result property="address" column="ADDRESS" jdbcType="VARCHAR"/>
-		<result property="detailAdress" column="DETAIL_ADDRESS" jdbcType="VARCHAR"/>
+		<result property="detailAddress" column="DETAIL_ADDRESS" jdbcType="VARCHAR"/>
 		<result property="businessLicenseNo" column="BUSINESS_LICENSE_NO" jdbcType="VARCHAR"/>
 		<result property="branchTel" column="BRANCH_TEL" jdbcType="VARCHAR"/>
 		<result property="branchManagerPhone" column="BRANCH_MANAGER_PHONE" jdbcType="VARCHAR"/>
@@ -50,7 +50,7 @@
 			#{localCodeNo} , 
 			#{zipCode}, 
 			#{address}, 
-			#{detailAdress}, 
+			#{detailAddress}, 
 			#{businessLicenseNo},
 			'01', 
 			#{branchName})
@@ -84,7 +84,7 @@
 		 	LOCAL_CODE_NO = #{localCodeNo}, 
 		 	ZIP_CODE = #{zipCode}, 
 		 	ADDRESS = #{address}, 
-		 	DETAIL_ADDRESS = #{detailAdress},
+		 	DETAIL_ADDRESS = #{detailAddress},
 		 	BUSINESS_LICENSE_NO = #{businessLicenseNo}, 
 		 	BRANCH_NAME = #{branchName}
 	 	</set>

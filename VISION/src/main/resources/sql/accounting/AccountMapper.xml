@@ -93,16 +93,17 @@
 		FROM
 			account
 		<where>
+			<if test="usageCondition != null and usageCondition !=''">
+				AND	usage_status_code_no = #{usageCondition}
+			</if>
 			<if test="searchCondition != null and searchCondition != ''">
 				AND account_category_code_no = #{searchCondition}
 			</if>
 			<if test="searchKeyword != null and searchKeyword != ''">
-				AND account_no LIKE '%'||#{searchKeyword}||'%'
-				OR LOWER(reference) LIKE '%'||#{searchKeyword}||'%'
-			</if>		
-			<if test="usageCondition != null and usageCondition !=''">
-				AND	usage_status_code_no = #{usageCondition}
+				AND (account_no LIKE '%'||#{searchKeyword}||'%'
+				OR LOWER(reference) LIKE '%'||#{searchKeyword}||'%')
 			</if>
+			
 		</where>
 		ORDER BY account_reg_no ASC
 	</select>

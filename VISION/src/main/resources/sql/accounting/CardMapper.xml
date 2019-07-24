@@ -105,16 +105,15 @@
 		FROM
 			card c, human_resource_card hr
 		<where>
-			<if test="searchKeyword != null and searchKeyword != ''">
-				c.card_reg_no = #{searchKeyword}
-				OR LOWER(c.card_name) LIKE '%'||#{searchKeyword}||'%'
-			</if>		
+			c.card_manager = hr.employee_no
+			
 			<if test="usageCondition != null and usageCondition !=''">
 				AND	c.usage_status_code_no = #{usageCondition}
 			</if>
-			<if test="true">
-				AND c.card_manager = hr.employee_no
-			</if>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				AND (c.card_no LIKE '%'||#{searchKeyword}||'%'
+				OR LOWER(c.card_name) LIKE '%'||#{searchKeyword}||'%')
+			</if>		
 		</where>
 		ORDER BY card_reg_no ASC
 	</select>

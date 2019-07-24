@@ -5,8 +5,8 @@ public class Approver {
 	private String approverNumbering;
 	private String approvalNo;
 	private String employeeNo;
-	private String employeeSignatureImage;
-	private String employeeRankCodeName;
+	private String signatureImage;
+	private String rankCodeName;
 	private String ordinal;
 	private String approvalStatus;
 	
@@ -44,16 +44,16 @@ public class Approver {
 		this.employeeNo = employeeNo;
 	}
 	public String getEmployeeSignatureImage() {
-		return employeeSignatureImage;
+		return signatureImage;
 	}
 	public void setEmployeeSignatureImage(String employeeSignatureImage) {
-		this.employeeSignatureImage = employeeSignatureImage;
+		this.signatureImage = employeeSignatureImage;
 	}
 	public String getEmployeeRankCodeName() {
-		return employeeRankCodeName;
+		return rankCodeName;
 	}
 	public void setEmployeeRankCodeName(String employeeRankCodeName) {
-		this.employeeRankCodeName = employeeRankCodeName;
+		this.rankCodeName = employeeRankCodeName;
 	}
 	public String getOrdinal() {
 		return ordinal;
@@ -73,7 +73,7 @@ public class Approver {
 	@Override
 	public String toString() {
 		return "Approver [approverNumbering=" + approverNumbering + ", approvalNo=" + approvalNo + ", employeeNo="
-				+ employeeNo + ", employeeSignatureImage=" + employeeSignatureImage + ", employeeRankCodeName=" + employeeRankCodeName + ", ordinal=" + ordinal
+				+ employeeNo + ", employeeSignatureImage=" + signatureImage + ", employeeRankCodeName=" + rankCodeName + ", ordinal=" + ordinal
 				+ ", approvalStatus=" + approvalStatus + "]";
 	}
 	

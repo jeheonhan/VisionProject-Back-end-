@@ -22,8 +22,8 @@
 		<result property="approverNumbering" column="APPROVER_NUMBERING" jdbcType="VARCHAR"/>
 		<result property="approvalNo" column="APPROVAL_NO" jdbcType="VARCHAR"/>
 		<result property="employeeNo" column="EMPLOYEE_NO" jdbcType="VARCHAR"/>
-		<result property="employeeSignatureImage" column="SIGNATURE_IMAGE" jdbcType="VARCHAR"/>
-		<result property="employeeRankCodeName" column="rank_code_name" jdbcType="VARCHAR"/>
+		<result property="signatureImage" column="SIGNATURE_IMAGE" jdbcType="VARCHAR"/>
+		<result property="rankCodeName" column="rank_code_name" jdbcType="VARCHAR"/>
 		<result property="ordinal" column="ORDINAL" jdbcType="VARCHAR"/>
 		<result property="approvalStatus" column="APPROVAL_STATUS" jdbcType="VARCHAR"/>
 	</resultMap>
@@ -42,7 +42,7 @@
 	<insert 	id="insertApprover"		parameterType="approver" >
 	 	INSERT
 		INTO approver( approver_numbering, approval_no, employee_no, ordinal, approval_status, rank_code_name, signature_image ) 
-		VALUES	 ( seq_approver_numbering.nextval, #{approvalNo}, #{employeeNo}, #{ordinal}, '0', #{employeeRankCodeName : VARCHAR}, #{employeeSignatureImage : VARCHAR})
+		VALUES	 ( seq_approver_numbering.nextval, #{approvalNo}, #{employeeNo}, #{ordinal}, '0', #{rankCodeName : VARCHAR}, #{signatureImage : VARCHAR})
 	</insert>
 	
 	<!-- 결재자 가져오기 -->

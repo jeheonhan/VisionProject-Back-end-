@@ -97,7 +97,7 @@
 				AND account_category_code_no = #{searchCondition}
 			</if>
 			<if test="searchKeyword != null and searchKeyword != ''">
-				AND account_reg_no = #{searchKeyword}
+				AND account_no LIKE '%'||#{searchKeyword}||'%'
 				OR LOWER(reference) LIKE '%'||#{searchKeyword}||'%'
 			</if>		
 			<if test="usageCondition != null and usageCondition !=''">

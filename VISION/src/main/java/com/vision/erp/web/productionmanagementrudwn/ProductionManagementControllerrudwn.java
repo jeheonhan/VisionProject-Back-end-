@@ -25,6 +25,7 @@ import com.vision.erp.service.domain.OrderToVendorProduct;
 import com.vision.erp.service.domain.Product;
 import com.vision.erp.service.domain.Statement;
 import com.vision.erp.service.domain.User;
+import com.vision.erp.service.domain.Vendor;
 import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementServicerudwn;
 
 
@@ -38,8 +39,8 @@ public class ProductionManagementControllerrudwn {
 	@Resource(name = "accountingServiceImpl")
 	private AccountingService accountingService;
 
-	
-	@RequestMapping(value="/pm/addProductPreparing",method=RequestMethod.GET)
+	//얘는 발주요청할때 쓰는거임.
+	@RequestMapping(value="/pm/addOrderPreparing",method=RequestMethod.GET)
 	public List<Account> addOrderFromBranchPreparing() throws Exception{
 		
 		List<Account> list = new ArrayList<Account>();
@@ -51,6 +52,22 @@ public class ProductionManagementControllerrudwn {
 
 		return list;
 	}
+	
+	//얘는 물품등록할때 쓰는거임.(필요없음 민섭이가 만들어줌)
+		@RequestMapping(value="/pm/addProductPreparing",method=RequestMethod.GET)
+		public List<Vendor> addProductPreparing() throws Exception{
+			
+			List<Vendor> list = new ArrayList<Vendor>();
+			
+						 Search search = new Search();
+		
+						 search.setSearchCondition("01");
+						 list =  accountingService.getVendorList(search);
+
+			return list;
+		}
+	
+	
 
 	@RequestMapping(value = "/pm/addProduct",method=RequestMethod.POST)
 	public void addProduct(@RequestBody Product product)throws Exception{

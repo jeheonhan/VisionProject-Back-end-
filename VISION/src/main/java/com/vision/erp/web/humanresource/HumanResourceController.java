@@ -29,7 +29,7 @@ public class HumanResourceController {
 	@Resource(name = "humanResourceServiceImpl")
 	private HumanResourceService humanResourceService;
 	
-	//ÀÎ»çÄ«µå µî·Ï
+	//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/addHumanResourceCard",method = RequestMethod.POST)
 	public void addHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("/hr/addHumanResourceCard");
@@ -46,7 +46,7 @@ public class HumanResourceController {
 		
 	}
 	
-	//ÀÎ»çÄ«µå ¸ñ·ÏÁ¶È¸
+	//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getHumanResourceCardList", method = RequestMethod.POST)
 	public List<HumanResourceCard> getHumanResourceCardList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getHumanResourceCardList");
@@ -60,7 +60,7 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//ÀÎ»çÄ«µå »ó¼¼Á¶È¸
+	//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getHumanResourceCardDetail/{employeeNo}", method = RequestMethod.GET)
 	public HumanResourceCard getHumanResourceCardDetail(@PathVariable String employeeNo) throws Exception{
 		System.out.println("hr/getHumanResourceCardDetail");
@@ -73,7 +73,7 @@ public class HumanResourceController {
 		return humanResourceCard;
 	}
 	
-	//ÀÎ»çÄ«µå ¸ñ·ÏÁ¶È¸ without ¹Î°¨ÇÑ Á¤º¸
+	//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¸ without ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/getSimpleHumanResourceCardList", method = RequestMethod.POST)
 	public List<SimpleHumanResourceCard> getSimpleHumanResourceCardList(
 									@RequestBody Search search) throws Exception{
@@ -86,7 +86,7 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//ÀÎ»çÄ«µå »ó¼¼Á¶È¸ without ¹Î°¨ÇÑ Á¤º¸
+	//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¸ without ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/getSimpleHumanResourceCardDetail/{employeeNo}",method = RequestMethod.GET)
 	public SimpleHumanResourceCard getSimpleHumanResourceCardDetail(
 									@PathVariable String employeeNo) throws Exception{
@@ -98,7 +98,7 @@ public class HumanResourceController {
 		return simpleHumanResourceCard;
 	}
 	
-	//ÀÎ»çÄ«µå ¼öÁ¤
+	//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/modifyHumanResourceCard",method = RequestMethod.POST)
 	public void modifyHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("hr/modifyHumanResourceCard");
@@ -107,7 +107,7 @@ public class HumanResourceController {
 		
 	}
 	
-	//±ÙÅÂ µî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/addWorkAttitude", method = RequestMethod.POST)
 	public void addWorkAttitude(@RequestBody WorkAttitude workAttitude) throws Exception{
 		System.out.println("/hr/addWorkAttitude");
@@ -115,7 +115,7 @@ public class HumanResourceController {
 		humanResourceService.addWorkAttitude(workAttitude);
 	}
 	
-	//±ÙÅÂ ¸ñ·ÏÁ¶È¸
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getWorkAttitudeList", method = RequestMethod.POST)
 	public List<WorkAttitude> getWorkAttitudeList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getWorkAttitudeList");
@@ -126,7 +126,7 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//±ÙÅÂ ¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/modifyWorkAttitude", method = RequestMethod.POST)
 	public void modifyWorkAttitude(@RequestBody WorkAttitude workAttitude) throws Exception{
 		System.out.println("/hr/modifyWorkAttitude");
@@ -134,7 +134,7 @@ public class HumanResourceController {
 		humanResourceService.modifyWorkAttitude(workAttitude);
 	}
 	
-	//±ÙÅÂ »ç¿ë»óÅÂ º¯°æ
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//Sample Data : [{"workAttitudeNo":"1"},{"usageStatus":"01"}]
 	@RequestMapping(value = "/hr/convertWorkAttitudeUsageStatus", method = RequestMethod.POST)
 	public void convertWorkAttitudeUsageStatus(@RequestBody Map<String, String>[] arrayMap) throws Exception{
@@ -144,7 +144,7 @@ public class HumanResourceController {
 													, arrayMap[1].get("usageStatus"));
 	}
 	
-	//±ÙÅÂÄÚµå µî·Ï
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/addWorkAttitudeCode", method = RequestMethod.POST)
 	public void addWorkAttitudeCode(
 				@RequestBody WorkAttitudeCode workAttitudeCode) throws Exception{
@@ -154,7 +154,7 @@ public class HumanResourceController {
 		
 	}
 	
-	//±ÙÅÂÄÚµå »ó¼¼Á¶È¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getWorkAttitudeCodeDetail/{workAttitudeCodeNo}", method = RequestMethod.GET)
 	public WorkAttitudeCode getWorkAttitudeCodeDetail(@PathVariable String workAttitudeCodeNo) throws Exception{
 		System.out.println("/hr/getWorkAttitudeCodeDetail/{workAttitudeCodeNo}");
@@ -162,7 +162,7 @@ public class HumanResourceController {
 		return humanResourceService.getWorkAttitudeCodeByWorkAttitudeCodeNo(workAttitudeCodeNo);
 	}
 	
-	//±ÙÅÂÄÚµå ¸ñ·ÏÁ¶È¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getWorkAttitudeCodeList", method = RequestMethod.POST)
 	public List<WorkAttitudeCode> getWorkAttitudeCodeList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getWorkAttitudeCodeList");
@@ -172,7 +172,7 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//±ÙÅÂÄÚµå ¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/modifyWorkAttitudeCode", method = RequestMethod.POST)
 	public void modifyWorkAttitudeCode(@RequestBody WorkAttitudeCode workAttitudeCode) throws Exception{
 		System.out.println("/hr/modifyWorkAttitudeCode");
@@ -180,7 +180,7 @@ public class HumanResourceController {
 		humanResourceService.modifyWorkAttitudeCode(workAttitudeCode);
 	}
 	
-	//±ÙÅÂÄÚµå »ç¿ë»óÅÂ º¯°æ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/convertWorkAttitudeCodeUsageStatus", method = RequestMethod.GET)
 	public void convertWorkAttitudeCodeUsageStatus(@RequestBody Map<String, String>[] arrayMap) throws Exception{
 		System.out.println("/hr/convertWorkAttitudeCodeUsageStatus");
@@ -188,18 +188,18 @@ public class HumanResourceController {
 		humanResourceService.convertWorkAttitudeCodeUsageStatus(arrayMap[0].get("workAttitudeCodeNo"), arrayMap[1].get("usageStatus"));
 	}
 	
-	//¹ß·Éµî·Ï
+	//ï¿½ß·Éµï¿½ï¿½
 	@RequestMapping(value = "/hr/addAppointment", method = RequestMethod.POST)
 	public void addAppointment(@RequestBody Appointment appointment) throws Exception{
 		System.out.println("/hr/addAppointment");
 		
 		if(appointment.getReference() == null) {
-			appointment.setReference("Âü°í ¾øÀ½");
+			appointment.setReference("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		humanResourceService.addAppointment(appointment);
 	}
 	
-	//¹ß·É ¸ñ·ÏÁ¶È¸
+	//ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getAppointmentList", method = RequestMethod.POST)
 	public List<Appointment> getAppointmentList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getAppointmentList");
@@ -210,7 +210,7 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//¹ß·É ¼öÁ¤
+	//ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/modifyAppointment", method = RequestMethod.POST)
 	public void modifyAppointment(@RequestBody Appointment appointment) throws Exception{
 		System.out.println("/hr/modifyAppointment");
@@ -218,7 +218,7 @@ public class HumanResourceController {
 		humanResourceService.modifyAppointment(appointment);
 	}
 	
-	//¹ß·É»óÅÂ ¼öÁ¤
+	//ï¿½ß·É»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//Sample Data : [{"appointmentNo":"1"},{"status":"02"}]
 	@RequestMapping(value = "/hr/modifyAppointmentStatus", method = RequestMethod.GET)
 	public void modifyAppointmentStatus(@RequestBody Map<String, String>[] arrayMap) throws Exception{
@@ -228,13 +228,13 @@ public class HumanResourceController {
 												, arrayMap[1].get("status"));
 	}
 	
-	//¹ß·É »èÁ¦
+	//ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/removeAppointment", method = RequestMethod.GET)
 	public void removeAppointment(@RequestBody Appointment appointment) throws Exception{
 		
 	}
 	
-	//ºÎ¼­ µî·Ï
+	//ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/addDepartment", method = RequestMethod.POST)
 	public void addDepartment(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/addDepartment");
@@ -242,7 +242,7 @@ public class HumanResourceController {
 		humanResourceService.addDepartment(department);
 	}
 	
-	//ºÎ¼­ ¸ñ·ÏÁ¶È¸
+	//ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getDepartmentList", method = RequestMethod.POST)
 	public List<Department> getDepartmentList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getDepartmentList");
@@ -252,7 +252,7 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//ºÎ¼­ ¼ö
+	//ï¿½Î¼ï¿½ ï¿½ï¿½
 	@RequestMapping(value = "/hr/modifyDepartment", method = RequestMethod.POST)
 	public void modifyDepartment(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/modifyDepartment");
@@ -260,16 +260,15 @@ public class HumanResourceController {
 		humanResourceService.modifyDepartment(department);
 	}
 	
-	//ºÎ¼­»ç¿ë»óÅÂ º¯°æ
+	//ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/convertDepartmentUsageStatus", method = RequestMethod.POST)
-	public void convertDepartmentUsageStatus(@RequestBody Map<String, String>[] arrayMap) throws Exception{
+	public void convertDepartmentUsageStatus(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/convertDepartmentUsageStatus");
 		
-		humanResourceService.convertDepartmentUsageStatus(arrayMap[0].get("departCodeNo")
-															,arrayMap[1].get("status") );
+		humanResourceService.convertDepartmentUsageStatus(department);
 	}
 	
-	//±Ù¹«½Ã°£ Á¶È¸
+	//ï¿½Ù¹ï¿½ï¿½Ã°ï¿½ ï¿½ï¿½È¸
 	@RequestMapping(value = "/hr/getCommuteList/{employeeNo}", method = RequestMethod.GET)
 	public List<Commute> getCommuteList(@PathVariable String employeeNo) throws Exception{
 		System.out.println("/hr/getCommuteList");
@@ -279,7 +278,7 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//Ãâ±Ù½Ã°£ µî·Ï
+	//ï¿½ï¿½Ù½Ã°ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/hr/addCommute", method = RequestMethod.POST)
 	public void addCommute(@RequestBody Commute commute) throws Exception{
 		System.out.println("/hr/addCommute");

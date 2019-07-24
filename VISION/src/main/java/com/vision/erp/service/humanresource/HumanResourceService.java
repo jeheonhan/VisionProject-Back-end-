@@ -60,7 +60,7 @@ public interface HumanResourceService {
 	
 	public void modifyDepartment(Department department) throws Exception;
 	
-	public void convertDepartmentUsageStatus(String departCodeNo, String status) throws Exception;
+	public void convertDepartmentUsageStatus(Department department) throws Exception;
 	
 	public List<Commute> getCommuteListByEmployeeNo(String employeeNo) throws Exception;
 	

@@ -40,24 +40,24 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	private CodeDAO codeDAO;
 	
 	
-	//³ªÁß¿¡ È®ÀÎ///////////////////////////////////////////////////
+	//ï¿½ï¿½ï¿½ß¿ï¿½ È®ï¿½ï¿½///////////////////////////////////////////////////
 	@Override
 	public void addHumanResourceCard(HumanResourceCard humanResourceCard) throws Exception {
 		
-		//±Þ¿©ÅëÀå µî·Ï
+		//ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		Account account = humanResourceCard.getAccount();
 		account.setAccountHolder(humanResourceCard.getEmployeeName());
 		account.setAccountCategoryCodeNo("05");
-		account.setReference("±Þ¿©ÅëÀå");
+		account.setReference("ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½ï¿½");
 		account.setAccountNo(account.getAccountNo().replaceAll("-", ""));
 		accountingDAO.insertAccount(account);
 		
-		//ÀÎ»çÄ«µå µî·Ï
+		//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½
 		humanResourceCard.setAccount(account);
 		humanResourceCard.setResignation("N");
 		humanResourceDAO.insertHumanResourceCard(humanResourceCard);
 		
-		//È¸¿ø°¡ÀÔ
+		//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		User user = new User();
 		user.setEmployeeNo(humanResourceCard.getEmployeeNo());
 		user.setAccessMenuCodeNo(humanResourceCard.getDepartCodeNo());
@@ -167,18 +167,18 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 		humanResourceDAO.updateAppointmentStatus(appointmentNo, status);
 	}
 
-	//////////////////////////////ÄÚµå ÀÚµ¿»ý¼º service »ç¿ëÇÒ °Í!!//////////////////
+	//////////////////////////////ï¿½Úµï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ service ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½!!//////////////////
 	@Override
 	public void addDepartment(Department department) throws Exception {
 		
 		Code code = new Code();
-		code.setCodeName(department.getDepartCodeName());
-		//code.setCodeNo(codeNo);
 		code.setGroupCode("depart");
-		code.setGroupCodeName("ºÎ¼­");
-		code.setCodeUsageStatus("01");
-		
+		code.setGroupCodeName("ë¶€ì„œ");
+		code.setCodeNo(department.getDepartCodeNo());
+		code.setCodeName(department.getDepartCodeName());
 		codeDAO.insertCode(code);
+		
+		department.setDepartUsageStatusCodeNo("01");
 		humanResourceDAO.insertDepartment(department);
 	}
 
@@ -193,8 +193,8 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	}
 
 	@Override
-	public void convertDepartmentUsageStatus(String departCodeNo, String status) throws Exception {
-		humanResourceDAO.updateDepartmentUsageStatus(departCodeNo, status);
+	public void convertDepartmentUsageStatus(Department department) throws Exception {
+		humanResourceDAO.updateDepartmentUsageStatus(department);
 	}
 
 	@Override

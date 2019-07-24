@@ -13,6 +13,8 @@
 		<result property="accessMenuCodeName" column="ACCESS_MENU_CODE_NAME" jdbcType="VARCHAR"/>
 		<result property="departUsageStatusCodeNo" column="USAGE_STATUS_CODE_NO" jdbcType="VARCHAR"/>
 		<result property="departUsageStatusCodeName" column="USAGE_STATUS_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="departInfo" column="DEPART_INFO" jdbcType="VARCHAR"/>
+		<result property="countEmployee" column="COUNT_EMPLOYEE" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<insert id="insertDepartmnet" parameterType="department">
@@ -23,6 +25,7 @@
 		  		,	DEPART_CODE_NO
 		  		,	ACCESS_MENU_CODE_NO
 		  		,	USAGE_STATUS_CODE_NO
+		  		,	DEPART_INFO
 		  			)
 		VALUES	
 					(
@@ -30,6 +33,7 @@
 				,	#{departCodeNo}
 				,	#{accessMenuCodeNo}
 				,	#{departUsageStatusCodeNo}
+				,	#{departInfo}
 					)
 	</insert>
 	
@@ -40,6 +44,8 @@
 				 ,	CODE_FUNCTION('accessMenu',ACCESS_MENU_CODE_NO) AS ACCESS_MENU_CODE_NAME
 				 ,	USAGE_STATUS_CODE_NO
 				 ,	CODE_FUNCTION('record',USAGE_STATUS_CODE_NO) AS USAGE_STATUS_CODE_NAME
+				 ,	DEPART_INFO
+				 ,  COUNT_EMPLOYEE_FUNCTION(DEPART_CODE_NO) AS COUNT_EMPLOYEE
 		  FROM	DEPARTMENT
 		<where>
 			<if test="searchCondition != null">
@@ -56,8 +62,8 @@
 	
 	<update id="updateDepartmentUsageStatus" parameterType="department">
 		UPDATE	DEPARTMENT
-		   SET	ACCESS_MENU_CODE_NO		=	#{accessMenuCodeNo}
-		 WHERE	DEPART_CODE_NO	=	#{departCodeNo}
+		   SET	USAGE_STATUS_CODE_NO		=	#{departUsageStatusCodeNo}
+		 WHERE	DEPART_CODE_NO				=	#{departCodeNo}
 	</update>
 
 </mapper>

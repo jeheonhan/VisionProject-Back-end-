@@ -60,7 +60,7 @@ public interface HumanResourceDAO {
 	
 	public void updateDepartment(Department department) throws Exception;
 	
-	public void updateDepartmentUsageStatus(String departCodeNo, String status) throws Exception;
+	public void updateDepartmentUsageStatus(Department department) throws Exception;
 	
 	public List<Commute> selectCommuteList(String employeeNo) throws Exception;
 	

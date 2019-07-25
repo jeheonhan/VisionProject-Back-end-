@@ -6,11 +6,11 @@ public class Approval {
 	private String approvalTitle;
 	private String approvalContent;
 	private String submitDate;
-	private Approver firstApprover;
-	private Approver secondApprover;
-	private Approver thirdApprover;
-	private Approver fourthApprover;
-	private Approver fifthApprover;
+	private Approver firstApprover = new Approver();
+	private Approver secondApprover = new Approver();
+	private Approver thirdApprover = new Approver();
+	private Approver fourthApprover = new Approver();
+	private Approver fifthApprover = new Approver();
 	private String approvalFormNo;
 	private String approvalStatusCodeNo;
 	private String approvalStatusCodeName;

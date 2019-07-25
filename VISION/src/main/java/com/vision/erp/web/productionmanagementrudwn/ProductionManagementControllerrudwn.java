@@ -135,7 +135,7 @@ public class ProductionManagementControllerrudwn {
 
 	@RequestMapping(value = "/pm/orderToVendorDetailList",method=RequestMethod.POST)
 	public List<OrderToVendorProduct> orderToVendorDetailList(@RequestBody OrderToVendorProduct orderToVendorProduct) throws Exception{
-
+		System.out.println("ordertovendordetailstart start start");
 		List<OrderToVendorProduct> list 
 		= (List<OrderToVendorProduct>)productionManagementServicerudwn.orderToVendorDetailList(orderToVendorProduct);
 

@@ -69,6 +69,22 @@ public class ApprovalController {
 	
 	//[결재목록조회] - 선택된 결재함에 따른 결과 출력
 	//SearchCondition에는 진행2, 반려3, 완료4, 대기도 2
+	//	  SearchCondition에는<if test="searchCondition==1">
+	//	  AND al.approver_count = er.ordinal
+	//	  AND al.approval_status_code IN ('02')
+	//</if>
+	//<if test="searchCondition==2">
+	//	  AND er.ordinal = '0'
+	//	  AND al.approval_status_code IN ('02')
+	//</if>
+	//<if test="searchCondition==4">
+	//	  AND er.ordinal = '0'
+	//	  AND al.approval_status_code IN ('04')
+	//</if>
+	//<if test="searchCondition==3">
+	//	  AND er.ordinal = '0'
+	//	  AND al.approval_status_code IN ('03')
+	//</if>
 	//SearchKeyword에는 사원번호
 	@RequestMapping(value="/approval/getApprovalList")
 	public List<Approval> getApprovalList(@RequestBody Search search) throws Exception{
@@ -77,8 +93,8 @@ public class ApprovalController {
 	
 	//[결재목록조회] - 결재상세조회
 	@RequestMapping(value="/approval/getApprovalDetail/{approvalNo}")
-	public void getApprovalDetail(@PathVariable("approvalNo") String approvalNo) throws Exception{
-		approvalService.getApprovalDetail(approvalNo);
+	public Approval getApprovalDetail(@PathVariable("approvalNo") String approvalNo) throws Exception{
+		return approvalService.getApprovalDetail(approvalNo);
 	}
 	
 	//[결재상세조회] - 결재/반려하기

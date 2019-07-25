@@ -14,7 +14,7 @@
 		<result property="approverCount" 				column="APPROVER_COUNT" 					jdbcType="VARCHAR" />
 		<result property="totalApproverCount" 				column="TOTAL_APPROVER_COUNT" 					jdbcType="VARCHAR" />
 		<result property="approvalStatusCodeNo" 				column="APPROVAL_STATUS_CODE" 					jdbcType="VARCHAR" />
-		<result property="approvalStatusCodeName" 				column="CODE_Name" 					jdbcType="VARCHAR" />
+		<result property="approvalStatusCodeName" 				column="approval_status_code_name" 					jdbcType="VARCHAR" />
 		<!--    결재자는 set메서드로 주입하는 것이 좋을 것 같다.-->	
 	</resultMap>
 	

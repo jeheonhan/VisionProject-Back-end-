@@ -9,6 +9,7 @@ public class WorkAttitudeCode {
 	private String applyEndTime;
 	private String workType;
 	private String workDayOfWeek;
+	private String workDayOfWeekName;
 	private String usageStatusCodeNo;
 	
 	//constructor
@@ -67,6 +68,22 @@ public class WorkAttitudeCode {
 	}
 	
 
+	public String getWorkDayOfWeekName() {
+		return workDayOfWeekName;
+	}
+
+	public void setWorkDayOfWeekName(String workDayOfWeekName) {
+		this.workDayOfWeekName = workDayOfWeekName;
+	}
+
+	public String getUsageStatusCodeNo() {
+		return usageStatusCodeNo;
+	}
+
+	public void setUsageStatusCodeNo(String usageStatusCodeNo) {
+		this.usageStatusCodeNo = usageStatusCodeNo;
+	}
+
 	public String getUsageStatusCode() {
 		return usageStatusCodeNo;
 	}
@@ -80,10 +97,9 @@ public class WorkAttitudeCode {
 		return "WorkAttitudeCode [workAttitudeCodeNo=" + workAttitudeCodeNo + ", workAttitudeCodeName="
 				+ workAttitudeCodeName + ", commuteApplyCode=" + commuteApplyCode + ", applyStartTime=" + applyStartTime
 				+ ", applyEndTime=" + applyEndTime + ", workType=" + workType + ", workDayOfWeek=" + workDayOfWeek
-				+ ", usageStatusCode=" + usageStatusCodeNo + "]";
+				+ ", workDayOfWeekName=" + workDayOfWeekName + ", usageStatusCodeNo=" + usageStatusCodeNo + "]";
 	}
 
-	//toString
 	
 	
 

@@ -16,6 +16,7 @@
 		<result property="applyEndTime" column="APPLY_END_TIME" jdbcType="VARCHAR"/>
 		<result property="workType" column="WORK_TYPE" jdbcType="VARCHAR"/>
 		<result property="workDayOfWeek" column="WORK_DAY_OF_WEEK" jdbcType="VARCHAR"/>
+		<result property="workDayOfWeekName" column="WORK_DAY_OF_WEEK_NAME" jdbcType="VARCHAR"/>
 		<result property="usageStatusCodeNo" column="USAGE_STATUS_CODE_NO" jdbcType="VARCHAR"/>
 	</resultMap>
 
@@ -37,10 +38,10 @@
 					#{workAttitudeCodeNo}
 				,	#{workAttitudeCodeName}
 				,	#{commuteApplyCode}
-				,	#{applyStartTime}
-				,	#{applyEndTime}
-				,	#{workType}
-				,	#{workDayOfWeek}
+				,	#{applyStartTime:VARCHAR}
+				,	#{applyEndTime:VARCHAR}
+				,	#{workType:VARCHAR}
+				,	#{workDayOfWeek:VARCHAR}
 				,	#{usageStatusCodeNo}
 					)
 	</insert>
@@ -52,7 +53,8 @@
 	 		 ,	APPLY_START_TIME
 	 		 ,	APPLY_END_TIME
 	 		 ,	WORK_TYPE
-	 		 ,	CODE_FUNCTION('workDayOfWeek', WORK_DAY_OF_WEEK) AS WORK_DAY_OF_WEEK
+	 		 ,	WORK_DAY_OF_WEEK
+	 		 ,	CODE_FUNCTION('workDayOfWeek', WORK_DAY_OF_WEEK) AS WORK_DAY_OF_WEEK_NAME
 	 	  FROM	WORK_ATTITUDE_CODE
 	 	 WHERE	WORK_ATTITUDE_CODE	=	#{value}
 	</select>
@@ -64,7 +66,8 @@
 	 		 ,	APPLY_START_TIME
 	 		 ,	APPLY_END_TIME
 	 		 ,	WORK_TYPE
-	 		 ,	CODE_FUNCTION('workDayOfWeek', WORK_DAY_OF_WEEK) AS WORK_DAY_OF_WEEK
+	 		 ,	WORK_DAY_OF_WEEK
+	 		 ,	CODE_FUNCTION('workDayOfWeek', WORK_DAY_OF_WEEK) AS WORK_DAY_OF_WEEK_NAME
 	 		 ,	USAGE_STATUS_CODE_NO
 	 	  FROM	WORK_ATTITUDE_CODE
 	   <where>

@@ -40,24 +40,23 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	private CodeDAO codeDAO;
 	
 	
-	//ï¿½ï¿½ï¿½ß¿ï¿½ È®ï¿½ï¿½///////////////////////////////////////////////////
 	@Override
 	public void addHumanResourceCard(HumanResourceCard humanResourceCard) throws Exception {
 		
-		//ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		
 		Account account = humanResourceCard.getAccount();
 		account.setAccountHolder(humanResourceCard.getEmployeeName());
 		account.setAccountCategoryCodeNo("05");
-		account.setReference("ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½ï¿½");
+		account.setReference("Âü°í¾øÀ½");
 		account.setAccountNo(account.getAccountNo().replaceAll("-", ""));
 		accountingDAO.insertAccount(account);
 		
-		//ï¿½Î»ï¿½Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½
+		
 		humanResourceCard.setAccount(account);
 		humanResourceCard.setResignation("N");
 		humanResourceDAO.insertHumanResourceCard(humanResourceCard);
 		
-		//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		
 		User user = new User();
 		user.setEmployeeNo(humanResourceCard.getEmployeeNo());
 		user.setAccessMenuCodeNo(humanResourceCard.getDepartCodeNo());
@@ -167,13 +166,12 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 		humanResourceDAO.updateAppointmentStatus(appointmentNo, status);
 	}
 
-	//////////////////////////////ï¿½Úµï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ service ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½!!//////////////////
 	@Override
 	public void addDepartment(Department department) throws Exception {
 		
 		Code code = new Code();
 		code.setGroupCode("depart");
-		code.setGroupCodeName("ë¶€ì„œ");
+		code.setGroupCodeName("ºÎ¼­");
 		code.setCodeNo(department.getDepartCodeNo());
 		code.setCodeName(department.getDepartCodeName());
 		codeDAO.insertCode(code);

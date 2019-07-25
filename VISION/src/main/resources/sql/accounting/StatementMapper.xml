@@ -53,7 +53,7 @@
 			account_no,
 			trade_amount,
 			statement_category_code_no,
-			CODE_FUNCTION('statement', statement_category_code_no) AS statement_category_code_name,
+			CODE_FUNCTION('statementCategory', statement_category_code_no) AS statement_category_code_name,
 			statement_detail
 		FROM
 			statement
@@ -108,7 +108,7 @@
 				AND	trade_date <![CDATA[ >= ]]> #{minDate}
 			</if>
 		</where>
-		ORDER BY statement_no DESC
+		ORDER BY trade_date DESC
 	</select>
 	
 </mapper>

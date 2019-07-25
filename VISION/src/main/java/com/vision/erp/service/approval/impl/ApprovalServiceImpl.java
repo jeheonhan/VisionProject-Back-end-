@@ -127,7 +127,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		List<Approver> list = approvalDAO.selectApproverList(approvalNo);
 		String listSize = ""+list.size();
 		//1차결재자 채우기
-		approval.setFirstApprover(list.get(0));
+		approval.setFirstApprover((getFullApprover(list.get(0), approvalNo)).setRankCodeName("담당"));
 		//2차결재자 채우기
 		switch(listSize) {
 		case "2" :	case "3" :	case "4" :	case "5" :
@@ -208,8 +208,9 @@ public class ApprovalServiceImpl implements ApprovalService {
 		System.out.println("ApprovalServiceImpl.getFullApprover() 사원번호 : "+Integer.parseInt(approver.getEmployeeNo()));
 		SimpleHumanResourceCard shrc = humanResourceDAO.selectSimpleHumanResourceCardByEmployeeNo(approver.getEmployeeNo());
 		System.out.println("ApprovalServiceImpl.getFullApprover() 인사카드 : "+shrc);
-		approver.setEmployeeRankCodeName(shrc.getRankCodeName());
-		approver.setEmployeeSignatureImage(shrc.getSignatureImage());
+		approver.setRankCodeName(shrc.getRankCodeName());
+		approver.setSignatureImage(shrc.getSignatureImage());
+		approver.setEmployeeName(shrc.getEmployeeName());
 		
 		return approver.setApprovalNo(approvalNo);
 	}

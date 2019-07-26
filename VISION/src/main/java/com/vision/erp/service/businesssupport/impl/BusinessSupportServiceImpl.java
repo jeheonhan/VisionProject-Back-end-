@@ -11,6 +11,7 @@ import com.vision.erp.service.accounting.AccountingDAO;
 import com.vision.erp.service.businesssupport.BusinessSupportDAO;
 import com.vision.erp.service.businesssupport.BusinessSupportService;
 import com.vision.erp.service.domain.Branch;
+import com.vision.erp.service.domain.Local;
 import com.vision.erp.service.domain.Statement;
 import com.vision.erp.service.domain.User;
 import com.vision.erp.service.user.UserDAO;
@@ -108,5 +109,12 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 		
 		
 	}
+
+	@Override
+	public List<Local> getLocalList() throws Exception {
+		return businessSupportDAO.selectLocalList();
+	}
+	
+	
 	
 }

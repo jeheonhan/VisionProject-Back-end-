@@ -21,6 +21,11 @@
 		<result property="branchRegDate" column="BRANCH_REG_DATE" jdbcType="VARCHAR"/>
 	</resultMap>
 	
+	<resultMap id="localSelectMap" type="local">
+		<result property="localCodeNo" column="LOCAL_CODE_NO" jdbcType="VARCHAR"/>
+		<result property="localCodeName" column="LOCAL_CODE_NAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	
 	<insert 	id="insertBranch"	parameterType="branch" >
 	
 		<selectKey	keyProperty="branchNo"	resultType="string"	order="AFTER">
@@ -73,6 +78,13 @@
 			CODE_FUNCTION('local', LOCAL_CODE_NO) AS LOCAL_CODE_NAME
 		FROM 	branch
 		WHERE	BRANCH_NO = #{value}
+	 </select>
+	 
+	 <select id="selectLocalNameList"	resultMap="localSelectMap">
+	 	SELECT CODE_NO LOCAL_CODE_NO, CODE_NAME LOCAL_CODE_NAME
+		FROM CODE
+		WHERE CODE.GROUP_CODE = 'local'
+		ORDER BY LOCAL_CODE_NO ASC
 	 </select>
 	 
 	 <update id="updateBranch" parameterType="branch">

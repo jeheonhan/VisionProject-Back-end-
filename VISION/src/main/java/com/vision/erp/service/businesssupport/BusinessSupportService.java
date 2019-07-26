@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Branch;
+import com.vision.erp.service.domain.Local;
 
 public interface BusinessSupportService {
 	
@@ -16,5 +17,7 @@ public interface BusinessSupportService {
 	public void modifyBranch(Branch branch) throws Exception;
 	
 	public void convertBranchUsageStatus(Branch branch) throws Exception;
+	
+	public List<Local> getLocalList() throws Exception;
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.businesssupport.BusinessSupportService;
 import com.vision.erp.service.domain.Branch;
+import com.vision.erp.service.domain.Local;
 
 @RestController
 public class BusinessSupportController {
@@ -51,6 +52,12 @@ public class BusinessSupportController {
 		
 		businessSupportService.convertBranchUsageStatus(branch);
 		
+	}
+	
+	@RequestMapping(value = "/bs/getLocalList", method = RequestMethod.GET)
+	public List<Local> getLocalList() throws Exception {
+		
+		return businessSupportService.getLocalList();
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Branch;
+import com.vision.erp.service.domain.Local;
 
 public interface BusinessSupportDAO {
 	
@@ -16,6 +17,8 @@ public interface BusinessSupportDAO {
 	public void updateBranchUsageStatus(Branch branch) throws Exception;
 	
 	public List<Branch> selectBranchList(Search saerch) throws Exception;
+	
+	public List<Local> selectLocalList() throws Exception;
 	
 	public int selectTotalCount(Search search) throws Exception;
 

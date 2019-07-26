@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.businesssupport.BusinessSupportDAO;
 import com.vision.erp.service.domain.Branch;
+import com.vision.erp.service.domain.Local;
 
 @Repository("businessSupportDAOImpl")
 public class BusinessSupportDAOImpl implements BusinessSupportDAO {
@@ -49,5 +50,12 @@ public class BusinessSupportDAOImpl implements BusinessSupportDAO {
 	public int selectTotalCount(Search search) throws Exception {
 		return sqlSession.selectOne("BranchMapper.selectTotalCount", search);
 	}
+
+	@Override
+	public List<Local> selectLocalList() throws Exception {
+		return sqlSession.selectList("BranchMapper.selectLocalNameList");
+	}
+	
+	
 
 }

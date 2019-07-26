@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.businesssupport.BusinessSupportService;
 import com.vision.erp.service.domain.Branch;
+import com.vision.erp.service.domain.Local;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -34,7 +35,7 @@ public class BusinessSupportServiceTest{
 	private Map<String, Object> map;
 	
 	
-	@Test
+	//@Test
 	public void testAddBranch() throws Exception {
 		
 		branch = new Branch();
@@ -149,6 +150,14 @@ public class BusinessSupportServiceTest{
 		
 		System.out.println("totalCount : "+totalCount);
 		
+	}
+	
+	@Test
+	public void testLocalList() throws Exception {
+		
+		List<Local> localList = businessSupportService.getLocalList();
+		
+		System.out.println("localList :::: "+localList);
 	}
 
 }

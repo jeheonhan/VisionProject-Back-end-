@@ -213,7 +213,8 @@ public class AccountingController {
 		
 		System.out.println("/accounting/checkDuplicateSalaryDate");
 		System.out.println("µé¾î¿Â salaryDate ::"+salaryDate);
-		
+		salaryDate = salaryDate.substring(0, 4)+"/"+salaryDate.substring(4);
+		System.out.println(salaryDate);
 		int checkSalaryDate = accountingService.checkDuplicateSalaryDate(salaryDate);
 		
 		if(checkSalaryDate == 0) {

@@ -1,5 +1,6 @@
 package com.vision.erp.service.approval.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -110,10 +111,18 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	//결재목록 가져오기, SearchCondition에는 진행, 반려, 완료, 대기/ SearchKeyword에는 사원번호 들어와있는지 확인하기
+	//설계 잘못해서 수정함. 결재서 가져올 때 결재서 작성자가 포함되어 있었어야 함...
 	@Override
 	public List<Approval> getApprovalList(Search search) throws Exception {
 		// TODO Auto-generated method stub
-		return approvalDAO.selectApprovalList(search);
+		List<Approval> approvalList = approvalDAO.selectApprovalList(search);
+		List<Approval> returnList = new ArrayList<Approval>();
+		for(Approval ap : approvalList) {
+			List<Approver> aper = approvalDAO.selectApproverList(ap.getApprovalNo());
+			ap.setFirstApprover((getFullApprover(aper.get(0), ap.getApprovalNo())).setRankCodeName("담당"));
+			returnList.add(ap);
+		}
+		return returnList;
 	}
 
 	//결재 상세보기

@@ -8,6 +8,7 @@ public class Product {
 	private String salesPrice;
 	private String quantity;
 	private String vendorNo;
+	private String vendorName;
 	private String productUsageStatusCodeNo;
 	private String productUsageStatusCodeName;
 	
@@ -21,6 +22,14 @@ public class Product {
 	public String getProductNo() {
 		return productNo;
 	}
+	public String getVendorName() {
+		return vendorName;
+	}
+
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
+	}
+
 	public void setProductNo(String productNo) {
 		this.productNo = productNo;
 	}
@@ -66,15 +75,16 @@ public class Product {
 	public void setProductUsageStatusCodeName(String productUsageStatusCodeName) {
 		this.productUsageStatusCodeName = productUsageStatusCodeName;
 	}
-	
-	//toString
+
 	@Override
 	public String toString() {
 		return "Product [productNo=" + productNo + ", productName=" + productName + ", purchasePrice=" + purchasePrice
-				+ ", salesPrice=" + salesPrice + ", quantity=" + quantity + ", vendorNo=" + vendorNo
-				+ ", productUsageStatusCodeNo=" + productUsageStatusCodeNo + ", productUsageStatusCodeName="
-				+ productUsageStatusCodeName + "]";
+				+ ", salesPrice=" + salesPrice + ", quantity=" + quantity + ", vendorNo=" + vendorNo + ", vendorName="
+				+ vendorName + ", productUsageStatusCodeNo=" + productUsageStatusCodeNo
+				+ ", productUsageStatusCodeName=" + productUsageStatusCodeName + "]";
 	}
+	
+	
 
 
 }

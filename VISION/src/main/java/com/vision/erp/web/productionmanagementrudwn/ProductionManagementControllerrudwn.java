@@ -53,10 +53,10 @@ public class ProductionManagementControllerrudwn {
 		return list;
 	}
 	
-	//얘는 물품등록할때 쓰는거임.(필요없음 민섭이가 만들어줌)
+	//물품등록할떄 
 		@RequestMapping(value="/pm/addProductPreparing",method=RequestMethod.GET)
 		public List<Vendor> addProductPreparing() throws Exception{
-			
+			System.out.println("물품등록할때 쓰는겅ㅁ");
 			List<Vendor> list = new ArrayList<Vendor>();
 			
 						 Search search = new Search();
@@ -89,6 +89,7 @@ public class ProductionManagementControllerrudwn {
 
 	@RequestMapping(value = "/pm/selectProductList",method=RequestMethod.GET)
 	public List<Product> selectProductList() throws Exception{
+		System.out.println("들어와라 셀렉트프로덕트리스트");
 		List<Product> list 
 		= (List<Product>)productionManagementServicerudwn.selectProductList();
 

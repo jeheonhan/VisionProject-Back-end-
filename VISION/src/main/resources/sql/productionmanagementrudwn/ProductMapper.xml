@@ -19,6 +19,8 @@
 			jdbcType="VARCHAR" />
 		<result property="vendorNo" column="VENDOR_NO"
 			jdbcType="VARCHAR" />
+			<result property="vendorName" column="VENDOR_NAME"
+			jdbcType="VARCHAR" />
 		<result property="productUsageStatusCodeNo"
 			column="USAGE_STATUS_CODE_NO" jdbcType="VARCHAR" />
 		<result property="productUsageStatusCodeName"
@@ -35,6 +37,7 @@
 		SALES_PRICE,
 		QUANTITY,
 		VENDOR_NO,
+		VENDOR_NAME,
 		USAGE_STATUS_CODE_NO
 		)
 		VALUES
@@ -45,6 +48,7 @@
 		#{salesPrice},
 		#{quantity},
 		#{vendorNo},
+		#{vendorName},
 		#{productUsageStatusCodeNo}
 		)
 	</insert>
@@ -73,16 +77,17 @@
 	</update>
 
 	<select id="selectproductList" resultMap="ProductSelectMap">
-		SELECT PRODUCT_NO,
-		PRODUCT_NAME,
-		PURCHASE_PRICE,
-		SALES_PRICE,
-		QUANTITY
-
-		FROM product
-		WHERE
-		USAGE_STATUS_CODE_NO = '01'
-	</select>
+      SELECT PRODUCT_NO,
+      PRODUCT_NAME,
+      PURCHASE_PRICE,
+      SALES_PRICE,
+      QUANTITY,
+	  vendor_Name,
+	  vendor_No
+      FROM product
+      WHERE
+      USAGE_STATUS_CODE_NO = '01'
+   </select>
 
 	<select id="selectDetailProduct" parameterType="string"
 		resultMap="ProductSelectMap">

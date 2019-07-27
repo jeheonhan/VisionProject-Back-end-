@@ -11,8 +11,10 @@ public class User {
 	private String memberUsageStatusCodeNo;
 	private String accessMenuCodeNo;
 	private String profileImage;
+	private String signatureImage;
 	private String employeeName;
 	private String branchName;
+	private boolean loginFlag;
 	
 	public String getUserId() {
 		return userId;
@@ -68,12 +70,39 @@ public class User {
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
 	}
+	
+	public String getSignatureImage() {
+		return signatureImage;
+	}
+	public void setSignatureImage(String signatureImage) {
+		this.signatureImage = signatureImage;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getBranchName() {
+		return branchName;
+	}
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+	
+	public boolean isLoginFlag() {
+		return loginFlag;
+	}
+	public void setLoginFlag(boolean loginFlag) {
+		this.loginFlag = loginFlag;
+	}
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", employeeNo=" + employeeNo + ", branchNo=" + branchNo + ", password="
 				+ password + ", memberCodeNo=" + memberCodeNo + ", memberCodeName=" + memberCodeName
 				+ ", memberUsageStatusCodeNo=" + memberUsageStatusCodeNo + ", accessMenuCodeNo=" + accessMenuCodeNo
-				+ ", profileImage=" + profileImage + "]";
+				+ ", profileImage=" + profileImage + ", signatureImage=" + signatureImage + ", employeeName="
+				+ employeeName + ", branchName=" + branchName + ", loginFlag=" + loginFlag + "]";
 	}
 	
 	

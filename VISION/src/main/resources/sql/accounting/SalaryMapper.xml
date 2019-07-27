@@ -17,6 +17,9 @@
 		<result property="wage"						column="wage"						jdbcType="VARCHAR"/>
 		<result property="totalRegularWorkTime"		column="total_regular_work_time"	jdbcType="VARCHAR"/>
 		<result property="totalExtendWorkTime"		column="total_extend_work_time"		jdbcType="VARCHAR"/>
+		<result property="employeeEmail" 			column="EMAIL" 						jdbcType="VARCHAR"/>
+		<result property="rankCodeName" 			column="RANK_CODE_NAME" 			jdbcType="VARCHAR"/>
+		<result property="departCodeName" 			column="DEPART_CODE_NAME" 			jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<insert id="insertSalary" parameterType="salary">
@@ -49,6 +52,11 @@
 			s.salary_date, 
 			s.employee_no, 
             hr.employee_name,
+			hr.depart_code_no,
+            CODE_FUNCTION('depart', hr.depart_code_no) AS depart_code_name,
+            hr.rank_code_no,
+            CODE_FUNCTION('rank', hr.rank_code_no) AS rank_code_name,
+            hr.email,
 			s.individual_total_salary, 
 			s.wage, 
 			s.total_regular_work_time,

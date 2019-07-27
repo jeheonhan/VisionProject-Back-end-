@@ -16,6 +16,9 @@ public class Salary {
 	private String wage;
 	private String totalRegularWorkTime;
 	private String totalExtendWorkTime;
+	private String employeeEmail;
+	private String rankCodeName;
+	private String departCodeName;
 	
 	public String getSalaryNumbering() {
 		return salaryNumbering;
@@ -77,6 +80,24 @@ public class Salary {
 	public void setTotalExtendWorkTime(String totalExtendWorkTime) {
 		this.totalExtendWorkTime = totalExtendWorkTime;
 	}
+	public String getEmployeeEmail() {
+		return employeeEmail;
+	}
+	public void setEmployeeEmail(String employeeEmail) {
+		this.employeeEmail = employeeEmail;
+	}
+	public String getRankCodeName() {
+		return rankCodeName;
+	}
+	public void setRankCodeName(String rankCodeName) {
+		this.rankCodeName = rankCodeName;
+	}
+	public String getDepartCodeName() {
+		return departCodeName;
+	}
+	public void setDepartCodeName(String departCodeName) {
+		this.departCodeName = departCodeName;
+	}
 	
 	@Override
 	public String toString() {
@@ -84,7 +105,8 @@ public class Salary {
 				+ employeeNo + ", employeeName=" + employeeName + ", individualTotalSalary=" + individualTotalSalary
 				+ ", salaryStatusCodeNo=" + salaryStatusCodeNo + ", salaryStatusCodeName=" + salaryStatusCodeName
 				+ ", wage=" + wage + ", totalRegularWorkTime=" + totalRegularWorkTime + ", totalExtendWorkTime="
-				+ totalExtendWorkTime + "]";
+				+ totalExtendWorkTime + ", employeeEmail=" + employeeEmail + ", rankCodeName=" + rankCodeName
+				+ ", departCodeName=" + departCodeName + "]";
 	}
-	
+
 }

@@ -33,12 +33,17 @@ public class UserController {
 
 			User dbuser = userService.selectUser(user);
 			
-			if(user.getUserId().equals(dbuser.getUserId()) && user.getPassword().equals(dbuser.getPassword()) ) {
-				dbuser.setPassword(null);
-				return  dbuser;
+			if(dbuser != null) {
+				if(user.getUserId().equals(dbuser.getUserId()) && user.getPassword().equals(dbuser.getPassword()) ) {
+					dbuser.setPassword(null);
+					dbuser.setLoginFlag(true);
+					return  dbuser;
+				}
+			}else {
+				user.setLoginFlag(false);
+				user.setUserId(null);
+				user.setPassword(null);
 			}
-			user.setUserId(null);
-			user.setPassword(null);
 			
 			return user;
 	}

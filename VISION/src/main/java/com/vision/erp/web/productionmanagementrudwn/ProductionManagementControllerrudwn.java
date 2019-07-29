@@ -8,12 +8,19 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vision.erp.common.Search;
@@ -40,6 +47,8 @@ public class ProductionManagementControllerrudwn {
 	private AccountingService accountingService;
 
 	//얘는 발주요청할때 쓰는거임.
+	
+	//ResponseEntity<T> 상태값200이나 400 등 헤더에 보내준다
 	@RequestMapping(value="/pm/addOrderPreparing",method=RequestMethod.GET)
 	public List<Account> addOrderFromBranchPreparing() throws Exception{
 		
@@ -52,6 +61,19 @@ public class ProductionManagementControllerrudwn {
 
 		return list;
 	}
+//	@GetMapping(value="/pm/addOrderPreparing")
+//	public ResponseEntity<JSONResult> addOrderFromBranchPreparing() throws Exception{
+//		
+//		List<Account> list = new ArrayList<Account>();
+//		
+//		Search search = new Search();
+//		
+//		search.setSearchCondition("01");
+//		list =  accountingService.getAccountList(search);
+//		
+//		return list != null ? ResponseEntity.status(HttpStatus.OK).body(JSONResult.success("출력 성공", list))
+//				:ResponseEntity.status(HttpStatus.OK).body(JSONResult.fail("출력 성공"));
+//	}
 	
 	//물품등록할떄 
 		@RequestMapping(value="/pm/addProductPreparing",method=RequestMethod.GET)
@@ -116,7 +138,7 @@ public class ProductionManagementControllerrudwn {
 	}
 
 	@RequestMapping(value = "/pm/modifyOrderToVenCode/{statementNo}/{orderToVendorNo}",method=RequestMethod.GET)
-	public void modifyOrderToVenCode(@PathVariable String statementNo, @PathVariable String orderToVendorNo) throws Exception {
+	public void modifyOrderToVenCode(@PathVariable(value="statementNo") String statementNo, @PathVariable String orderToVendorNo) throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		OrderToVendor orderToVendor = new OrderToVendor();
@@ -133,7 +155,12 @@ public class ProductionManagementControllerrudwn {
 		productionManagementServicerudwn.modifyOrderToVenCode(map);
 	}
 
-
+    /**
+     * 
+     * @param orderToVendorProduct
+     * @return
+     * @throws Exception
+     */
 	@RequestMapping(value = "/pm/orderToVendorDetailList",method=RequestMethod.POST)
 	public List<OrderToVendorProduct> orderToVendorDetailList(@RequestBody OrderToVendorProduct orderToVendorProduct) throws Exception{
 		System.out.println("ordertovendordetailstart start start");
@@ -148,11 +175,11 @@ public class ProductionManagementControllerrudwn {
 		return list;
 	}
 
-
+	
 	@RequestMapping(value = "/pm/modifyOrderToVenItemCode",method=RequestMethod.POST)
 	public void modifyOrderToVenItemCode(@RequestBody OrderToVendorProduct orderToVendorProduct) throws Exception{
 
-
+		
 		Product product = new Product();
 
 		product.setProductNo(orderToVendorProduct.getProductNo());
@@ -161,12 +188,16 @@ public class ProductionManagementControllerrudwn {
 
 		map.put("product", product);
 		map.put("orderToVendorProduct", orderToVendorProduct);
-
+		
+		System.out.println(map.toString());
+		
 		productionManagementServicerudwn.modifyOrderToVenItemCode(map);
 	}
 
 
 	@RequestMapping(value = "/pm/addOrderToVendor",method=RequestMethod.POST)
+	//@PostMapping(value = "/pm/addOrderToVendor")create
+	//DeleteMapping(value = "/pm/addOrderToVendor")삭제
 	public void addOrderToVendor(@RequestBody InteProduction inteProduction) throws Exception {
 
 		SimpleDateFormat format = new SimpleDateFormat ( "yyyy/MM/dd");

@@ -35,6 +35,12 @@ public interface ProductionManagementServicerudwn {
 	public void modifyOrderToVenItemCode(Map<String, Object> map) throws Exception;
 
 	//발주서물품(상세보기)
+	/**
+	 * 발주서물품상세보기임
+	 * @param orderToVendorProduct 거래처물품을 보여주기위한 
+	 * @return	리스트	
+	 * @throws Exception 예외
+	 */
 	public List<OrderToVendorProduct> orderToVendorDetailList(OrderToVendorProduct orderToVendorProduct) throws Exception;
 
 	//발주요청 

@@ -1,5 +1,6 @@
 package com.vision.erp.web.accounting;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -362,4 +363,22 @@ public class AccountingController {
 				
 	}
 	
+	//급여대장 분석
+	@RequestMapping(value = "/accounting/getAnalyzeSalaryBook/{salaryDate}", method = RequestMethod.GET)
+	public List<Object> getAnalyzeSalaryBook(@PathVariable String salaryDate) throws Exception{
+
+		System.out.println("/accounting/getAnalyzeSalaryBook");
+		System.out.println("들어온 salaryDate ::"+salaryDate);
+		salaryDate = salaryDate.substring(0, 4)+"/"+salaryDate.substring(4);
+		System.out.println(salaryDate);
+		
+		List<SalaryBook> analyzeDepartmentSalary = accountingService.getAnalyzeDepartmentSalary(salaryDate);
+		List<SalaryBook> analyzerankSalary = accountingService.getAnalyzeRankSalary(salaryDate);
+		
+		List<Object> analyzeSalaryBook = new ArrayList<Object>();
+		analyzeSalaryBook.add(analyzeDepartmentSalary);
+		analyzeSalaryBook.add(analyzerankSalary);
+		
+		return analyzeSalaryBook;
+	}
 }

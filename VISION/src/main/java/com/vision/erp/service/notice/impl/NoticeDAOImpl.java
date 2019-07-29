@@ -21,7 +21,7 @@ public class NoticeDAOImpl implements NoticeDAO{
 	@Override
 	public String insertNotice(Notice notice) throws Exception {
 		sqlSession.insert("NoticeMapper.insertNotice", notice);
-		System.out.println("Notice Select Key 확인 : "+notice.getNoticeNo());
+		//System.out.println("Notice Select Key 확인 : "+notice.getNoticeNo());
 		return notice.getNoticeNo();
 	}
 

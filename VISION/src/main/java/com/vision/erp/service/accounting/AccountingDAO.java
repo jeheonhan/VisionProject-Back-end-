@@ -72,4 +72,8 @@ public interface AccountingDAO {
 	
 	public int checkDuplicateCard(String cardNo) throws Exception;
 	
+	public List<SalaryBook> selectAnalyzeDepartmentSalary(String salaryDate) throws Exception;
+	
+	public List<SalaryBook> selectAnalyzeRankSalary(String salaryDate) throws Exception;
+	
 }

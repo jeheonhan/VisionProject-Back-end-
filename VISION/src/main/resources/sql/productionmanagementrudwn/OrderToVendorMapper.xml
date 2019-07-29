@@ -66,7 +66,10 @@
 		UPDATE order_to_vendor
 			<set>
 			<if test="orderToVenStatusCodeNo == '01'">
-				ORDER_TO_VEN_STATUS_CODE_NO = '03'
+				ORDER_TO_VEN_STATUS_CODE_NO = '02'
+			</if>
+			<if test="orderToVenStatusCodeNo == '03'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '02'
 			</if>
 			</set>
 		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
@@ -76,7 +79,7 @@
 		UPDATE order_to_vendor
 			<set>
 			<if test="orderToVenStatusCodeNo == '01'">
-				ORDER_TO_VEN_STATUS_CODE_NO = '02'
+				ORDER_TO_VEN_STATUS_CODE_NO = '03'
 			</if>
 			</set>
 		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}

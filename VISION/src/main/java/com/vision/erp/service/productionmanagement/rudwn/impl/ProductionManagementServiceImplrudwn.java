@@ -85,22 +85,38 @@ public class ProductionManagementServiceImplrudwn implements ProductionManagemen
 
 		OrderToVendorProduct orderToVendorProduct = (OrderToVendorProduct) map.get("orderToVendorProduct");
 		Product product = (Product) map.get("product");
+		
 		OrderToVendor orderToVendor =new OrderToVendor();
 		orderToVendor.setOrderToVendorNo(orderToVendorProduct.getOrderToVendorNo());
+		orderToVendor.setOrderToVenStatusCodeNo("01");
+		
+		
+		//해당상태코드를 바꾸기위한거
+		System.out.println("orderToVendorProduct :: " + orderToVendorProduct);
+		//해당물품재고를 올리기 위해서
+		System.out.println("product :: " + product);
+		//발주물품이 모두 입고가 되었는지 확인하기위한 변수
+		//System.out.println("sizeCount :: " + sizeCount);
+		
+		//입고대기를 입고완료로
+		productionDAO.modifyOrderToVenItemCode(orderToVendorProduct);
+		//물품재고올리는
+		productionDAO.updateProductCount(product);
+		//발주대기를 발주진행으로
+		productionDAO.modifyOrderToVenCode2(orderToVendor);
+		
+		
 		int count = 0;
 		//입고완료가 다 되었을때 발주진행을 발주완료로 바꾸기 위해서 값가져오는거
 		List<OrderToVendorProduct> listOrderSize = productionDAO.orderToVendorDetailList(orderToVendorProduct);
 		int sizeCount = listOrderSize.size();
 		
-		productionDAO.modifyOrderToVenItemCode(orderToVendorProduct);
-		productionDAO.updateProductCount(product);
-		
-	
 		for(int i=0; i<listOrderSize.size(); i++) {
 			
 			if(listOrderSize.get(i).getOrderToVendorProductStatusCodeNo().equals("02")) {
 				count += 1;				
 				if(count == sizeCount) {
+					//발주진행을 발주완료로
 					productionDAO.modifyOrderToVenCode1(orderToVendor);
 				} 
 			}

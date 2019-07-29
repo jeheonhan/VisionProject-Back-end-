@@ -2,31 +2,30 @@ package com.vision.erp.service.domain;
 
 public class NoticeHeader {
 	
-	private String headerCodeNo;
-	private String headerCodeName;
-
-	public NoticeHeader() {		
+	private String noticeHeaderCodeNo;
+	private String noticeHeaderCodeName;
+	
+	public NoticeHeader() {
 	}
-
-	public String getHeaderCodeNo() {
-		return headerCodeNo;
+	
+	public String getNoticeHeaderCodeNo() {
+		return noticeHeaderCodeNo;
 	}
-
-	public void setHeaderCodeNo(String headerCodeNo) {
-		this.headerCodeNo = headerCodeNo;
+	public void setNoticeHeaderCodeNo(String noticeHeaderCodeNo) {
+		this.noticeHeaderCodeNo = noticeHeaderCodeNo;
 	}
-
-	public String getHeaderCodeName() {
-		return headerCodeName;
+	public String getNoticeHeaderCodeName() {
+		return noticeHeaderCodeName;
 	}
-
-	public void setHeaderCodeName(String headerCodeName) {
-		this.headerCodeName = headerCodeName;
+	public void setNoticeHeaderCodeName(String noticeHeaderCodeName) {
+		this.noticeHeaderCodeName = noticeHeaderCodeName;
 	}
-
 	@Override
 	public String toString() {
-		return "NoticeHeader [headerCodeNo=" + headerCodeNo + ", headerCodeName=" + headerCodeName + "]";
+		return "NoticeHeader [noticeHeaderCodeNo=" + noticeHeaderCodeNo + ", noticeHeaderCodeName="
+				+ noticeHeaderCodeName + "]";
 	}
+
+
 
 }

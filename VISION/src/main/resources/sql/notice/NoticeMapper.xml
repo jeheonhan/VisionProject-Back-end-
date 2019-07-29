@@ -17,11 +17,12 @@
 		<result property="viewCount" column="VIEW_COUNT" jdbcType="VARCHAR"/>
 		<result property="noticeStatusCodeNo" column="USAGE_STATUS_CODE" jdbcType="VARCHAR"/>
 		<result property="noticeStatusCodeName" column="RECODE_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="noticeHeaderCodeName" column="NOTICE_HEADER" jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<resultMap id="noticeHeaderSelectMap" type="noticeHeader">
-		<result property="headerCodeNo" column="HEADER_CODE_NO" jdbcType="VARCHAR"/>
-		<result property="headerCodeName" column="HEADER_CODE_NAME" jdbcType="VARCHAR"/>
+		<result property="noticeHeaderCodeNo" column="HEADER_CODE_NO" jdbcType="VARCHAR"/>
+		<result property="noticeHeaderCodeName" column="HEADER_CODE_NAME" jdbcType="VARCHAR"/>
 	</resultMap>
 		
 	
@@ -40,7 +41,8 @@
 				NOTICE_CONTENTS , 
 				READ_AUTHORITY, 
 				VIEW_COUNT, 
-				USAGE_STATUS_CODE )
+				USAGE_STATUS_CODE,
+				NOTICE_HEADER )
 		VALUES	 
 			(SEQ_NOTICE_NO.NEXTVAL , 
 			#{employeeNo} , 
@@ -49,7 +51,8 @@
 			#{content:VARCHAR} , 
 			#{readAuthority}, 
 			'0', 
-			'01')
+			'01',
+			#{noticeHeaderCodeName})
 	 </insert>
 	 
 	 <select id="selectNoticeDetail"	parameterType="string"	resultMap="noticeSelectMap">
@@ -57,7 +60,7 @@
 		 	notice.NOTICE_NO,
 		 	notice.NOTICE_REG_DATE,
 		 	notice.EMPLOYEE_NO,
-		 	notice.NOTICE_TITLE,
+		 	(notice.NOTICE_HEADER ||' '|| notice.NOTICE_TITLE) NOTICE_TITLE , 
 		 	notice.NOTICE_CONTENTS,
 		 	notice.READ_AUTHORITY,
 		 	notice.VIEW_COUNT,
@@ -82,7 +85,8 @@
 			EMPLOYEE_NO = #{employeeNo},
 			NOTICE_TITLE = #{noticeTitle}, 
 			NOTICE_CONTENTS = #{content:VARCHAR}, 
-			READ_AUTHORITY = #{readAuthority}
+			READ_AUTHORITY = #{readAuthority},
+			HEADER_CODE_NAME = #{noticeHeaderCodeName}
 	 	</set>
 	 	WHERE	NOTICE_NO = #{noticeNo}	 
 	 </update>
@@ -107,7 +111,7 @@
 	 	SELECT
 	 			notice.NOTICE_NO , 
 				notice.NOTICE_REG_DATE , 
-				notice.NOTICE_TITLE , 
+				(notice.NOTICE_HEADER ||' '|| notice.NOTICE_TITLE) NOTICE_TITLE , 
 				notice.READ_AUTHORITY, 
 				notice.VIEW_COUNT, 
 				notice.USAGE_STATUS_CODE,

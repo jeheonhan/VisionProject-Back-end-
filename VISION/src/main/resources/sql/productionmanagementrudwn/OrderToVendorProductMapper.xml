@@ -50,7 +50,9 @@
 		     order_to_vendor_product.quantity,
 		     order_to_vendor_product.amount,
 		     ORDER_VENDOR_PROD_STATUS_CODE,
-		     CODE_FUNCTION('orderCompanyItem', ORDER_VENDOR_PROD_STATUS_CODE) AS ORD_VEN_PROD_STATUS_CODE_NAME
+		     CODE_FUNCTION('orderCompanyItem', ORDER_VENDOR_PROD_STATUS_CODE) AS ORD_VEN_PROD_STATUS_CODE_NAME,
+		     product.PRODUCT_NO,
+		     order_to_vendor_product.ORDER_TO_VENDOR_NUMBERING
 
 		from 
 		     product join ORDER_TO_VENDOR_PRODUCT on product.product_no =
@@ -68,7 +70,7 @@
 				ORDER_VENDOR_PROD_STATUS_CODE = '02'
 			</if>
 		</set>
-		WHERE PRODUCT_NO = #{productNo}
+		WHERE ORDER_TO_VENDOR_NUMBERING = #{orderToVendorNumber}
 	</update>
 
 

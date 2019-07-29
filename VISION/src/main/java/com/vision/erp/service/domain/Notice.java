@@ -13,13 +13,47 @@ public class Notice {
 	private String viewCount;
 	private String noticeStatusCodeNo;
 	private String noticeStatusCodeName;
+	private String noticeHeaderCodeNo;
+	private String noticeHeaderCodeName;
 	
 	//constructor
 	public Notice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public String getNoticeNo() {
+		return noticeNo;
+	}
+
+	public void setNoticeNo(String noticeNo) {
+		this.noticeNo = noticeNo;
+	}
+
+	public String getNoticeRegDate() {
+		return noticeRegDate;
+	}
+
+	public void setNoticeRegDate(String noticeRegDate) {
+		this.noticeRegDate = noticeRegDate;
+	}
+
+	public String getNoticeTitle() {
+		return noticeTitle;
+	}
+
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public String getEmployeeNo() {
 		return employeeNo;
 	}
@@ -28,66 +62,68 @@ public class Notice {
 		this.employeeNo = employeeNo;
 	}
 
-	//getter, setter
-	public String getNoticeNo() {
-		return noticeNo;
-	}
-	public void setNoticeNo(String noticeNo) {
-		this.noticeNo = noticeNo;
-	}
-	public String getNoticeRegDate() {
-		return noticeRegDate;
-	}
-	public void setNoticeRegDate(String noticeRegDate) {
-		this.noticeRegDate = noticeRegDate;
-	}
-	public String getNoticeTitle() {
-		return noticeTitle;
-	}
-	public void setNoticeTitle(String noticeTitle) {
-		this.noticeTitle = noticeTitle;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
 	public String getEmployeeName() {
 		return employeeName;
 	}
+
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
+
 	public String getDepartCodeName() {
 		return departCodeName;
 	}
+
 	public void setDepartCodeName(String departCodeName) {
 		this.departCodeName = departCodeName;
 	}
+
 	public String getReadAuthority() {
 		return readAuthority;
 	}
+
 	public void setReadAuthority(String readAuthority) {
 		this.readAuthority = readAuthority;
 	}
+
 	public String getViewCount() {
 		return viewCount;
 	}
+
 	public void setViewCount(String viewCount) {
 		this.viewCount = viewCount;
 	}
+
 	public String getNoticeStatusCodeNo() {
 		return noticeStatusCodeNo;
 	}
+
 	public void setNoticeStatusCodeNo(String noticeStatusCodeNo) {
 		this.noticeStatusCodeNo = noticeStatusCodeNo;
 	}
+
 	public String getNoticeStatusCodeName() {
 		return noticeStatusCodeName;
 	}
+
 	public void setNoticeStatusCodeName(String noticeStatusCodeName) {
 		this.noticeStatusCodeName = noticeStatusCodeName;
+	}
+
+	public String getNoticeHeaderCodeNo() {
+		return noticeHeaderCodeNo;
+	}
+
+	public void setNoticeHeaderCodeNo(String noticeHeaderCodeNo) {
+		this.noticeHeaderCodeNo = noticeHeaderCodeNo;
+	}
+
+	public String getNoticeHeaderCodeName() {
+		return noticeHeaderCodeName;
+	}
+
+	public void setNoticeHeaderCodeName(String noticeHeaderCodeName) {
+		this.noticeHeaderCodeName = noticeHeaderCodeName;
 	}
 
 	@Override
@@ -95,7 +131,8 @@ public class Notice {
 		return "Notice [noticeNo=" + noticeNo + ", noticeRegDate=" + noticeRegDate + ", noticeTitle=" + noticeTitle
 				+ ", content=" + content + ", employeeNo=" + employeeNo + ", employeeName=" + employeeName
 				+ ", departCodeName=" + departCodeName + ", readAuthority=" + readAuthority + ", viewCount=" + viewCount
-				+ ", noticeStatusCodeNo=" + noticeStatusCodeNo + ", noticeStatusCodeName=" + noticeStatusCodeName + "]";
-	}	
+				+ ", noticeStatusCodeNo=" + noticeStatusCodeNo + ", noticeStatusCodeName=" + noticeStatusCodeName
+				+ ", noticeHeaderCodeNo=" + noticeHeaderCodeNo + ", noticeHeaderCodeName=" + noticeHeaderCodeName + "]";
+	}
 	
 }

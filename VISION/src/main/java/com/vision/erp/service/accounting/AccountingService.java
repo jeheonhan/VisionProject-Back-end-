@@ -69,4 +69,9 @@ public interface AccountingService {
 	public List<Card> getCardList(Search search) throws Exception;
 	
 	public int checkDuplicateCard(String cardNo) throws Exception;
+	
+	public List<SalaryBook> getAnalyzeDepartmentSalary(String salaryDate) throws Exception;
+	
+	public List<SalaryBook> getAnalyzeRankSalary(String salaryDate) throws Exception;
+	
 }

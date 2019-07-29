@@ -7,15 +7,22 @@
 <mapper namespace="SalaryBookMapper">
 
 	<resultMap type="salaryBook" id="salaryBookSelectMap">
-		<result property="salaryDate"		column="salary_date"		jdbcType="VARCHAR"/>
-		<result property="salaryBookName"	column="salary_Book_Name"	jdbcType="VARCHAR"/>
-		<result property="totalSalary"		column="total_Salary"		jdbcType="VARCHAR"/>
+		<result property="salaryDate"				column="salary_date"				jdbcType="VARCHAR"/>
+		<result property="salaryBookName"			column="salary_Book_Name"			jdbcType="VARCHAR"/>
+		<result property="totalSalary"				column="total_Salary"				jdbcType="VARCHAR"/>
+		<result property="totalEmpolyeeNumber"		column="total_employee_number"		jdbcType="VARCHAR"/>
+		<result property="totalRegularWorkTime"		column="total_regular_work_time"	jdbcType="VARCHAR"/>
+		<result property="totalExtendWorkTime"		column="total_extend_work_time"		jdbcType="VARCHAR"/>
+		<result property="avgWage"					column="avg_wage"					jdbcType="VARCHAR"/>
+		<result property="departCodeName"			column="depart_code_name"			jdbcType="VARCHAR"/>
+		<result property="rankCodeName"				column="rank_code_name"				jdbcType="VARCHAR"/>
+		
 	</resultMap>
 	
 	
 	<select id="selectSalaryBookList" parameterType="search" resultMap="salaryBookSelectMap">
 		SELECT 
-			salary_date, salary_book_funcion(salary_date) AS salary_book_name, SUM(individual_total_salary) total_salary
+			salary_date, salary_book_funcion(salary_date) AS salary_book_name, SUM(individual_total_salary) AS total_salary, COUNT(employee_no) AS total_employee_number, SUM(total_regular_work_time) AS total_regular_work_time, SUM(total_extend_work_time) AS total_extend_work_time, AVG(wage) AS avg_wage
 		FROM 
 			salary
 		GROUP BY 
@@ -32,5 +39,38 @@
 			</if>
 		</where>
 		ORDER BY salary_date DESC
+	</select>
+	
+	<select id="analyzeDepartmentSalary" parameterType="string" resultMap="salaryBookSelectMap">
+		SELECT 
+            CODE_FUNCTION('depart', hr.depart_code_no) AS depart_code_name,
+			SUM(s.individual_total_salary) AS total_salary
+		FROM
+			salary s, human_resource_card hr
+        WHERE
+			s.employee_no = hr.employee_no
+        AND
+            s.salary_date = #{salaryDate}
+        GROUP BY
+            CODE_FUNCTION('depart', hr.depart_code_no)
+		ORDER BY
+            CODE_FUNCTION('depart', hr.depart_code_no)
+	</select>
+	
+		<select id="analyzeRankSalary" parameterType="string" resultMap="salaryBookSelectMap">
+		SELECT 
+			CODE_FUNCTION('depart', hr.depart_code_no) AS depart_code_name,
+            CODE_FUNCTION('rank', hr.rank_code_no) AS rank_code_name,
+			SUM(s.individual_total_salary) AS total_salary
+		FROM
+			salary s, human_resource_card hr
+        WHERE
+			s.employee_no = hr.employee_no
+        AND
+            s.salary_date = #{salaryDate}
+        GROUP BY
+            CODE_FUNCTION('depart', hr.depart_code_no), CODE_FUNCTION('rank', hr.rank_code_no)
+        ORDER BY
+            CODE_FUNCTION('depart', hr.depart_code_no)
 	</select>
 </mapper>

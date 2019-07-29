@@ -183,4 +183,14 @@ public class AccountingDAOImpl implements AccountingDAO {
 		return sqlSession.selectOne("CardMapper.checkDuplicateCard", cardNo);
 	}
 
+	@Override
+	public List<SalaryBook> selectAnalyzeDepartmentSalary(String salaryDate) throws Exception {
+		return sqlSession.selectList("SalaryBookMapper.analyzeDepartmentSalary", salaryDate);
+	}
+
+	@Override
+	public List<SalaryBook> selectAnalyzeRankSalary(String salaryDate) throws Exception {
+		return sqlSession.selectList("SalaryBookMapper.analyzeRankSalary", salaryDate);
+	}
+
 }

@@ -20,6 +20,17 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public Notice addNotice(Notice notice) throws Exception {
+		
+		String noticeHeader = "["+notice.getNoticeHeaderCodeName()+"]";
+		
+		notice.setNoticeHeaderCodeName(noticeHeader);
+		
+		if(notice.getNoticeHeaderCodeNo().equals("01") || notice.getNoticeHeaderCodeNo().equals("02")) {
+			notice.setReadAuthority("01");
+		}else {
+			notice.setReadAuthority("00");
+		}
+		
 		return noticeDAO.selectNoticeDetail(noticeDAO.insertNotice(notice));		
 	}
 

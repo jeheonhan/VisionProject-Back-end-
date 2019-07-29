@@ -205,5 +205,17 @@ public class AccountingServiceImpl implements AccountingService{
 	public int checkDuplicateCard(String cardNo) throws Exception {
 		return accountingDAO.checkDuplicateCard(cardNo);
 	}
+
+
+	@Override
+	public List<SalaryBook> getAnalyzeDepartmentSalary(String salaryDate) throws Exception {
+		return accountingDAO.selectAnalyzeDepartmentSalary(salaryDate);
+	}
+
+
+	@Override
+	public List<SalaryBook> getAnalyzeRankSalary(String salaryDate) throws Exception {
+		return accountingDAO.selectAnalyzeRankSalary(salaryDate);
+	}
 	
 }

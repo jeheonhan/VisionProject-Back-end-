@@ -177,7 +177,7 @@ public class HumanResourceCardTest{
 		appointment = new Appointment();
 		appointment.setAppointDepartCodeNo("04");
 		
-		humanResourceDAO.updateAppointmentStatus("21", "01");
+		//humanResourceDAO.updateAppointmentStatus("21", "01");
 	}
 	
 	//@Test
@@ -229,7 +229,7 @@ public class HumanResourceCardTest{
 	//@Test
 	public void testUpdateWorkAttitudeCodeUsageStatus() throws Exception{
 		
-		humanResourceDAO.updateWorkAttitudeCodeUsageStatus("100", "01");		
+		//humanResourceDAO.updateWorkAttitudeCodeUsageStatus("100", "01");		
 	}
 	
 	//@Test

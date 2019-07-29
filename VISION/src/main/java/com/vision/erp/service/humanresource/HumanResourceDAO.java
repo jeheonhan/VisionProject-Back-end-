@@ -32,7 +32,7 @@ public interface HumanResourceDAO {
 	
 	public void updateWorkAttitude(WorkAttitude workAttitude) throws Exception;
 	
-	public void updateWorkAttitudeUsageStatus(String workAttitudeNo, String usageStatus) throws Exception;
+	public void updateWorkAttitudeUsageStatus(List<WorkAttitude> workAttitudeList) throws Exception;
 	
 	public void insertWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;
 	
@@ -42,7 +42,7 @@ public interface HumanResourceDAO {
 	
 	public void updateWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;
 	
-	public void updateWorkAttitudeCodeUsageStatus(String workAttitudeCodeNo, String usageStatus) throws Exception;
+	public void updateWorkAttitudeCodeUsageStatus(List<WorkAttitudeCode> workAttitudeCodeList) throws Exception;
 	
 	public void insertAppointment(Appointment appointment) throws Exception;
 	
@@ -52,7 +52,7 @@ public interface HumanResourceDAO {
 	
 	public void updateAppointment(Appointment appointment) throws Exception;
 	
-	public void updateAppointmentStatus(String appointmentNo, String status) throws Exception;
+	public void updateAppointmentStatus(Appointment appointment) throws Exception;
 	
 	public void insertDepartment(Department department) throws Exception;
 	

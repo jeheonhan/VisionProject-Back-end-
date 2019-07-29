@@ -32,7 +32,7 @@ public interface HumanResourceService {
 	
 	public void modifyWorkAttitude(WorkAttitude workAttitude) throws Exception;
 	
-	public void convertWorkAtttidueUsageStatus(String workAttitudeNo, String usageStatus) throws Exception;
+	public void convertWorkAtttidueUsageStatus(List<WorkAttitude> workAttitudeList) throws Exception;
 	
 	public void addWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;
 	
@@ -42,7 +42,7 @@ public interface HumanResourceService {
 	
 	public void modifyWorkAttitudeCode(WorkAttitudeCode workAttitudeCode) throws Exception;
 	
-	public void convertWorkAttitudeCodeUsageStatus(String workAttitudeCodeNo, String usageStatus) throws Exception;
+	public void convertWorkAttitudeCodeUsageStatus(List<WorkAttitudeCode> workAttitudeCodeList) throws Exception;
 	
 	public void addAppointment(Appointment appointment) throws Exception;
 	
@@ -52,7 +52,7 @@ public interface HumanResourceService {
 	
 	public void modifyAppointment(Appointment appointment) throws Exception;
 	
-	public void convertAppointmentStatus(String appointmentNo, String status) throws Exception;
+	public void convertAppointmentStatus(Appointment appointment) throws Exception;
 	
 	public void addDepartment(Department department) throws Exception;
 	

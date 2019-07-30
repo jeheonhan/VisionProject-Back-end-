@@ -36,6 +36,9 @@ public class AccountingController {
 		
 		System.out.println("/accounting/addVendor");
 		System.out.println("들어온 vendor domain 값"+vendor);
+		
+		vendor.setVendorTel(vendor.getLocalPhoneCode()+"-"+vendor.getVendorTel());
+		
 		accountingService.addVendor(vendor);
 	}
 	
@@ -48,6 +51,10 @@ public class AccountingController {
 		
 		Vendor vendor = accountingService.getVendorDetail(vendorNo);
 		
+		vendor.setLocalPhoneCode(vendor.getVendorTel().substring(0, vendor.getVendorTel().indexOf("-")));
+		vendor.setVendorTel(vendor.getVendorTel().substring(vendor.getVendorTel().indexOf("-")+1));
+		System.out.println(vendor);
+		
 		return vendor;
 	}
 	
@@ -56,17 +63,27 @@ public class AccountingController {
 	public void modifyVendor(@RequestBody Vendor vendor) throws Exception{
 		
 		System.out.println("/accounting/modifyVendor");
+		vendor.setVendorTel(vendor.getLocalPhoneCode()+"-"+vendor.getVendorTel());
 		
 		accountingService.modifyVendor(vendor);
 	}
 	
 	//거래처 사용상태 변경
 	@RequestMapping(value = "/accounting/convertVendorUsageStatus", method = RequestMethod.POST)
-	public void convertVendorUsageStatus(@RequestBody Vendor vendor) throws Exception{
+	public void convertVendorUsageStatus(@RequestBody List<Object> objectList) throws Exception{
 		
 		System.out.println("/accounting/convertVendorUsageStatus");
+		System.out.println("들어온 거래처 번호 :: "+objectList);
 		
-		accountingService.convertVendorUsageStatus(vendor);
+		List<Vendor> vendorList = new ArrayList<Vendor>();
+		for(int i = 0; i<objectList.size(); i++) {
+			Vendor vendor = new Vendor();
+			vendor.setVendorNo((String)objectList.get(i));
+			vendor.setVendorUsageStatusCodeNo("02");
+			vendorList.add(vendor);
+		}
+		System.out.println(vendorList);
+		accountingService.convertVendorUsageStatus(vendorList);
 	}
 	
 	//거래처 목록 가져오기

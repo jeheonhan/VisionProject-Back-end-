@@ -1,5 +1,6 @@
 package com.vision.erp.web.humanresource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vision.erp.common.ImageFileUpload;
 import com.vision.erp.common.Search;
+import com.vision.erp.common.SendSMS;
 import com.vision.erp.service.domain.Appointment;
 import com.vision.erp.service.domain.Commute;
 import com.vision.erp.service.domain.Department;
 import com.vision.erp.service.domain.HumanResourceCard;
+import com.vision.erp.service.domain.SMS;
 import com.vision.erp.service.domain.SimpleHumanResourceCard;
 import com.vision.erp.service.domain.WorkAttitude;
 import com.vision.erp.service.domain.WorkAttitudeCode;
@@ -29,7 +32,6 @@ public class HumanResourceController {
 	@Resource(name = "humanResourceServiceImpl")
 	private HumanResourceService humanResourceService;
 	
-	//�λ�ī�� ���
 	@RequestMapping(value = "/hr/addHumanResourceCard",method = RequestMethod.POST)
 	public void addHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("/hr/addHumanResourceCard");
@@ -46,7 +48,6 @@ public class HumanResourceController {
 		
 	}
 	
-	//�λ�ī�� �����ȸ
 	@RequestMapping(value = "/hr/getHumanResourceCardList", method = RequestMethod.POST)
 	public List<HumanResourceCard> getHumanResourceCardList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getHumanResourceCardList");
@@ -60,7 +61,6 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//�λ�ī�� ����ȸ
 	@RequestMapping(value = "/hr/getHumanResourceCardDetail/{employeeNo}", method = RequestMethod.GET)
 	public HumanResourceCard getHumanResourceCardDetail(@PathVariable String employeeNo) throws Exception{
 		System.out.println("hr/getHumanResourceCardDetail");
@@ -73,7 +73,6 @@ public class HumanResourceController {
 		return humanResourceCard;
 	}
 	
-	//�λ�ī�� �����ȸ without �ΰ��� ����
 	@RequestMapping(value = "/hr/getSimpleHumanResourceCardList", method = RequestMethod.POST)
 	public List<SimpleHumanResourceCard> getSimpleHumanResourceCardList(
 									@RequestBody Search search) throws Exception{
@@ -86,7 +85,6 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//�λ�ī�� ����ȸ without �ΰ��� ����
 	@RequestMapping(value = "/hr/getSimpleHumanResourceCardDetail/{employeeNo}",method = RequestMethod.GET)
 	public SimpleHumanResourceCard getSimpleHumanResourceCardDetail(
 									@PathVariable String employeeNo) throws Exception{
@@ -98,7 +96,6 @@ public class HumanResourceController {
 		return simpleHumanResourceCard;
 	}
 	
-	//�λ�ī�� ����
 	@RequestMapping(value = "/hr/modifyHumanResourceCard",method = RequestMethod.POST)
 	public void modifyHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("hr/modifyHumanResourceCard");
@@ -107,7 +104,6 @@ public class HumanResourceController {
 		
 	}
 	
-	//���� ���
 	@RequestMapping(value = "/hr/addWorkAttitude", method = RequestMethod.POST)
 	public void addWorkAttitude(@RequestBody WorkAttitude workAttitude) throws Exception{
 		System.out.println("/hr/addWorkAttitude");
@@ -115,7 +111,6 @@ public class HumanResourceController {
 		humanResourceService.addWorkAttitude(workAttitude);
 	}
 	
-	//���� �����ȸ
 	@RequestMapping(value = "/hr/getWorkAttitudeList", method = RequestMethod.POST)
 	public List<WorkAttitude> getWorkAttitudeList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getWorkAttitudeList");
@@ -126,7 +121,6 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//���� ����
 	@RequestMapping(value = "/hr/modifyWorkAttitude", method = RequestMethod.POST)
 	public void modifyWorkAttitude(@RequestBody WorkAttitude workAttitude) throws Exception{
 		System.out.println("/hr/modifyWorkAttitude");
@@ -134,17 +128,21 @@ public class HumanResourceController {
 		humanResourceService.modifyWorkAttitude(workAttitude);
 	}
 	
-	//���� ������ ����
 	//Sample Data : [{"workAttitudeNo":"1"},{"usageStatus":"01"}]
 	@RequestMapping(value = "/hr/convertWorkAttitudeUsageStatus", method = RequestMethod.POST)
-	public void convertWorkAttitudeUsageStatus(@RequestBody Map<String, String>[] arrayMap) throws Exception{
+	public void convertWorkAttitudeUsageStatus(@RequestBody List<Object> objList) throws Exception{
 		System.out.println("/hr/convertWorkAttitudeUsageStatus");
+		List<WorkAttitude> workAttitudeList = new ArrayList<WorkAttitude>();
+		for(int i = 0; i<objList.size(); i++) {
+			WorkAttitude workAttitude = new WorkAttitude();
+			workAttitude.setWorkAttitudeNo((String)objList.get(i));
+			workAttitude.setUsageStatusCodeNo("02");
+			workAttitudeList.add(workAttitude);
+		}
 		
-		humanResourceService.convertWorkAtttidueUsageStatus(arrayMap[0].get("workAttitudeNo")
-													, arrayMap[1].get("usageStatus"));
+		humanResourceService.convertWorkAtttidueUsageStatus(workAttitudeList);
 	}
 	
-	//�����ڵ� ���
 	@RequestMapping(value = "/hr/addWorkAttitudeCode", method = RequestMethod.POST)
 	public void addWorkAttitudeCode(
 				@RequestBody WorkAttitudeCode workAttitudeCode) throws Exception{
@@ -154,7 +152,6 @@ public class HumanResourceController {
 		
 	}
 	
-	//�����ڵ� ����ȸ
 	@RequestMapping(value = "/hr/getWorkAttitudeCodeDetail/{workAttitudeCodeNo}", method = RequestMethod.GET)
 	public WorkAttitudeCode getWorkAttitudeCodeDetail(@PathVariable String workAttitudeCodeNo) throws Exception{
 		System.out.println("/hr/getWorkAttitudeCodeDetail/{workAttitudeCodeNo}");
@@ -162,7 +159,6 @@ public class HumanResourceController {
 		return humanResourceService.getWorkAttitudeCodeByWorkAttitudeCodeNo(workAttitudeCodeNo);
 	}
 	
-	//�����ڵ� �����ȸ
 	@RequestMapping(value = "/hr/getWorkAttitudeCodeList", method = RequestMethod.POST)
 	public List<WorkAttitudeCode> getWorkAttitudeCodeList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getWorkAttitudeCodeList");
@@ -172,7 +168,6 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//�����ڵ� ����
 	@RequestMapping(value = "/hr/modifyWorkAttitudeCode", method = RequestMethod.POST)
 	public void modifyWorkAttitudeCode(@RequestBody WorkAttitudeCode workAttitudeCode) throws Exception{
 		System.out.println("/hr/modifyWorkAttitudeCode");
@@ -180,15 +175,22 @@ public class HumanResourceController {
 		humanResourceService.modifyWorkAttitudeCode(workAttitudeCode);
 	}
 	
-	//�����ڵ� ������ ����
-	@RequestMapping(value = "/hr/convertWorkAttitudeCodeUsageStatus", method = RequestMethod.GET)
-	public void convertWorkAttitudeCodeUsageStatus(@RequestBody Map<String, String>[] arrayMap) throws Exception{
+	@RequestMapping(value = "/hr/convertWorkAttitudeCodeUsageStatus", method = RequestMethod.POST)
+	public void convertWorkAttitudeCodeUsageStatus(@RequestBody List<Object> objList) throws Exception{
 		System.out.println("/hr/convertWorkAttitudeCodeUsageStatus");
 		
-		humanResourceService.convertWorkAttitudeCodeUsageStatus(arrayMap[0].get("workAttitudeCodeNo"), arrayMap[1].get("usageStatus"));
+		List<WorkAttitudeCode> workAttitudeCodeList = new ArrayList<WorkAttitudeCode>();
+		
+		for(int i = 0; i < objList.size(); i++) {
+			WorkAttitudeCode workAttitudeCode = new WorkAttitudeCode();
+			workAttitudeCode.setWorkAttitudeCodeNo((String)objList.get(i));
+			workAttitudeCode.setUsageStatusCodeNo("02");
+			workAttitudeCodeList.add(workAttitudeCode);
+		}
+		
+		humanResourceService.convertWorkAttitudeCodeUsageStatus(workAttitudeCodeList);
 	}
 	
-	//�߷ɵ��
 	@RequestMapping(value = "/hr/addAppointment", method = RequestMethod.POST)
 	public void addAppointment(@RequestBody Appointment appointment) throws Exception{
 		System.out.println("/hr/addAppointment");
@@ -199,7 +201,6 @@ public class HumanResourceController {
 		humanResourceService.addAppointment(appointment);
 	}
 	
-	//�߷� �����ȸ
 	@RequestMapping(value = "/hr/getAppointmentList", method = RequestMethod.POST)
 	public List<Appointment> getAppointmentList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getAppointmentList");
@@ -210,7 +211,6 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//�߷� ����
 	@RequestMapping(value = "/hr/modifyAppointment", method = RequestMethod.POST)
 	public void modifyAppointment(@RequestBody Appointment appointment) throws Exception{
 		System.out.println("/hr/modifyAppointment");
@@ -218,23 +218,36 @@ public class HumanResourceController {
 		humanResourceService.modifyAppointment(appointment);
 	}
 	
-	//�߷ɻ��� ����
 	//Sample Data : [{"appointmentNo":"1"},{"status":"02"}]
-	@RequestMapping(value = "/hr/modifyAppointmentStatus", method = RequestMethod.GET)
-	public void modifyAppointmentStatus(@RequestBody Map<String, String>[] arrayMap) throws Exception{
+	@RequestMapping(value = "/hr/modifyAppointmentStatus", method = RequestMethod.POST)
+	public void modifyAppointmentStatus(@RequestBody Appointment appointment) throws Exception{
 		System.out.println("/hr/modifyAppointmentStatus");
+		
+		if(appointment.getAppointmentStatusCodeNo().equals("02")) {
+			System.out.println("02�Դϴ�");
+			SMS sms = new SMS();
+			String reciever = humanResourceService.getHumanResourceCardDetailByEmployeeNo
+													(appointment.getEmployeeNo()).getEmployeePhone();
+			String content = appointment.getEmployeeName()+"���� "+"�߷ɳ�¥("+appointment.getAppointDate()
+							+")�� "+appointment.getAppointDepartCodeName()+", "+appointment.getAppointRankCodeName()
+							+"���� �߷ɵǾ����ϴ�. ";
+			
+			sms.setSender("010-3739-1105");
+			sms.setReciever(reciever.replaceAll("-", ""));
+			sms.setContent(content);
+			
+			SendSMS sendSMS = SendSMS.getSendSMSInstance();
+			sendSMS.sendSMS(sms);
+		}
 	
-		humanResourceService.convertAppointmentStatus(arrayMap[0].get("appointmentNo")
-												, arrayMap[1].get("status"));
+		humanResourceService.convertAppointmentStatus(appointment);
 	}
 	
-	//�߷� ����
 	@RequestMapping(value = "/hr/removeAppointment", method = RequestMethod.GET)
 	public void removeAppointment(@RequestBody Appointment appointment) throws Exception{
 		
 	}
 	
-	//�μ� ���
 	@RequestMapping(value = "/hr/addDepartment", method = RequestMethod.POST)
 	public void addDepartment(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/addDepartment");
@@ -242,7 +255,6 @@ public class HumanResourceController {
 		humanResourceService.addDepartment(department);
 	}
 	
-	//�μ� �����ȸ
 	@RequestMapping(value = "/hr/getDepartmentList", method = RequestMethod.POST)
 	public List<Department> getDepartmentList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getDepartmentList");
@@ -252,7 +264,6 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//�μ� ��
 	@RequestMapping(value = "/hr/modifyDepartment", method = RequestMethod.POST)
 	public void modifyDepartment(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/modifyDepartment");
@@ -260,7 +271,6 @@ public class HumanResourceController {
 		humanResourceService.modifyDepartment(department);
 	}
 	
-	//�μ������� ����
 	@RequestMapping(value = "/hr/convertDepartmentUsageStatus", method = RequestMethod.POST)
 	public void convertDepartmentUsageStatus(@RequestBody Department department) throws Exception{
 		System.out.println("/hr/convertDepartmentUsageStatus");
@@ -268,7 +278,6 @@ public class HumanResourceController {
 		humanResourceService.convertDepartmentUsageStatus(department);
 	}
 	
-	//�ٹ��ð� ��ȸ
 	@RequestMapping(value = "/hr/getCommuteList/{employeeNo}", method = RequestMethod.GET)
 	public List<Commute> getCommuteList(@PathVariable String employeeNo) throws Exception{
 		System.out.println("/hr/getCommuteList");
@@ -278,7 +287,6 @@ public class HumanResourceController {
 		return list;
 	}
 	
-	//��ٽð� ���
 	@RequestMapping(value = "/hr/addCommute", method = RequestMethod.POST)
 	public void addCommute(@RequestBody Commute commute) throws Exception{
 		System.out.println("/hr/addCommute");

@@ -71,9 +71,17 @@
 	 		 ,	USAGE_STATUS_CODE_NO
 	 	  FROM	WORK_ATTITUDE_CODE
 	   <where>
+	   		<choose>
+	   			<when test="searchCondition == null">
+	   				USAGE_STATUS_CODE_NO	=	'01'
+	   			</when>
+	   			<when test="searchCondition != null">
+	   				USAGE_STATUS_CODE_NO	=	'02'
+	   			</when>
+	   		</choose>
 	   		<if test="searchKeyword != null">
-	   			WORK_ATTITUDE_CODE		LIKE ('%'||#{searchKeyword}||'%')
-	   		OR	WORK_ATTITUDE_CODE_NAME	LIKE ('%'||#{searchKeyword}||'%')	
+	   		AND	WORK_ATTITUDE_CODE		LIKE ('%'||#{searchKeyword}||'%')
+	   		 OR	WORK_ATTITUDE_CODE_NAME	LIKE ('%'||#{searchKeyword}||'%')	
 	   		</if>
 	   </where>
 	</select>
@@ -92,9 +100,9 @@
 	   </where>
 	</update>
 	
-	<update id="updateWorkAttitudeCodeUsageStatus" parameterType="map">
+	<update id="updateWorkAttitudeCodeUsageStatus" parameterType="workAttitudeCode">
 		UPDATE	WORK_ATTITUDE_CODE
-		   SET	USAGE_STATUS_CODE_NO	=	#{usageStatus}	
+		   SET	USAGE_STATUS_CODE_NO	=	#{usageStatusCodeNo}	
 	   <where>
 	   			WORK_ATTITUDE_CODE		=	#{workAttitudeCodeNo}
 	   </where>

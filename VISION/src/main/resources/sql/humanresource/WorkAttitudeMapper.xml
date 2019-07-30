@@ -49,6 +49,7 @@
 					 ,	c.WORK_ATTITUDE_CODE_NAME
 					 ,	w.WORK_ATTITUDE_TIME
 					 ,	w.WORK_ATTITUDE_DATE
+					 ,	w.USAGE_STATUS_CODE_NO
 				  FROM	HUMAN_RESOURCE_CARD hr
 					 ,	WORK_ATTITUDE w	
 					 ,	WORK_ATTITUDE_CODE c
@@ -58,8 +59,16 @@
 			   	   AND	w.EMPLOYEE_NO       	=   hr.EMPLOYEE_NO
 			   	 ) vt
 		<where>
+			<choose>
+				<when test="searchCondition == null">
+						vt.USAGE_STATUS_CODE_NO	=	'01'
+				</when>
+				<when test="searchCondition != null">
+						vt.USAGE_STATUS_CODE_NO	=	'02'
+				</when>
+			</choose>
 			<if test="searchKeyword != null">
-						vt.EMPLOYEE_NAME    LIKE ('%'||#{searchKeyword}||'%')
+				 AND	vt.EMPLOYEE_NAME    LIKE ('%'||#{searchKeyword}||'%')
              	  OR	vt.EMPLOYEE_NO		LIKE ('%'||#{searchKeyword}||'%')
 			</if>
 		</where>
@@ -76,9 +85,9 @@
 	   </where>
 	</update>
 	
-	<update id="updateWorkAttitudeUsageStatus" parameterType="map">
+	<update id="updateWorkAttitudeUsageStatus" parameterType="workAttitude">
 		UPDATE	WORK_ATTITUDE
-		   SET	USAGE_STATUS_CODE_NO	=	#{usageStatus}
+		   SET	USAGE_STATUS_CODE_NO	=	#{usageStatusCodeNo}
 	   <where>
 	   			WORK_ATTITUDE_NO		=	#{workAttitudeNo}
 	   </where>

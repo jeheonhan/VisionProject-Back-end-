@@ -110,8 +110,8 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	}
 
 	@Override
-	public void convertWorkAtttidueUsageStatus(String workAttitudeNo, String usageStatus) throws Exception {
-		humanResourceDAO.updateWorkAttitudeUsageStatus(workAttitudeNo, usageStatus);
+	public void convertWorkAtttidueUsageStatus(List<WorkAttitude> workAttitudeList) throws Exception {
+		humanResourceDAO.updateWorkAttitudeUsageStatus(workAttitudeList);
 	}
 
 	@Override
@@ -137,8 +137,8 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	}
 
 	@Override
-	public void convertWorkAttitudeCodeUsageStatus(String workAttitudeCodeNo, String usageStatus) throws Exception {
-		humanResourceDAO.updateWorkAttitudeCodeUsageStatus(workAttitudeCodeNo, usageStatus);
+	public void convertWorkAttitudeCodeUsageStatus(List<WorkAttitudeCode> workAttitudeCodeList) throws Exception {
+		humanResourceDAO.updateWorkAttitudeCodeUsageStatus(workAttitudeCodeList);
 	}
 
 	@Override
@@ -162,8 +162,8 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	}
 
 	@Override
-	public void convertAppointmentStatus(String appointmentNo, String status) throws Exception {
-		humanResourceDAO.updateAppointmentStatus(appointmentNo, status);
+	public void convertAppointmentStatus(Appointment appointment) throws Exception {
+		humanResourceDAO.updateAppointmentStatus(appointment);
 	}
 
 	@Override

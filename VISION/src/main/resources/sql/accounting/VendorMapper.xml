@@ -129,9 +129,7 @@
 		FROM
 			vendor
 		<where>
-			<if test="usageCondition != null and usageCondition !=''">
-				AND	usage_status_code_no = #{usageCondition}
-			</if>
+			usage_status_code_no = '01'
 			<if test="searchKeyword != null and searchKeyword != ''">
 				AND (vendor_no LIKE '%'||#{searchKeyword}||'%'
 				OR LOWER(vendor_name) LIKE '%'||#{searchKeyword}||'%')

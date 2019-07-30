@@ -86,12 +86,13 @@ public class HumanResourceDAOImpl implements HumanResourceDAO {
 	}
 
 	@Override
-	public void updateWorkAttitudeUsageStatus(String workAttitudeNo, String usageStatus) throws Exception {
+	public void updateWorkAttitudeUsageStatus(List<WorkAttitude> workAttitudeList) throws Exception {
 
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("workAttitudeNo", workAttitudeNo);
-		map.put("usageStatus", usageStatus);
-		sqlSession.update("WorkAttitudeMapper.updateWorkAttitudeUsageStatus", map);
+		for(WorkAttitude workAttitude : workAttitudeList) {
+			
+			sqlSession.update("WorkAttitudeMapper.updateWorkAttitudeUsageStatus", workAttitude);
+		}
+		
 	}
 
 	@Override
@@ -120,15 +121,14 @@ public class HumanResourceDAOImpl implements HumanResourceDAO {
 	}
 
 	@Override
-	public void updateWorkAttitudeCodeUsageStatus(String workAttitudeCodeNo, String usageStatus) throws Exception {
+	public void updateWorkAttitudeCodeUsageStatus(List<WorkAttitudeCode> workAttitudeCodeList) throws Exception {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("workAttitudeCodeNo", workAttitudeCodeNo);
-		map.put("usageStatus",usageStatus);
+		for(WorkAttitudeCode workAttitudeCode : workAttitudeCodeList) {
+			sqlSession.update
+			("WorkAttitudeCodeMapper.updateWorkAttitudeCodeUsageStatus"
+					, workAttitudeCode);
+		}
 		
-		sqlSession.update
-				("WorkAttitudeCodeMapper.updateWorkAttitudeCodeUsageStatus"
-						, map);
 	}
 
 	@Override
@@ -156,13 +156,9 @@ public class HumanResourceDAOImpl implements HumanResourceDAO {
 	}
 
 	@Override
-	public void updateAppointmentStatus(String appointmentNo, String status) throws Exception {
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("appointmentNo",appointmentNo);
-		map.put("status",status);
+	public void updateAppointmentStatus(Appointment appointment) throws Exception {
 		
-		sqlSession.update("AppointmentMapper.updateAppointmentStatus", map);
+		sqlSession.update("AppointmentMapper.updateAppointmentStatus", appointment);
 	}
 
 	@Override

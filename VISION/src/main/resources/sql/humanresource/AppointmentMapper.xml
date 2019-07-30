@@ -116,9 +116,9 @@
 	  </where>
 	</update>
 	
-	<update id="updateAppointmentStatus" parameterType="hashmap">
+	<update id="updateAppointmentStatus" parameterType="appointment">
 		UPDATE	APPOINTMENT
-		   SET	APPOINTMENT_STATUS_CODE_NO	=	#{status}
+		   SET	APPOINTMENT_STATUS_CODE_NO	=	#{appointmentStatusCodeNo}
 	   <where>
 	   			APPOINTMENT_NO	=	#{appointNo}
 	   </where>

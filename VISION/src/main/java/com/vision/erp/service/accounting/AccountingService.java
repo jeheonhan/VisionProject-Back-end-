@@ -18,7 +18,7 @@ public interface AccountingService {
 	
 	public void modifyVendor(Vendor vendor) throws Exception;
 	
-	public void convertVendorUsageStatus(Vendor vendor) throws Exception;
+	public void convertVendorUsageStatus(List<Vendor> vendorList) throws Exception;
 	
 	public List<Vendor> getVendorList(Search search) throws Exception;
 

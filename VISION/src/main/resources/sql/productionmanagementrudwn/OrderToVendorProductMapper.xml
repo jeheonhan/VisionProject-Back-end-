@@ -72,6 +72,16 @@
 		</set>
 		WHERE ORDER_TO_VENDOR_NUMBERING = #{orderToVendorNumber}
 	</update>
+	
+	<update id="modifyOrderToVenItemCode2" parameterType="orderToVendorProduct">
+		UPDATE order_to_vendor_product
+		<set>
+			
+				ORDER_VENDOR_PROD_STATUS_CODE = '03'
+			
+		</set>
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+	</update>
 
 
 

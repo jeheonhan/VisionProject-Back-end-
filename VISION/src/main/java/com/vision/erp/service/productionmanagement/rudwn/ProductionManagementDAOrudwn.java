@@ -37,6 +37,8 @@ public interface ProductionManagementDAOrudwn {
 	//발주서물품 상태변경(입고대기/입고완료)
 	public void modifyOrderToVenItemCode(OrderToVendorProduct orderToVendorProduct) throws Exception;
 	
+	public void modifyOrderToVenItemCode2(OrderToVendorProduct orderToVendorProduct) throws Exception;
+	
 	//발주서물품 상태변경시 물품수량추가됨.서비스에서 처리할거임
 	public void updateProductCount(Product product) throws Exception;
 

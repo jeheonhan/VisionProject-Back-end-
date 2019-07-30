@@ -73,8 +73,6 @@ public class ProductionManagementDAOImplrudwn implements ProductionManagementDAO
 	
 	@Override
 	public void modifyOrderToVenCode2(OrderToVendor orderToVendor) throws Exception {
-		System.out.println("ORDER_TO_VENDOR_NO//ORDER_TO_VEN_STATUS_CODE_NO");
-		System.out.println("orderToVendor :: " + orderToVendor);
 		sqlSession.update("OrderToVendorMapper.modifyOrderToVenCode2",orderToVendor);
 
 	}
@@ -83,9 +81,15 @@ public class ProductionManagementDAOImplrudwn implements ProductionManagementDAO
 
 	@Override
 	public void modifyOrderToVenItemCode(OrderToVendorProduct orderToVendorProduct) throws Exception {
-	System.out.println("상태코드변하기위한 orderTOVendItemProduct");
-	System.out.println("orderToVendorProduct :: " + orderToVendorProduct);
 		sqlSession.update("OrderToVendorProductMapper.modifyOrderToVenItemCode",orderToVendorProduct);
+
+	}
+	
+	@Override
+	public void modifyOrderToVenItemCode2(OrderToVendorProduct orderToVendorProduct) throws Exception {
+		System.out.println("여기로 들어왓냐 @@@@@@@@@@@");
+		System.out.println("orderToVendorProduct 값 :::::::; " + orderToVendorProduct);
+		sqlSession.update("OrderToVendorProductMapper.modifyOrderToVenItemCode2",orderToVendorProduct);
 
 	}
 	

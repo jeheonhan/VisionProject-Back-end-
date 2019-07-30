@@ -73,8 +73,12 @@ public class ProductionManagementServiceImplrudwn implements ProductionManagemen
 
 		OrderToVendor orderToVendor = (OrderToVendor) map.get("orderToVendor");
 		Statement statement = (Statement) map.get("statement");
-
+		OrderToVendorProduct orderToVendorProduct = (OrderToVendorProduct) map.get("orderToVendorProduct");
+		
+		System.out.println("orderToVendorProduct ³Ê °ª ¿Ó³Ä ::: " + orderToVendorProduct);
+		
 		productionDAO.modifyOrderToVenCode(orderToVendor);
+		productionDAO.modifyOrderToVenItemCode2(orderToVendorProduct);
 		accountingDAO.updateStatementUsageStatus(statement);
 
 	}

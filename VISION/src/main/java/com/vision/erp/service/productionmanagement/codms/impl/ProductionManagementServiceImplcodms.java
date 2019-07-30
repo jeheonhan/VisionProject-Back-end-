@@ -48,7 +48,7 @@ public class ProductionManagementServiceImplcodms implements ProductionManagemen
 		orderFromBranch.setOrderFromBranchTotalAmount(""+orderFromBranchTotalAmount);
 		
 		//오늘 날짜로 주문일자 입력하기
-		SimpleDateFormat format = new SimpleDateFormat ( "yyyy/mm/dd");
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy/MM/dd");
 		String date = format.format (System.currentTimeMillis());
 		orderFromBranch.setOrderDate(date);
 		

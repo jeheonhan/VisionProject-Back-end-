@@ -12,6 +12,7 @@ public class Vendor {
 	private String vendorCategoryCodeName;
 	private String vendorUsageStatusCodeNo;
 	private String vendorPhone;
+	private String localPhoneCode;
 	private String vendorTel;
 	private String representativeName;
 	private String address;
@@ -55,6 +56,12 @@ public class Vendor {
 	public void setVendorPhone(String vendorPhone) {
 		this.vendorPhone = vendorPhone;
 	}
+	public String getLocalPhoneCode() {
+		return localPhoneCode;
+	}
+	public void setLocalPhoneCode(String localPhoneCode) {
+		this.localPhoneCode = localPhoneCode;
+	}
 	public String getVendorTel() {
 		return vendorTel;
 	}
@@ -97,11 +104,9 @@ public class Vendor {
 		return "Vendor [vendorNo=" + vendorNo + ", vendorName=" + vendorName + ", vendorCategoryCodeNo="
 				+ vendorCategoryCodeNo + ", vendorCategoryCodeName=" + vendorCategoryCodeName
 				+ ", vendorUsageStatusCodeNo=" + vendorUsageStatusCodeNo + ", vendorPhone=" + vendorPhone
-				+ ", vendorTel=" + vendorTel + ", representativeName=" + representativeName + ", address=" + address
-				+ ", zipCode=" + zipCode + ", detailAddress=" + detailAddress + ", vendorAccount=" + vendorAccount
-				+ "]";
+				+ ", localPhoneCode=" + localPhoneCode + ", vendorTel=" + vendorTel + ", representativeName="
+				+ representativeName + ", address=" + address + ", zipCode=" + zipCode + ", detailAddress="
+				+ detailAddress + ", vendorAccount=" + vendorAccount + "]";
 	}
-	
-
 	
 }

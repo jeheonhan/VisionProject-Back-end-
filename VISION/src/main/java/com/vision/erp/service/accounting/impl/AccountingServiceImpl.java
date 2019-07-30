@@ -45,10 +45,9 @@ public class AccountingServiceImpl implements AccountingService{
 		accountingDAO.updateVendor(vendor);
 	}
 
-
 	@Override
-	public void convertVendorUsageStatus(Vendor vendor) throws Exception {
-		accountingDAO.updateVendorUsageStatus(vendor);
+	public void convertVendorUsageStatus(List<Vendor> vendorList) throws Exception {
+		accountingDAO.updateVendorUsageStatus(vendorList);
 	}
 
 
@@ -217,5 +216,6 @@ public class AccountingServiceImpl implements AccountingService{
 	public List<SalaryBook> getAnalyzeRankSalary(String salaryDate) throws Exception {
 		return accountingDAO.selectAnalyzeRankSalary(salaryDate);
 	}
+
 	
 }

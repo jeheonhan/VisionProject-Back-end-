@@ -143,7 +143,7 @@ public class AccountingDAOImplNewTest {
 			vendor.setVendorNo("v1021");
 			
 			//Update
-			accountingDAO.updateVendorUsageStatus(vendor);
+//			accountingDAO.updateVendorUsageStatus(vendor);
 			
 		}
 		

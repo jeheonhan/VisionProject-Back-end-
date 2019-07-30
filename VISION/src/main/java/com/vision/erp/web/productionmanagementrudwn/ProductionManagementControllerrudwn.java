@@ -139,11 +139,13 @@ public class ProductionManagementControllerrudwn {
 
 	@RequestMapping(value = "/pm/modifyOrderToVenCode/{statementNo}/{orderToVendorNo}",method=RequestMethod.GET)
 	public void modifyOrderToVenCode(@PathVariable(value="statementNo") String statementNo, @PathVariable String orderToVendorNo) throws Exception {
-
+		System.out.println("³Ê µé¾î¿Ó³Ä @@@@");
 		Map<String, Object> map = new HashMap<String, Object>();
 		OrderToVendor orderToVendor = new OrderToVendor();
 		Statement statement = new Statement();
-
+		OrderToVendorProduct orderToVendorProduct = new OrderToVendorProduct();
+		
+		orderToVendorProduct.setOrderToVendorNo(orderToVendorNo);
 		orderToVendor.setOrderToVendorNo(orderToVendorNo);
 		orderToVendor.setOrderToVenStatusCodeNo("01");
 		statement.setStatementNo(statementNo);
@@ -151,7 +153,8 @@ public class ProductionManagementControllerrudwn {
 
 		map.put("orderToVendor", orderToVendor);
 		map.put("statement", statement);
-
+		map.put("orderToVendorProduct", orderToVendorProduct);
+		
 		productionManagementServicerudwn.modifyOrderToVenCode(map);
 	}
 

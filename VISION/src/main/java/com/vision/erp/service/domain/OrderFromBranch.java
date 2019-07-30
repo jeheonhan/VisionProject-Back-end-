@@ -15,6 +15,7 @@ public class OrderFromBranch {
 	private String orderDate;
 	private String accountNo;
 	private List<OrderFromBranchProduct> orderFromBranchProductList;
+	private int leftProdToShip;
 	
 	//constructor
 	public OrderFromBranch() {
@@ -47,6 +48,15 @@ public class OrderFromBranch {
 
 
 	//method
+	public int getLeftProdToShip() {
+		int leftProdCount = 0;
+		for(OrderFromBranchProduct obp : orderFromBranchProductList) {
+			if(obp.getOrderFromBranchProductStatusCodeNo().equals("01")) {
+				leftProdCount++;
+			}
+		}
+		return leftProdCount;
+	}
 	public String getStatementNo() {
 		return statementNo;
 	}
@@ -134,7 +144,8 @@ public class OrderFromBranch {
 				+ ", orderFromBranchStatusCodeNo=" + orderFromBranchStatusCodeNo + ", orderFromBranchStatusCodeName="
 				+ orderFromBranchStatusCodeName + ", orderFromBranchTotalAmount=" + orderFromBranchTotalAmount
 				+ ", branchName=" + branchName + ", branchNo=" + branchNo + ", orderDate=" + orderDate + ", accountNo="
-				+ accountNo + ", orderFromBranchProductList=" + orderFromBranchProductList + "]";
+				+ accountNo + ", orderFromBranchProductList=" + orderFromBranchProductList + ", leftProdToShip="
+				+ leftProdToShip + "]";
 	}
 
 }

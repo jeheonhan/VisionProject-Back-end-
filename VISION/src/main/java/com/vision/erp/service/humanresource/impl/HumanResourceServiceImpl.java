@@ -187,7 +187,14 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 	@Override
 	public void modifyDepartment(Department department) throws Exception {
-		humanResourceDAO.updateDepartment(department);
+		Code code = new Code();
+		code.setGroupCode("depart");
+		code.setCodeNo(department.getDepartCodeNo());
+		code.setCodeUsageStatus("N");
+		codeDAO.updateCodeUsageStatus(code);
+		
+		department.setDepartUsageStatusCodeNo("02");
+		humanResourceDAO.updateDepartmentUsageStatus(department);
 	}
 
 	@Override
@@ -207,7 +214,10 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 	@Override
 	public void modifyCommuteForLeaveWorkTime(Commute commute) throws Exception {
-		humanResourceDAO.updateCommuteForLeaveWorkTime(commute);
+		
+		
+		
+		//humanResourceDAO.updateCommuteForLeaveWorkTime(commute);
 	}
 
 	@Override

@@ -48,9 +48,14 @@
 				 ,  COUNT_EMPLOYEE_FUNCTION(DEPART_CODE_NO) AS COUNT_EMPLOYEE
 		  FROM	DEPARTMENT
 		<where>
-			<if test="searchCondition != null">
-				USAGE_STATUS_CODE_NO	=	#{searchCondition}
-			</if>
+			<choose>
+				<when test="searchCondition == null">
+				USAGE_STATUS_CODE_NO	=	'01'
+				</when>
+				<when test="searchCondition != null">
+				USAGE_STATUS_CODE_NO	=	'02'
+				</when>
+			</choose>
 		</where>
 	</select>
 	

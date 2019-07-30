@@ -35,12 +35,12 @@
 					(
 					SEQ_COMMUTE_NUMBERING.NEXTVAL
 				,	#{employeeNo}
-				,	to_date(#{goToWorkTime},'YYYY/MM/DD hh24:mi:ss')
+				,	to_date(#{goToWorkTime}, 'YYYY-MM-DD HH24:MI:SS')
 				,	to_char(sysdate,'YYYY/MM/DD')
 					)
 	</insert>
 	
-	<select id="selectCommuteList" parameterType="int" resultMap="CommuteSelectMap">
+	<select id="selectCommuteList" parameterType="string" resultMap="CommuteSelectMap">
 		SELECT	EMPLOYEE_NO
 			 ,	GO_TO_WORK_TIME
 			 ,	LEAVE_WORK_TIME
@@ -51,7 +51,7 @@
 	
 	<update id="updateCommuteForLeaveWorkTime" parameterType="commute">
 		UPDATE	COMMUTE
-		   SET	LEAVE_WORK_TIME	=	to_date(#{leaveWorkTime},'YYYY/MM/DD hh24:mi:ss')
+		   SET	LEAVE_WORK_TIME	=	to_date(#{leaveWorkTime}, 'YYYY-MM-DD HH24:MI:SS')
 		 WHERE	EMPLOYEE_NO		=	#{employeeNo}
 		   AND	COMMUTE_DATE	=	#{commuteDate}
 	</update>

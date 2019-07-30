@@ -18,7 +18,7 @@ public interface AccountingDAO {
 	
 	public void updateVendor(Vendor vendor) throws Exception;
 	
-	public void updateVendorUsageStatus(Vendor vendor) throws Exception;
+	public void updateVendorUsageStatus(List<Vendor> vendorList) throws Exception;
 	
 	public List<Vendor> selectVendorList(Search search) throws Exception;
 

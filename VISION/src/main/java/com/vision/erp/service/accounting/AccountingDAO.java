@@ -66,7 +66,7 @@ public interface AccountingDAO {
 	
 	public void updateCard(Card card) throws Exception;
 	
-	public void updateCardUsageStatus(Card card) throws Exception;
+	public void updateCardUsageStatus(List<Card> cardList) throws Exception;
 	
 	public List<Card> selectCardList(Search search) throws Exception;
 	

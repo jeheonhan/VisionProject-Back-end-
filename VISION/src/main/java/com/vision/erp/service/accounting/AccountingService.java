@@ -64,7 +64,7 @@ public interface AccountingService {
 	
 	public void modifyCard(Card card) throws Exception;
 	
-	public void convertCardUsageStatus(Card card) throws Exception;
+	public void convertCardUsageStatus(List<Card> cardList) throws Exception;
 	
 	public List<Card> getCardList(Search search) throws Exception;
 	

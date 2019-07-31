@@ -1,5 +1,7 @@
 package com.vision.erp.service.domain;
 
+import java.util.Map;
+
 public class Card {
 
 	public Card() {
@@ -18,7 +20,8 @@ public class Card {
 	private String cardImage;
 	private String cardUsageStatusCodeNo;
 	private String accountNo;
-	
+    private Map<String, Object> cardImageFile;
+    
 	public String getCardRegNo() {
 		return cardRegNo;
 	}
@@ -91,6 +94,12 @@ public class Card {
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
 	}
+	public Map<String, Object> getCardImageFile() {
+		return cardImageFile;
+	}
+	public void setCardImageFile(Map<String, Object> cardImageFile) {
+		this.cardImageFile = cardImageFile;
+	}
 	
 	@Override
 	public String toString() {
@@ -98,8 +107,8 @@ public class Card {
 				+ ", cardManagerName=" + cardManagerName + ", cardCategoryCodeNo=" + cardCategoryCodeNo
 				+ ", cardCategoryCodeName=" + cardCategoryCodeName + ", cardName=" + cardName + ", cardCompanyCodeNo="
 				+ cardCompanyCodeNo + ", cardCompanyCodeName=" + cardCompanyCodeName + ", cardImage=" + cardImage
-				+ ", cardUsageStatusCodeNo=" + cardUsageStatusCodeNo + ", accountNo=" + accountNo + "]";
+				+ ", cardUsageStatusCodeNo=" + cardUsageStatusCodeNo + ", accountNo=" + accountNo + ", cardImageFile="
+				+ cardImageFile + "]";
 	}
-
 	
 }

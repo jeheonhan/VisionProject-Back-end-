@@ -106,10 +106,9 @@
 			card c, human_resource_card hr
 		<where>
 			c.card_manager = hr.employee_no
+		AND
+			c.usage_status_code_no = '01'
 			
-			<if test="usageCondition != null and usageCondition !=''">
-				AND	c.usage_status_code_no = #{usageCondition}
-			</if>
 			<if test="searchKeyword != null and searchKeyword != ''">
 				AND (c.card_no LIKE '%'||#{searchKeyword}||'%'
 				OR LOWER(c.card_name) LIKE '%'||#{searchKeyword}||'%')

@@ -189,8 +189,8 @@ public class AccountingServiceImpl implements AccountingService{
 
 
 	@Override
-	public void convertCardUsageStatus(Card card) throws Exception {
-		accountingDAO.updateCardUsageStatus(card);
+	public void convertCardUsageStatus(List<Card> cardList) throws Exception {
+		accountingDAO.updateCardUsageStatus(cardList);
 	}
 
 

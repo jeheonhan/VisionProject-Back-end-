@@ -2,6 +2,7 @@ package com.vision.erp.web.accounting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vision.erp.common.ImageFileUpload;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.accounting.AccountingService;
 import com.vision.erp.service.domain.Account;
@@ -315,6 +317,11 @@ public class AccountingController {
 	public void addCard(@RequestBody Card card) throws Exception{
 		
 		System.out.println("/accounting/addCard");
+		System.out.println("들어론 카드 정보 :: "+card);
+		System.out.println(card.getCardImageFile());
+		Map<String, Object> cardImageMap = card.getCardImageFile();
+		
+		card.setCardImage(ImageFileUpload.fileUpload(cardImageMap));
 		
 		accountingService.addCard(card);
 	}
@@ -336,17 +343,32 @@ public class AccountingController {
 	public void modifyCard(@RequestBody Card card) throws Exception{
 		
 		System.out.println("/accounting/modifyCard");
+		System.out.println("들어론 카드 정보 :: "+card);
+		System.out.println(card.getCardImageFile());
+		Map<String, Object> cardImageMap = card.getCardImageFile();
 		
+		card.setCardImage(ImageFileUpload.fileUpload(cardImageMap));
 		accountingService.modifyCard(card);
 	}
 	
 	//카드 사용상태 수정
 	@RequestMapping(value = "/accounting/convertCardUsageStatus", method = RequestMethod.POST)
-	public void convertCardUsageStatus(@RequestBody Card card) throws Exception{
+	public void convertCardUsageStatus(@RequestBody List<Object> objectList) throws Exception{
 		
 		System.out.println("/accounting/convertCardUsageStatus");
+		System.out.println("들어온 카드 번호 :: "+objectList);
 		
-		accountingService.convertCardUsageStatus(card);
+		List<Card> cardList = new ArrayList<Card>();
+		for(int i = 0; i<objectList.size(); i++) {
+			Card card = new Card();
+			card.setCardRegNo((String)objectList.get(i));
+			card.setCardUsageStatusCodeNo("02");
+			cardList.add(card);
+		}
+		System.out.println(cardList);
+		
+		accountingService.convertCardUsageStatus(cardList);	
+		
 	}
 	
 	//카드 목록조회

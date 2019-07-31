@@ -559,7 +559,7 @@ public class AccountingDAOImplNewTest {
 			card.setCardRegNo("1020");
 			card.setCardUsageStatusCodeNo("02");
 			
-			accountingDAO.updateCardUsageStatus(card);
+//			accountingDAO.updateCardUsageStatus(card);
 			
 		}
 		

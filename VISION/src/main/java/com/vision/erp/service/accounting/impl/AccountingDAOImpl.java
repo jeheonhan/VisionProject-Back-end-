@@ -171,8 +171,10 @@ public class AccountingDAOImpl implements AccountingDAO {
 	}
 
 	@Override
-	public void updateCardUsageStatus(Card card) throws Exception {
-		sqlSession.update("CardMapper.updateCardUsageStatus", card);
+	public void updateCardUsageStatus(List<Card> cardList) throws Exception {
+		for(Card card : cardList) {
+			sqlSession.update("CardMapper.updateCardUsageStatus", card);
+		}
 	}
 
 	@Override

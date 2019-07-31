@@ -1,5 +1,7 @@
 package com.vision.erp.service.humanresource.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -215,9 +217,69 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	@Override
 	public void modifyCommuteForLeaveWorkTime(Commute commute) throws Exception {
 		
+		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    String LeaveWorkDate = format.format (System.currentTimeMillis());
+	    String currentDate = DateFormat.format(System.currentTimeMillis());
+	    
+	    
+	    WorkAttitudeCode regularTimeCode 
+	    		= humanResourceDAO.selectWorkAttitudeCodeByWorkAttitudeCodeNo("100");
+	    WorkAttitudeCode extendTimeCode
+	    		= humanResourceDAO.selectWorkAttitudeCodeByWorkAttitudeCodeNo("101");
+	    
+	    Date date = new Date();
+	    
+	    date =format.parse(currentDate+" "+regularTimeCode.getApplyStartTime()+":00");
+	    int regularStartInt = (int)(date.getTime()/1000);
+	    
+	    date = format.parse(currentDate+" "+regularTimeCode.getApplyEndTime()+":00");
+	    int regularEndInt = (int)(date.getTime()/1000);
+	    
+	    System.out.println("regularStartInt :: "+regularStartInt+" regularEndInt :: "+regularEndInt);
+	    
+	    date =format.parse(currentDate+" "+extendTimeCode.getApplyStartTime()+":00");
+	    int extendStartInt = (int)(date.getTime()/1000);
+	    
+	    date =format.parse(currentDate+" "+extendTimeCode.getApplyEndTime()+":00");
+	    int extendEndInt = (int)(date.getTime()/1000);
+	    	   
+	    int intGoToWork = (int) (format.parse(commute.getGoToWorkTime()).getTime()/1000);
+	    int intLeaveWork = (int)(new Date().getTime()/1000);
+	
+	    int regularDutyHours=0;
+	    int extendDutyHours=0;
+	    if(intGoToWork - regularStartInt < 0) {
+	    	if((regularEndInt-regularStartInt) < (intLeaveWork-regularStartInt)) {
+	    		 regularDutyHours = regularEndInt - regularStartInt;
+	    		 extendDutyHours = intLeaveWork - regularEndInt;
+	    	}else {
+	    		 regularDutyHours = intLeaveWork - regularStartInt;
+	    	}
+	    }else {
+	    	if(regularEndInt-intGoToWork < intLeaveWork-intGoToWork) {
+	    		 regularDutyHours = regularEndInt-intGoToWork;
+	    		 extendDutyHours = intLeaveWork - regularEndInt;
+	    	}else {
+	    		 regularDutyHours = intLeaveWork - intGoToWork; 
+	    	}
+	    }
+	    
+	    System.out.println("regularDutyHours :: "+(int)(Math.ceil((double)regularDutyHours/60))+" extendDutyHours :: "+extendDutyHours/60);
+	    
+	    DutyHours dutyHours = new DutyHours();
+	    dutyHours.setEmployeeNo(commute.getEmployeeNo());
+	    dutyHours.setExtendWorkTime(Integer.toString((int)(Math.ceil((double)extendDutyHours/60))));
+	    dutyHours.setRegularWorkTime(Integer.toString((int)(Math.ceil((double)regularDutyHours/60))));
+	    dutyHours.setWorkDate(commute.getCommuteDate());
+	    
+	    humanResourceDAO.insertDutyHours(dutyHours);
+	    
+	    System.out.println("dutyHours "+dutyHours);
+	    
+		commute.setLeaveWorkTime(LeaveWorkDate);
 		
-		
-		//humanResourceDAO.updateCommuteForLeaveWorkTime(commute);
+		humanResourceDAO.updateCommuteForLeaveWorkTime(commute);
 	}
 
 	@Override

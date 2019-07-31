@@ -142,8 +142,14 @@
 		  <where>
 		  	hr.ACCOUNT_REG_NO 	= 	a.ACCOUNT_REG_NO
 		  	<if test="searchKeyword != null">
-		   AND	EMPLOYEE_NO 	LIKE ('%'||#{searchKeyword}||'%')
-		    OR	EMPLOYEE_NAME	LIKE ('%'||#{searchKeyword}||'%')
+		   AND	hr.EMPLOYEE_NO 	LIKE ('%'||#{searchKeyword}||'%')
+		    OR	hr.EMPLOYEE_NAME	LIKE ('%'||#{searchKeyword}||'%')
+		  	</if>
+		  	<if test='searchCondition == null or searchCondition == "01"'>
+		  	AND	hr.RESIGN_CODE	IN ('N')
+		  	</if>
+		  	<if test='searchCondition != null and searchCondition == "02"'>
+		   AND	hr.RESIGN_CODE	IN ('Y')
 		  	</if>
 		  </where>
 	</select>

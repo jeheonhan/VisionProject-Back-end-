@@ -1,7 +1,9 @@
 package com.vision.erp.web.humanresource;
 
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -303,9 +305,7 @@ public class HumanResourceController {
 	public void updateLeaveWorkTime(@RequestBody Commute commute) throws Exception{
 		System.out.println("/hr/updateLeaveWorkTime");
 		
-		SimpleDateFormat format = new SimpleDateFormat ("YYYY-MM-dd HH:mm:ss");
-	    String date = format.format (System.currentTimeMillis());
-		commute.setLeaveWorkTime(date);
+		
 		
 		humanResourceService.modifyCommuteForLeaveWorkTime(commute);
 	}

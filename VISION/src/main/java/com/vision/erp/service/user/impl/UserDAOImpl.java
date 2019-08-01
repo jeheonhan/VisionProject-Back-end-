@@ -38,9 +38,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception {
+	public User proofMySelfForPassword1(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("UserMapper.proofMySelfForPassword1",hrcInfo);
+		return sqlSession.selectOne("UserMapper.proofMySelfForPassword1",map);
 	}
 	
 	@Override
@@ -50,9 +50,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User proofMySelfForPassword2(Branch branch) throws Exception {
+	public User proofMySelfForPassword2(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("UserMapper.proofMySelfForPassword2",branch);
+		return sqlSession.selectOne("UserMapper.proofMySelfForPassword2",map);
 	}
 	
 	

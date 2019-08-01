@@ -23,7 +23,7 @@ public class BranchServiceImpl implements BranchService{
 		
 		branchDAO.insertDailySales(salesProductList);
 		
-		salesProductList = branchDAO.selectDailySalesDetail(salesProductList.get(1).getBranchNo(), salesProductList.get(1).getSalesDate());
+		salesProductList = branchDAO.selectDailySalesDetail(salesProductList.get(0).getBranchNo(), salesProductList.get(0).getSalesDate());
 		
 		return salesProductList;
 		

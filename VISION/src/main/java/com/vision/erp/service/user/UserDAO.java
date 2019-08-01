@@ -25,12 +25,14 @@ public interface UserDAO {
 	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
 
 	//인증
-	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
+//	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
+	public User proofMySelfForPassword1(Map<String, String> map) throws Exception;
 
 	//인증
 	public User proofMySelfForId2(Branch branch) throws Exception;
 
 	//인증
-	public User proofMySelfForPassword2(Branch branch) throws Exception;
+//	public User proofMySelfForPassword2(Branch branch) throws Exception;
+	public User proofMySelfForPassword2(Map<String, String> map) throws Exception;
 
 }

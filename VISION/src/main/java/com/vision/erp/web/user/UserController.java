@@ -1,6 +1,7 @@
 package com.vision.erp.web.user;
 
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vision.erp.common.SendSMS;
 import com.vision.erp.service.domain.Branch;
 import com.vision.erp.service.domain.HumanResourceCard;
+import com.vision.erp.service.domain.SMS;
 import com.vision.erp.service.domain.User;
 import com.vision.erp.service.user.UserService;
 
@@ -49,31 +52,147 @@ public class UserController {
 	}
 
 	//사원아이디찾기
-	@RequestMapping(value="/user/proofMySelfForId1",method=RequestMethod.POST)
-	public User proofMySelfForId1(@RequestBody HumanResourceCard hrc) throws Exception{
-
-		return userService.proofMySelfForId1(hrc);
-	}
+//	@RequestMapping(value="/user/proofMySelfForId1",method=RequestMethod.POST)
+//	public User proofMySelfForId1(@RequestBody HumanResourceCard hrc) throws Exception{
+//		
+//		User user = userService.proofMySelfForId1(hrc);
+//		if( user != null) {
+//			return user;
+//		}else {
+//			return new User();
+//		}
+//	}
+	
+	//Test 아이디찾기
+		@RequestMapping(value="/user/forgotId",method=RequestMethod.POST)
+		public User test(@RequestBody Map<String, String> map) throws Exception{
+			
+			HumanResourceCard humanResourceCard = new HumanResourceCard();
+			Branch branch = new Branch();
+			
+			SendSMS sendSMS = SendSMS.getSendSMSInstance();
+			SMS sms = new SMS();
+			sms.setSender("010-3739-1105");
+			sms.setReciever(map.get("phone").replace("-", ""));
+			
+			String message = "";
+			
+			humanResourceCard.setEmployeeName(map.get("name"));
+			humanResourceCard.setEmployeePhone(map.get("phone"));
+			branch.setBranchManagerName(map.get("name"));
+			branch.setBranchManagerPhone(map.get("phone"));
+			
+			User user = userService.proofMySelfForId1(humanResourceCard);
+			if( user != null) {
+				message = "고객님의 아이디는 "+user.getUserId()+"입니다.";
+				sms.setContent(message);
+				sendSMS.sendSMS(sms);
+				return user;
+			}else {
+				user = userService.proofMySelfForId2(branch);
+				if( user != null) {
+					message = "고객님의 아이디는 "+user.getUserId()+"입니다.";
+					sms.setContent(message);
+					sendSMS.sendSMS(sms);
+					return user;
+				}else {
+					return new User();
+				}
+			}
+		}
 
 	//점장아이디찾기
-	@RequestMapping(value="/user/proofMySelfForId2",method=RequestMethod.POST)
-	public User proofMySelfForId2(@RequestBody Branch branch) throws Exception{
+//	@RequestMapping(value="/user/proofMySelfForId2",method=RequestMethod.POST)
+//	public User proofMySelfForId2(@RequestBody Branch branch) throws Exception{
+//
+//		User user = userService.proofMySelfForId2(branch);
+//		if( user != null) {
+//			return user;
+//		}else {
+//			return new User();
+//		}
+//	}
 
-		return userService.proofMySelfForId2(branch);
+//	//사원비밀번호찾기
+//	@RequestMapping(value="/user/proofMySelfForPassword1",method=RequestMethod.POST)
+//	public User proofMySelfForPassword1(@RequestBody HumanResourceCard hrc) throws Exception{
+//
+//		User user = userService.proofMySelfForPassword1(hrc);
+//		if( user != null) {
+//			return user;
+//		}else {
+//			return new User();
+//		}
+//	}
+//
+//	//점장비밀번호찾기
+//	@RequestMapping(value="/user/proofMySelfForPassword2",method=RequestMethod.POST)
+//	public User proofMySelfForPassword2(@RequestBody Branch branch) throws Exception{
+//
+//		User user = userService.proofMySelfForPassword2(branch);
+//		if( user != null) {
+//			return user;
+//		}else {
+//			return new User();
+//		}
+//	}
+	
+	//Test 비밀번호 찾기
+	@RequestMapping(value="/user/forgotPassword",method=RequestMethod.POST)
+	public boolean proofMySelfForPassword1(@RequestBody Map<String, String> map) throws Exception{
+
+		User user = userService.proofMySelfForPassword1(map);
+		if(user != null) {
+			return true;
+		}else {
+			user = userService.proofMySelfForPassword2(map);
+			if(user != null) {
+				return true;
+			}else {
+				return false;
+			}
+		}
 	}
-
-	//사원비밀번호찾기
-	@RequestMapping(value="/user/proofMySelfForPassword1",method=RequestMethod.POST)
-	public User proofMySelfForPassword1(@RequestBody HumanResourceCard hrc) throws Exception{
-
-		return userService.proofMySelfForPassword1(hrc);
-	}
-
-	//점장비밀번호찾기
-	@RequestMapping(value="/user/proofMySelfForPassword2",method=RequestMethod.POST)
-	public User proofMySelfForPassword2(@RequestBody Branch branch) throws Exception{
-
-		return userService.proofMySelfForPassword2(branch);
+	
+	@RequestMapping(value = "/user/getIdentifyCode", method=RequestMethod.POST)
+	public StringBuffer getIdentifyCode(@RequestBody Map<String, String> map) throws Exception{
+		
+		Random random = new Random();
+		StringBuffer buf = new StringBuffer();
+		for(int i = 0; i<5; i++) {
+			if(random.nextBoolean()) {
+				buf.append((char)((int)(random.nextInt(26))+65));
+			}else {
+				buf.append((random.nextInt(10)));
+			}
+		}
+		
+		System.out.println(buf);
+		
+		SendSMS sendSMS = SendSMS.getSendSMSInstance();
+		SMS sms = new SMS();
+		sms.setSender("010-3739-1105");
+		sms.setReciever(map.get("phone").replace("-", ""));
+		
+		String message = "";
+		
+		User user = userService.proofMySelfForPassword1(map);
+		if(user != null) {
+			message = "고객님의 인증번호는 ["+buf+"]입니다. 올바르게 입력하세요.";
+			sms.setContent(message);
+			sendSMS.sendSMS(sms);
+			return buf;
+		}else {
+			user = userService.proofMySelfForPassword2(map);
+			if(user != null) {
+				message = "고객님의 인증번호는 ["+buf+"]입니다. 올바르게 입력하세요.";
+				sms.setContent(message);
+				sendSMS.sendSMS(sms);
+				return buf;
+			}else {
+				return null;
+			}
+		}
 	}
 
 	//내정보보기
@@ -83,8 +202,8 @@ public class UserController {
 	}
 
 	//비밀번호변경
-	@RequestMapping(value="/user/updatePassword",method=RequestMethod.POST)
-	public void updatePassword(@RequestBody User user) throws Exception{
+	@RequestMapping(value="/user/modifyPassword",method=RequestMethod.POST)
+	public void modifyPassword(@RequestBody User user) throws Exception{
 		userService.updatePassword(user);
 	}
 

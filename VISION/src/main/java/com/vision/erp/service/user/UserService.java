@@ -22,10 +22,12 @@ public interface UserService {
 
 	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
 
-	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
+//	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
+	public User proofMySelfForPassword1(Map<String, String> map) throws Exception;
 
 	public User proofMySelfForId2(Branch branch) throws Exception;
 
-	public User proofMySelfForPassword2(Branch branch) throws Exception;
+//	public User proofMySelfForPassword2(Branch branch) throws Exception;
+	public User proofMySelfForPassword2(Map<String, String> map) throws Exception;
 
 }

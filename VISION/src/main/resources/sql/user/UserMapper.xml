@@ -88,29 +88,45 @@
 	<select 	id="proofMySelfForId1"	parameterType="humanResourceCard"	resultMap="userSelectMap">
 		SELECT	USER_ID
 		  FROM	users join human_resource_card on users.employee_no = human_resource_card.employee_no
-		  WHERE  EMPLOYEE_NAME = #{employeeName} AND
-		  		 EMPLOYEE_PHONE = #{employeePhone}
+		  WHERE  human_resource_card.EMPLOYEE_NAME = #{employeeName} AND
+		  		 human_resource_card.EMPLOYEE_PHONE = #{employeePhone}
 	 </select>
 	 
-	 <select 	id="proofMySelfForPassword1"	   parameterType="humanResourceCard"	  resultMap="userSelectMap">
+	 <!-- <select 	id="proofMySelfForPassword1"	   parameterType="humanResourceCard"	  resultMap="userSelectMap">
 		SELECT  PASSWORD
 		  FROM	users join human_resource_card on users.employee_no = human_resource_card.employee_no
-		 WHERE  EMPLOYEE_NAME = #{employeeName} AND
-		  		 EMPLOYEE_PHONE = #{employeePhone}
+		 WHERE  human_resource_card.EMPLOYEE_NAME = #{employeeName} AND
+		  		human_resource_card.EMPLOYEE_PHONE = #{employeePhone}
+	 </select> -->
+	 
+	 <select 	id="proofMySelfForPassword1"	   parameterType="map"	  resultMap="userSelectMap">
+		SELECT  PASSWORD
+		  FROM	users join human_resource_card on users.employee_no = human_resource_card.employee_no
+		 WHERE  human_resource_card.EMPLOYEE_NAME = #{name} AND
+		  		human_resource_card.EMPLOYEE_PHONE = #{phone} AND
+		  		users.user_id = #{id}
 	 </select>
 	 
 	 <select 	id="proofMySelfForId2"	parameterType="branch"	resultMap="userSelectMap">
 		SELECT	USER_ID
 		  FROM	users join branch on users.branch_no = branch.branch_No
-		  WHERE  BRANCH_MANAGER_NAME = #{branchManagerName} AND
-		  		 BRANCH_MANAGER_PHONE = #{branchManagerPhone}
+		  WHERE  branch.BRANCH_MANAGER_NAME = #{branchManagerName} AND
+		  		 branch.BRANCH_MANAGER_PHONE = #{branchManagerPhone}
 	 </select>
 	 
-	 <select 	id="proofMySelfForPassword2"	   parameterType="branch"	  resultMap="userSelectMap">
+	<!--  <select 	id="proofMySelfForPassword2"	   parameterType="branch"	  resultMap="userSelectMap">
 		SELECT  PASSWORD
 		  FROM	users join branch on users.branch_no = branch.branch_No
-		 WHERE  BRANCH_MANAGER_NAME = #{branchManagerName} AND
-		  		 BRANCH_MANAGER_PHONE = #{branchManagerPhone}
+		 WHERE  branch.BRANCH_MANAGER_NAME = #{branchManagerName} AND
+		  		branch.BRANCH_MANAGER_PHONE = #{branchManagerPhone}
+	 </select> -->
+	 
+	 <select 	id="proofMySelfForPassword2"	   parameterType="map"	  resultMap="userSelectMap">
+		SELECT  PASSWORD
+		  FROM	users join branch on users.branch_no = branch.branch_No
+		 WHERE  branch.BRANCH_MANAGER_NAME = #{name} AND
+		  		branch.BRANCH_MANAGER_PHONE = #{phone} AND
+		  		users.user_id = #{id}
 	 </select>
 	
 	

@@ -87,9 +87,9 @@ public class UserServiceImpl implements UserService {
 	}
 	//사원비밀번호확인
 	@Override
-	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception {
+	public User proofMySelfForPassword1(Map<String, String> map) throws Exception {
 		
-		return userDAO.proofMySelfForPassword1(hrcInfo);
+		return userDAO.proofMySelfForPassword1(map);
 	}
 	//점장아이디왁인
 	@Override
@@ -99,9 +99,9 @@ public class UserServiceImpl implements UserService {
 	}
 	//점장비밀번호확인
 	@Override
-	public User proofMySelfForPassword2(Branch branch) throws Exception {
+	public User proofMySelfForPassword2(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
-		return userDAO.proofMySelfForPassword2(branch);
+		return userDAO.proofMySelfForPassword2(map);
 	}
 	@Override
 	public User selectUser(User user) throws Exception {

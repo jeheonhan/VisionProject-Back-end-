@@ -76,8 +76,8 @@ public class AccountingServiceImpl implements AccountingService{
 
 
 	@Override
-	public void convertAccountUsageStatus(Account account) throws Exception {
-		accountingDAO.updateAccountUsageStatus(account);
+	public void convertAccountUsageStatus(List<Account> accountList) throws Exception {
+		accountingDAO.updateAccountUsageStatus(accountList);
 	}
 
 

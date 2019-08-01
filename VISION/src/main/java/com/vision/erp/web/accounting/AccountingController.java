@@ -134,11 +134,19 @@ public class AccountingController {
 	
 	//계좌 사용상태 수정
 	@RequestMapping(value = "/accounting/convertAccountUsageStatus", method = RequestMethod.POST)
-	public void convertAccountUsageStatus(@RequestBody Account account) throws Exception{
+	public void convertAccountUsageStatus(@RequestBody List<Object> objectList) throws Exception{
 		
 		System.out.println("/accounting/convertAccountUsageStatus");
+		System.out.println("들어온 거래처 번호 :: "+objectList);
 		
-		accountingService.convertAccountUsageStatus(account);
+		List<Account> accountList = new ArrayList<Account>();
+		for(int i = 0; i<objectList.size(); i++) {
+			Account account = new Account();
+			account.setAccountRegNo((String)objectList.get(i));
+			account.setAccountUsageStatusCodeNo("02");
+			accountList.add(account);
+		}
+		accountingService.convertAccountUsageStatus(accountList);
 	}
 	
 	//계좌 목록조회
@@ -264,6 +272,10 @@ public class AccountingController {
 	public void addStatement(@RequestBody Statement statement) throws Exception{
 		
 		System.out.println("/accounting/addStatement");
+		
+		//특수문자 변환
+		String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]"; 
+		statement.setTradeAmount(statement.getTradeAmount().replaceAll(match, ""));
 		
 		accountingService.addStatement(statement);
 	}

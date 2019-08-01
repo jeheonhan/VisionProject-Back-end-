@@ -28,7 +28,7 @@ public interface AccountingService {
 	
 	public void modifyAccount(Account account) throws Exception;
 	
-	public void convertAccountUsageStatus(Account account) throws Exception;
+	public void convertAccountUsageStatus(List<Account> accountList) throws Exception;
 	
 	public List<Account> getAccountList(Search search) throws Exception;
 	

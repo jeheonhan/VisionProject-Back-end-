@@ -93,9 +93,7 @@
 		FROM
 			account
 		<where>
-			<if test="usageCondition != null and usageCondition !=''">
-				AND	usage_status_code_no = #{usageCondition}
-			</if>
+			usage_status_code_no = '01'
 			<if test="searchCondition != null and searchCondition != ''">
 				AND account_category_code_no = #{searchCondition}
 			</if>

@@ -28,7 +28,7 @@ public interface AccountingDAO {
 	
 	public void updateAccount(Account account) throws Exception;
 	
-	public void updateAccountUsageStatus(Account account) throws Exception;
+	public void updateAccountUsageStatus(List<Account> accountList) throws Exception;
 	
 	public List<Account> selectAccountList(Search search) throws Exception;
 	

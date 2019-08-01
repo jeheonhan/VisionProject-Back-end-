@@ -234,7 +234,7 @@ public class AccountingDAOImplNewTest {
 			account.setAccountRegNo("1021");
 			
 			//Update
-			accountingDAO.updateAccountUsageStatus(account);
+//			accountingDAO.updateAccountUsageStatus(account);
 			
 		}
 		

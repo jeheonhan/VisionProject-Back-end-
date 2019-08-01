@@ -71,8 +71,10 @@ public class AccountingDAOImpl implements AccountingDAO {
 	}
 
 	@Override
-	public void updateAccountUsageStatus(Account account) throws Exception {
-		sqlSession.update("AccountMapper.updateAccountUsageStatus", account);
+	public void updateAccountUsageStatus(List<Account> accountList) throws Exception {
+		for(Account account: accountList) {
+			sqlSession.update("AccountMapper.updateAccountUsageStatus", account);
+		}
 	}
 
 	@Override
@@ -196,7 +198,6 @@ public class AccountingDAOImpl implements AccountingDAO {
 	public List<SalaryBook> selectAnalyzeRankSalary(String salaryDate) throws Exception {
 		return sqlSession.selectList("SalaryBookMapper.analyzeRankSalary", salaryDate);
 	}
-
 
 
 }

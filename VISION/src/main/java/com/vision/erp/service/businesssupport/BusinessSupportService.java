@@ -14,7 +14,7 @@ public interface BusinessSupportService {
 	
 	public List<Branch> getBranchList(Search search) throws Exception;
 	
-	public void modifyBranch(Branch branch) throws Exception;
+	public Branch modifyBranch(Branch branch) throws Exception;
 	
 	public void convertBranchUsageStatus(Branch branch) throws Exception;
 	

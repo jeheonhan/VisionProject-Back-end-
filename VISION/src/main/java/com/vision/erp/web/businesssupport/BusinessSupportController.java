@@ -42,9 +42,7 @@ public class BusinessSupportController {
 	@RequestMapping(value = "/bs/modifyBranch", method = RequestMethod.POST)
 	public Branch modifyBranch(@RequestBody Branch branch) throws Exception {
 		
-		businessSupportService.modifyBranch(branch);
-		
-		return businessSupportService.getBranchDetail(branch.getBranchNo());
+		return businessSupportService.modifyBranch(branch);
 	}
 	
 	@RequestMapping(value = "/bs/convertBranchUsageStatus", method = RequestMethod.POST)

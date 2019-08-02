@@ -42,9 +42,7 @@ public class NoticeController {
 	@RequestMapping(value = "/notice/modifyNotice", method = RequestMethod.POST)
 	public Notice modifyNotice(@RequestBody Notice notice) throws Exception {
 		
-		noticeService.modifyNotice(notice);
-		
-		return noticeService.getNoticeDetail(notice.getNoticeNo());
+		return noticeService.modifyNotice(notice);
 	}
 	
 	@RequestMapping(value = "/notice/convertNoticeUsageStatus", method = RequestMethod.POST)

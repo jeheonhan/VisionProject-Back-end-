@@ -14,7 +14,7 @@ public interface BranchService {
 	
 	public List<BranchDailySales> getBranchDailySalesList(String branchNo) throws Exception;
 	
-	public void modifySalesProduct(List<SalesProduct> salesProductList) throws Exception;
+	public List<SalesProduct> modifySalesProduct(List<SalesProduct> salesProductList) throws Exception;
 	
 	public List<SalesMenu> getSalesMenuList() throws Exception;
 

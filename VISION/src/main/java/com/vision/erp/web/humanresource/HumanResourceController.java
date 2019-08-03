@@ -103,6 +103,16 @@ public class HumanResourceController {
 	public void modifyHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("hr/modifyHumanResourceCard");
 		
+		Map<String, Object> profileMap = humanResourceCard.getProfileFile();
+		Map<String, Object> signatureMap = humanResourceCard.getSignatureFile();
+		
+		if(profileMap != null) {
+			humanResourceCard.setProfileImage(ImageFileUpload.fileUpload(profileMap));
+		}
+		if(signatureMap != null) {
+			humanResourceCard.setSignatureImage(ImageFileUpload.fileUpload(signatureMap));
+		}
+		
 		humanResourceService.modifyHumanResourceCard(humanResourceCard);
 		
 	}

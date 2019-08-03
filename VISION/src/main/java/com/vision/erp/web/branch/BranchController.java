@@ -24,22 +24,7 @@ public class BranchController {
 	@RequestMapping(value = "/branch/addDailySales", method = RequestMethod.POST)
 	public List<SalesProduct> addDailySales(@RequestBody List<SalesProduct> salesProductList) throws Exception {
 		
-		System.out.println("List.get 실행 전");
-		
-		String branchNo = null;
-		String salesDate = null;
-		
-		branchNo = salesProductList.get(0).getBranchNo();
-		salesDate = salesProductList.get(0).getSalesDate();
-		
-		System.out.println("List.get 실행 후");
-		
-		if(branchService.getBranchDailySalesDetail(branchNo, salesDate).isEmpty() ) {			
-			salesProductList = branchService.addDailySales(salesProductList);			
-			return salesProductList;
-		}else {
-			return null;
-		}
+		return branchService.addDailySales(salesProductList);
 		
 	}
 	
@@ -71,18 +56,8 @@ public class BranchController {
 	
 	@RequestMapping(value = "/branch/modifySalesProduct", method = RequestMethod.POST)
 	public List<SalesProduct> modifySalesProduct(@RequestBody List<SalesProduct> salesProductList) throws Exception {
-		
-		String branchNo = salesProductList.get(1).getBranchNo();
-		String salesDate = salesProductList.get(1).getSalesDate();
-		
-		if(branchService.getBranchDailySalesDetail(branchNo, salesDate).isEmpty() ) {			
-			branchService.modifySalesProduct(salesProductList);
-			salesProductList = branchService.getBranchDailySalesDetail(branchNo, salesDate);
-			return salesProductList;
 			
-		}else {
-			return null;
-		}
+			return branchService.modifySalesProduct(salesProductList);
 		
 	}
 

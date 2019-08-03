@@ -461,7 +461,7 @@ public class AccountingDAOImplNewTest {
 			statement.setStatementNo("1020");
 			statement.setStatementUsageStatusCodeNo("02");
 			
-			accountingDAO.updateStatementUsageStatus(statement);
+//			accountingDAO.updateStatementUsageStatus(statement);
 		}
 	
 //////////////////////////////////Card/////////////////////////////////

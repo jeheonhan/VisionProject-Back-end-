@@ -55,8 +55,10 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void modifyNotice(Notice notice) throws Exception {		
+	public Notice modifyNotice(Notice notice) throws Exception {		
 		noticeDAO.updateNotice(notice);
+		
+		return noticeDAO.selectNoticeDetail(notice.getNoticeNo());
 	}
 
 	@Override

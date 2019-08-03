@@ -19,13 +19,20 @@ public class BranchServiceImpl implements BranchService{
 	private BranchDAO branchDAO;
 
 	@Override
-	public List<SalesProduct> addDailySales(List<SalesProduct> salesProductList) throws Exception {		
+	public List<SalesProduct> addDailySales(List<SalesProduct> salesProductList) throws Exception {	
 		
-		branchDAO.insertDailySales(salesProductList);
+		String branchNo = null;
+		String salesDate = null;
 		
-		salesProductList = branchDAO.selectDailySalesDetail(salesProductList.get(0).getBranchNo(), salesProductList.get(0).getSalesDate());
+		branchNo = salesProductList.get(0).getBranchNo();
+		salesDate = salesProductList.get(0).getSalesDate();
 		
-		return salesProductList;
+		if(branchDAO.selectDailySalesDetail(branchNo, salesDate).isEmpty() ) {			
+			branchDAO.insertDailySales(salesProductList);
+			return salesProductList = branchDAO.selectDailySalesDetail(salesProductList.get(0).getBranchNo(), salesProductList.get(0).getSalesDate());
+		}else {
+			return null;
+		}
 		
 	}
 
@@ -41,8 +48,19 @@ public class BranchServiceImpl implements BranchService{
 	}
 
 	@Override
-	public void modifySalesProduct(List<SalesProduct> salesProductList) throws Exception {
-		branchDAO.updateSalesProduct(salesProductList);
+	public List<SalesProduct> modifySalesProduct(List<SalesProduct> salesProductList) throws Exception {
+		
+		String branchNo = salesProductList.get(0).getBranchNo();
+		String salesDate = salesProductList.get(0).getSalesDate();
+		
+		if(!branchDAO.selectDailySalesDetail(branchNo, salesDate).isEmpty() ) {			
+			branchDAO.updateSalesProduct(salesProductList);
+			salesProductList = branchDAO.selectDailySalesDetail(branchNo, salesDate);
+			return salesProductList;
+			
+		}else {
+			return null;
+		}
 	}
 
 	@Override

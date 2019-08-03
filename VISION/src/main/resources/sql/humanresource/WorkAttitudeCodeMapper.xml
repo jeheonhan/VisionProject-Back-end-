@@ -80,8 +80,8 @@
 	   			</when>
 	   		</choose>
 	   		<if test="searchKeyword != null">
-	   		AND	WORK_ATTITUDE_CODE		LIKE ('%'||#{searchKeyword}||'%')
-	   		 OR	WORK_ATTITUDE_CODE_NAME	LIKE ('%'||#{searchKeyword}||'%')	
+	   		AND	(WORK_ATTITUDE_CODE		LIKE ('%'||#{searchKeyword}||'%')
+	   		 OR	WORK_ATTITUDE_CODE_NAME	LIKE ('%'||#{searchKeyword}||'%'))	
 	   		</if>
 	   </where>
 	</select>

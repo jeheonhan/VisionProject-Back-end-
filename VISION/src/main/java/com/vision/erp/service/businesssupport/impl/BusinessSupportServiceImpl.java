@@ -88,8 +88,9 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 	}
 
 	@Override
-	public void modifyBranch(Branch branch) throws Exception {
-		businessSupportDAO.updateBranch(branch);		
+	public Branch modifyBranch(Branch branch) throws Exception {
+		businessSupportDAO.updateBranch(branch);
+		return businessSupportDAO.selectBranchDetail(branch.getBranchNo());
 	}
 
 	@Override

@@ -16,6 +16,7 @@
 		<result property="orderToVendorProductStatusCodeNo"         column="ORDER_VENDOR_PROD_STATUS_CODE" jdbcType="VARCHAR" />
 		<result property="orderToVendorProductStatusCodeName"       column="ORD_VEN_PROD_STATUS_CODE_NAME" jdbcType="VARCHAR" />
 		<result property="productName"                            column="PRODUCT_NAME" jdbcType="VARCHAR" />
+		<result property="vendorName"                            column="VENDOR_NAME" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<insert id="insertOrderToVenItem"          parameterType="orderToVendorProduct">
@@ -28,7 +29,8 @@
 		PURCHASE_PRICE,
 		QUANTITY,
 		AMOUNT,
-		ORDER_VENDOR_PROD_STATUS_CODE
+		ORDER_VENDOR_PROD_STATUS_CODE,
+		VENDOR_NAME
 		)
 		VALUES
 		(
@@ -38,7 +40,8 @@
 		#{purchasePrice},
 		#{quantity},
 		#{amount},
-		#{orderToVendorProductStatusCodeNo}
+		#{orderToVendorProductStatusCodeNo},
+		#{vendorName}
 		)
 	</insert>
 

@@ -22,7 +22,7 @@ public interface ProductionManagementServicerudwn {
 	//물품목록보여줌
 	public List<Product> selectProductList() throws Exception;
 
-	//물품상세보기(내가사용하는거아님)
+	//물품상세보기
 	public Product selectDetailProduct(String productNo) throws Exception;
 
 	//발주목록

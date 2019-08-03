@@ -1,6 +1,6 @@
 package com.vision.erp.web.productionmanagementrudwn;
 
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,21 +8,15 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.annotations.Delete;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.vision.erp.common.Search;
 import com.vision.erp.service.accounting.AccountingService;
 import com.vision.erp.service.domain.Account;
@@ -31,7 +25,6 @@ import com.vision.erp.service.domain.OrderToVendor;
 import com.vision.erp.service.domain.OrderToVendorProduct;
 import com.vision.erp.service.domain.Product;
 import com.vision.erp.service.domain.Statement;
-import com.vision.erp.service.domain.User;
 import com.vision.erp.service.domain.Vendor;
 import com.vision.erp.service.productionmanagement.rudwn.ProductionManagementServicerudwn;
 
@@ -47,55 +40,34 @@ public class ProductionManagementControllerrudwn {
 	private AccountingService accountingService;
 
 	//얘는 발주요청할때 쓰는거임.
-	
 	//ResponseEntity<T> 상태값200이나 400 등 헤더에 보내준다
 	@RequestMapping(value="/pm/addOrderPreparing",method=RequestMethod.GET)
 	public List<Account> addOrderFromBranchPreparing() throws Exception{
 		
 		List<Account> list = new ArrayList<Account>();
-		
-					 Search search = new Search();
+		Search search = new Search();
 	
-					 search.setSearchCondition("01");
-					 list =  accountingService.getAccountList(search);
+		search.setSearchCondition("01");
+		list =  accountingService.getAccountList(search);
 
 		return list;
 	}
-//	@GetMapping(value="/pm/addOrderPreparing")
-//	public ResponseEntity<JSONResult> addOrderFromBranchPreparing() throws Exception{
-//		
-//		List<Account> list = new ArrayList<Account>();
-//		
-//		Search search = new Search();
-//		
-//		search.setSearchCondition("01");
-//		list =  accountingService.getAccountList(search);
-//		
-//		return list != null ? ResponseEntity.status(HttpStatus.OK).body(JSONResult.success("출력 성공", list))
-//				:ResponseEntity.status(HttpStatus.OK).body(JSONResult.fail("출력 성공"));
-//	}
-	
-	//물품등록할떄 
-		@RequestMapping(value="/pm/addProductPreparing",method=RequestMethod.GET)
-		public List<Vendor> addProductPreparing() throws Exception{
-			System.out.println("물품등록할때 쓰는겅ㅁ");
-			List<Vendor> list = new ArrayList<Vendor>();
-			
-						 Search search = new Search();
-		
-						 search.setSearchCondition("01");
-						 list =  accountingService.getVendorList(search);
 
-			return list;
+	//물품등록할떄 
+	@RequestMapping(value="/pm/addProductPreparing",method=RequestMethod.GET)
+	public List<Vendor> addProductPreparing() throws Exception{
+		
+		List<Vendor> list = new ArrayList<Vendor>();
+		Search search = new Search();
+		
+		search.setSearchCondition("01");
+	    list =  accountingService.getVendorList(search);
+
+		return list;
 		}
 	
-	
-
 	@RequestMapping(value = "/pm/addProduct",method=RequestMethod.POST)
 	public void addProduct(@RequestBody Product product)throws Exception{
-		System.out.println("왔냐.");
-		System.out.println("product ::" + product);
-		product.setProductUsageStatusCodeNo("01");
 		productionManagementServicerudwn.addProduct(product);
 	}
 
@@ -111,14 +83,9 @@ public class ProductionManagementControllerrudwn {
 
 	@RequestMapping(value = "/pm/selectProductList",method=RequestMethod.GET)
 	public List<Product> selectProductList() throws Exception{
-		System.out.println("들어와라 셀렉트프로덕트리스트");
+		
 		List<Product> list 
 		= (List<Product>)productionManagementServicerudwn.selectProductList();
-
-		for(int i = 0; i<list.size(); i++) {
-			Product product = list.get(i);
-			System.out.println(product);
-		}
 
 		return list;
 	}
@@ -126,20 +93,16 @@ public class ProductionManagementControllerrudwn {
 
 	@RequestMapping(value = "/pm/selectOrderToVendorList",method=RequestMethod.GET)
 	public List<OrderToVendor> selectOrderToVendorList() throws Exception{
+		
 		List<OrderToVendor> list 
 		= (List<OrderToVendor>)productionManagementServicerudwn.selectOrderToVendorList();
-
-		for(int i = 0; i<list.size(); i++) {
-			OrderToVendor orderToVendor = list.get(i);
-			System.out.println(orderToVendor);
-		}
 
 		return list;
 	}
 
 	@RequestMapping(value = "/pm/modifyOrderToVenCode/{statementNo}/{orderToVendorNo}",method=RequestMethod.GET)
 	public void modifyOrderToVenCode(@PathVariable(value="statementNo") String statementNo, @PathVariable String orderToVendorNo) throws Exception {
-		System.out.println("너 들어왓냐 @@@@");
+	
 		Map<String, Object> map = new HashMap<String, Object>();
 		OrderToVendor orderToVendor = new OrderToVendor();
 		Statement statement = new Statement();
@@ -147,10 +110,8 @@ public class ProductionManagementControllerrudwn {
 		
 		orderToVendorProduct.setOrderToVendorNo(orderToVendorNo);
 		orderToVendor.setOrderToVendorNo(orderToVendorNo);
-		orderToVendor.setOrderToVenStatusCodeNo("01");
 		statement.setStatementNo(statementNo);
-		statement.setStatementUsageStatusCodeNo("02");
-
+		
 		map.put("orderToVendor", orderToVendor);
 		map.put("statement", statement);
 		map.put("orderToVendorProduct", orderToVendorProduct);
@@ -158,22 +119,12 @@ public class ProductionManagementControllerrudwn {
 		productionManagementServicerudwn.modifyOrderToVenCode(map);
 	}
 
-    /**
-     * 
-     * @param orderToVendorProduct
-     * @return
-     * @throws Exception
-     */
+
 	@RequestMapping(value = "/pm/orderToVendorDetailList",method=RequestMethod.POST)
 	public List<OrderToVendorProduct> orderToVendorDetailList(@RequestBody OrderToVendorProduct orderToVendorProduct) throws Exception{
-		System.out.println("ordertovendordetailstart start start");
+
 		List<OrderToVendorProduct> list 
 		= (List<OrderToVendorProduct>)productionManagementServicerudwn.orderToVendorDetailList(orderToVendorProduct);
-
-		for(int i = 0; i<list.size(); i++) {
-			OrderToVendorProduct orderToVendorProduct1 = list.get(i);
-			System.out.println(orderToVendorProduct1);
-		}
 
 		return list;
 	}
@@ -182,7 +133,6 @@ public class ProductionManagementControllerrudwn {
 	@RequestMapping(value = "/pm/modifyOrderToVenItemCode",method=RequestMethod.POST)
 	public void modifyOrderToVenItemCode(@RequestBody OrderToVendorProduct orderToVendorProduct) throws Exception{
 
-		
 		Product product = new Product();
 
 		product.setProductNo(orderToVendorProduct.getProductNo());
@@ -192,47 +142,32 @@ public class ProductionManagementControllerrudwn {
 		map.put("product", product);
 		map.put("orderToVendorProduct", orderToVendorProduct);
 		
-		System.out.println(map.toString());
-		
 		productionManagementServicerudwn.modifyOrderToVenItemCode(map);
 	}
-
-
+	
 	@RequestMapping(value = "/pm/addOrderToVendor",method=RequestMethod.POST)
-	//@PostMapping(value = "/pm/addOrderToVendor")create
-	//DeleteMapping(value = "/pm/addOrderToVendor")삭제
 	public void addOrderToVendor(@RequestBody InteProduction inteProduction) throws Exception {
-
-		SimpleDateFormat format = new SimpleDateFormat ( "yyyy/MM/dd");
-		String date = format.format (System.currentTimeMillis());
-
+		
+		
 		OrderToVendor orderToVendor = new OrderToVendor();
 		Statement statement = new Statement();
 		List<OrderToVendorProduct> productList = inteProduction.getOrderToVendorProduct();
-
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		//statementNo 가져와야함.
-		statement.setStatementCategoryCodeNo("02");
-		statement.setTradeDate(date);
-		//거래처명
-		statement.setTradeTargetName("양주점");
-		statement.setStatementDetail("발주");
 		statement.setTradeAmount(inteProduction.getTotalAmount());
-		statement.setAccountNo("1002384718373");
-
-
+		
 		orderToVendor.setTotalAmount(inteProduction.getTotalAmount());
-		orderToVendor.setOrderToVenStatusCodeNo("01");
 
 		map.put("statement", statement);
 		map.put("orderToVendor", orderToVendor);
 		map.put("productList", productList);
 
-		System.out.println("map.toString :: " + map.toString());
-
 		productionManagementServicerudwn.addOrderToVendor(map);
-
+	}
+	
+	@RequestMapping(value ="/pm/getProduct/{productNo}",method=RequestMethod.GET)
+	public Product getProduct(@PathVariable String productNo) throws Exception {
+		return productionManagementServicerudwn.selectDetailProduct(productNo);
 	}
 
 }

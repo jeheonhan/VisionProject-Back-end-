@@ -12,8 +12,16 @@ public class OrderToVendorProduct {
 	private String orderToVendorProductStatusCodeName;
 	private String productName;
 	private String countForcode;
+	private String vendorName;
 	
-	
+	public String getVendorName() {
+		return vendorName;
+	}
+
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
+	}
+
 	public String getProductName() {
 		return productName;
 	}
@@ -116,8 +124,10 @@ public class OrderToVendorProduct {
 				+ quantity + ", amount=" + amount + ", orderToVendorProductStatusCodeNo="
 				+ orderToVendorProductStatusCodeNo + ", orderToVendorProductStatusCodeName="
 				+ orderToVendorProductStatusCodeName + ", productName=" + productName + ", countForcode=" + countForcode
-				+ "]";
+				+ ", vendorName=" + vendorName + "]";
 	}
+
+	
 
 	
 	

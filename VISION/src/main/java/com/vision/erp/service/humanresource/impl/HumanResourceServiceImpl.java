@@ -246,6 +246,8 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	    	   
 	    int intGoToWork = (int) (format.parse(commute.getGoToWorkTime()).getTime()/1000);
 	    int intLeaveWork = (int)(new Date().getTime()/1000);
+	    
+	    System.out.println("intGoToWork :: "+intGoToWork+" intLeaveWork :: "+intLeaveWork);
 	
 	    int regularDutyHours=0;
 	    int extendDutyHours=0;
@@ -258,12 +260,23 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	    	}
 	    }else {
 	    	if(regularEndInt-intGoToWork < intLeaveWork-intGoToWork) {
-	    		 regularDutyHours = regularEndInt-intGoToWork;
+	    		 regularDutyHours = regularEndInt - intGoToWork;
 	    		 extendDutyHours = intLeaveWork - regularEndInt;
 	    	}else {
 	    		 regularDutyHours = intLeaveWork - intGoToWork; 
 	    	}
 	    }
+	    
+	    if(extendDutyHours > 0) {
+	    	WorkAttitude workAttitude = new WorkAttitude();
+	    	workAttitude.setEmployeeNo(commute.getEmployeeNo());
+	    	workAttitude.setWorkAttitudeCodeNo("101");
+	    	workAttitude.setWorkAttitudeDate(commute.getCommuteDate());
+	    	workAttitude.setWorkAttitudeTime(Integer.toString((int)(Math.ceil((double)extendDutyHours/60))));
+	    	workAttitude.setUsageStatusCodeNo("01");
+	    	humanResourceDAO.insertWorkAttitude(workAttitude);
+	    }
+	    
 	    
 	    System.out.println("regularDutyHours :: "+(int)(Math.ceil((double)regularDutyHours/60))+" extendDutyHours :: "+extendDutyHours/60);
 	    

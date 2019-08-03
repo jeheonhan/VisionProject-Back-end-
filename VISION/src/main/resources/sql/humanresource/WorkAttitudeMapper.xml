@@ -68,8 +68,8 @@
 				</when>
 			</choose>
 			<if test="searchKeyword != null">
-				 AND	vt.EMPLOYEE_NAME    LIKE ('%'||#{searchKeyword}||'%')
-             	  OR	vt.EMPLOYEE_NO		LIKE ('%'||#{searchKeyword}||'%')
+				 AND	(vt.EMPLOYEE_NAME    LIKE ('%'||#{searchKeyword}||'%')
+             	  OR	vt.EMPLOYEE_NO		LIKE ('%'||#{searchKeyword}||'%'))
 			</if>
 		</where>
 	</select>

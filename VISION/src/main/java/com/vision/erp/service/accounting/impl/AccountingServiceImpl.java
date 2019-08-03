@@ -1,5 +1,6 @@
 package com.vision.erp.service.accounting.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -118,6 +119,13 @@ public class AccountingServiceImpl implements AccountingService{
 
 	@Override
 	public void modifySalaryStatus(Salary salary) throws Exception {
+		
+		if(salary.getSalaryStatusCodeNo().equals("01")) {
+			salary.setSalaryStatusCodeNo("02");
+		}else if(salary.getSalaryStatusCodeNo().equals("02")) {
+			salary.setSalaryStatusCodeNo("03");
+		}
+		
 		accountingDAO.updateSalaryStatus(salary);
 	}
 
@@ -159,10 +167,21 @@ public class AccountingServiceImpl implements AccountingService{
 
 
 	@Override
-	public void convertStatementUsageStatus(Statement statement) throws Exception {
-		accountingDAO.updateStatementUsageStatus(statement);
+	public void convertStatementUsageStatus(List<Object> objectList) throws Exception {
+		
+		List<Statement> statementList = new ArrayList<Statement>();
+		
+		for(int i = 0; i<objectList.size(); i++) {
+			
+			Statement statement = new Statement();
+			
+			statement.setStatementNo((String)objectList.get(i));
+			statement.setStatementUsageStatusCodeNo("02");
+			statementList.add(statement);
+		}
+		
+		accountingDAO.updateStatementUsageStatusList(statementList);
 	}
-
 
 	@Override
 	public List<Statement> getStatementList(Search search) throws Exception {
@@ -216,6 +235,7 @@ public class AccountingServiceImpl implements AccountingService{
 	public List<SalaryBook> getAnalyzeRankSalary(String salaryDate) throws Exception {
 		return accountingDAO.selectAnalyzeRankSalary(salaryDate);
 	}
+
 
 	
 }

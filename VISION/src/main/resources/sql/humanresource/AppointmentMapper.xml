@@ -73,10 +73,12 @@
 	   <where>
 	   		a.EMPLOYEE_NO	=	hr.EMPLOYEE_NO
 	   		<if test="searchKeyword != null">
-	   		AND hr.EMPLOYEE_NO 		LIKE ('%'||#{searchKeyword}||'%')
-	   		 OR	hr.EMPLOYEE_NAME 	LIKE ('%'||#{searchKeyword}||'%')
+	   		
+	   		AND (hr.EMPLOYEE_NO 		LIKE ('%'||#{searchKeyword}||'%')
+	   		 OR	hr.EMPLOYEE_NAME 	LIKE ('%'||#{searchKeyword}||'%'))
 	   		</if>
 	  </where>
+	  ORDER BY APPOINTMENT_DATE DESC
 	  
 	</select>
 	

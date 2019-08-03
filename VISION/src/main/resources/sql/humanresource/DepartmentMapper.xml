@@ -38,25 +38,29 @@
 	</insert>
 	
 	<select id="selectDepartmentList" parameterType="search" resultMap="DepartmentSelectMap">
-		SELECT	DEPART_CODE_NO
-				 ,	CODE_FUNCTION('depart',DEPART_CODE_NO) AS DEPART_CODE_NAME
-				 ,	ACCESS_MENU_CODE_NO
-				 ,	CODE_FUNCTION('accessMenu',ACCESS_MENU_CODE_NO) AS ACCESS_MENU_CODE_NAME
-				 ,	USAGE_STATUS_CODE_NO
-				 ,	CODE_FUNCTION('record',USAGE_STATUS_CODE_NO) AS USAGE_STATUS_CODE_NAME
-				 ,	DEPART_INFO
-				 ,  COUNT_EMPLOYEE_FUNCTION(DEPART_CODE_NO) AS COUNT_EMPLOYEE
-		  FROM	DEPARTMENT
+		SELECT	DISTINCT
+                DEPART_CODE_NO
+				 ,	CODE_FUNCTION('depart',d.DEPART_CODE_NO) AS DEPART_CODE_NAME
+				 ,	d.ACCESS_MENU_CODE_NO
+				 ,	CODE_FUNCTION('accessMenu',d.ACCESS_MENU_CODE_NO) AS ACCESS_MENU_CODE_NAME
+				 ,	d.USAGE_STATUS_CODE_NO
+				 ,	CODE_FUNCTION('record',d.USAGE_STATUS_CODE_NO) AS USAGE_STATUS_CODE_NAME
+				 ,	d.DEPART_INFO
+				 ,  COUNT_EMPLOYEE_FUNCTION(d.DEPART_CODE_NO) AS COUNT_EMPLOYEE
+		  FROM	DEPARTMENT d, CODE c
 		<where>
-			<choose>
+				 d.DEPART_CODE_NO				=	c.CODE_NO
+			  	 AND 	c.CODE_USAGE_STATUS		=	'Y'
+			<!-- <choose>
 				<when test="searchCondition == null">
-				USAGE_STATUS_CODE_NO	=	'01'
+				 AND	USAGE_STATUS_CODE_NO	=	'01'
 				</when>
 				<when test="searchCondition != null">
-				USAGE_STATUS_CODE_NO	=	'02'
+				 AND	USAGE_STATUS_CODE_NO	=	'02'
 				</when>
-			</choose>
+			</choose> -->
 		</where>
+	  ORDER BY	d.DEPART_CODE_NO ASC
 	</select>
 	
 	<update id="updateDepartment" parameterType="department">

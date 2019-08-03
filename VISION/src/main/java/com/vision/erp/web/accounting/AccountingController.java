@@ -216,7 +216,7 @@ public class AccountingController {
 	@RequestMapping(value = "/accounting/modifySalaryStatus", method = RequestMethod.POST)
 	public void modifySalaryStatus(@RequestBody Salary salary) throws Exception{
 		
-		System.out.println("/accounting/convertAccountUsageStatus");
+		System.out.println("/accounting/modifySalaryStatus");
 		
 		accountingService.modifySalaryStatus(salary);
 	}
@@ -298,16 +298,21 @@ public class AccountingController {
 		
 		System.out.println("/accounting/modifyStatement");
 		
+		//특수문자 변환
+		String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]"; 
+		statement.setTradeAmount(statement.getTradeAmount().replaceAll(match, ""));
+		
 		accountingService.modifyStatement(statement);
 	}
 	
 	//전표 사용상태 수정
 	@RequestMapping(value = "/accounting/convertStatementUsageStatus", method = RequestMethod.POST)
-	public void convertStatementUsageStatus(@RequestBody Statement statement) throws Exception{
+	public void convertStatementUsageStatus(@RequestBody List<Object> objectList) throws Exception{
 		
 		System.out.println("/accounting/convertStatementUsageStatus");
 		
-		accountingService.convertStatementUsageStatus(statement);
+		
+		accountingService.convertStatementUsageStatus(objectList);
 	}
 	
 	//전표 목록조회

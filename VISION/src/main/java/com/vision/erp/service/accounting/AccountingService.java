@@ -54,7 +54,7 @@ public interface AccountingService {
 	
 	public void modifyStatement(Statement statement) throws Exception;
 	
-	public void convertStatementUsageStatus(Statement statement) throws Exception;
+	public void convertStatementUsageStatus(List<Object> objectList) throws Exception;
 	
 	public List<Statement> getStatementList(Search search) throws Exception;
 	

@@ -92,20 +92,13 @@
 		FROM
 			statement
 		<where>
-			<if test="true">
-				usage_status_code_no = '01'
-			</if>
+			usage_status_code_no = '01'
 			<if test="searchCondition != null and searchCondition !=''">
 				AND statement_category_code_no = #{searchCondition}
 			</if>
-			<if test="minDate != null and maxDate != null and minDate != '' and maxDate != ''">
-				AND	trade_date BETWEEN #{minDate} AND #{maxDate}
-			</if>
-			<if test="maxDate != null and maxDate !=''">
-				AND	trade_date <![CDATA[ <= ]]> #{maxDate}
-			</if>
-			<if test="minDate != null and minDate !=''">
-				AND	trade_date <![CDATA[ >= ]]> #{minDate}
+			<if test="searchKeyword != null and searchKeyword != ''">
+				AND (statement_no LIKE '%'||#{searchKeyword}||'%'
+				OR LOWER(statement_detail) LIKE '%'||#{searchKeyword}||'%')
 			</if>
 		</where>
 		ORDER BY trade_date DESC

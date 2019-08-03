@@ -56,7 +56,11 @@ public interface AccountingDAO {
 	
 	public void updateStatement(Statement statement) throws Exception;
 	
+	//발주, 주문에서 가져간 전표번호 삭제시에는  updateStatementUsageStatus
 	public void updateStatementUsageStatus(Statement statement) throws Exception;
+	
+	//전표 목록조회에서 전표를 삭제할 때는 일괄삭제를 지원하기 때문에 updateStatementUsageStatusList 
+	public void updateStatementUsageStatusList(List<Statement> statementList) throws Exception;
 	
 	public List<Statement> selectStatementList(Search search) throws Exception;
 	

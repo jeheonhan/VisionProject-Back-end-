@@ -135,7 +135,7 @@
 				OR LOWER(vendor_name) LIKE '%'||#{searchKeyword}||'%')
 			</if>		
 		</where>
-		ORDER BY vendor_no ASC
+		ORDER BY vendor_no DESC
 	</select>
 	
 </mapper>

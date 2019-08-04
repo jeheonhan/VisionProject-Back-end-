@@ -114,7 +114,7 @@
 				OR LOWER(c.card_name) LIKE '%'||#{searchKeyword}||'%')
 			</if>		
 		</where>
-		ORDER BY card_reg_no ASC
+		ORDER BY card_reg_no DESC
 	</select>
 	
 	<select id="checkDuplicateCard" parameterType="string" resultType="int">

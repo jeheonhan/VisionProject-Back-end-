@@ -70,4 +70,6 @@ public interface HumanResourceService {
 	
 	public void addDutyHours(DutyHours dutyHours) throws Exception;
 	
+	public void getMakeCommuteSample(int month, int endDate ,String employeeNo) throws Exception;
+	
 }

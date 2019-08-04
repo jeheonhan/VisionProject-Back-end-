@@ -297,4 +297,18 @@ public class HumanResourceController {
 		
 		humanResourceService.modifyCommuteForLeaveWorkTime(commute);
 	}
+	
+	@RequestMapping(value = "/hr/sampleCommuteData", method = RequestMethod.POST)
+	public void sampleCommuteData(@RequestBody Map<String, String> paramMap) throws Exception{
+		System.out.println("/hr/sampleCommuteData");
+		
+		int month = Integer.parseInt(paramMap.get("month"));
+		int endDate = Integer.parseInt(paramMap.get("endDate"));
+		String employeeNo = paramMap.get("employeeNo");
+		
+		System.out.println("month :: "+month+", endDate :: "+endDate+", employeeNo :: "+employeeNo);
+		
+		humanResourceService.getMakeCommuteSample(month, endDate, employeeNo);
+		
+	}
 }

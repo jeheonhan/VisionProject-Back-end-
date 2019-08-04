@@ -140,22 +140,22 @@ public class ApprovalServiceImpl implements ApprovalService {
 		//2차결재자 채우기
 		switch(listSize) {
 		case "2" :	case "3" :	case "4" :	case "5" :
-			approval.setSecondApprover(list.get(1));
+			approval.setSecondApprover(getFullApprover(list.get(1), approvalNo));
 		}
 		//3차결재자 채우기
 		switch(listSize) {
 		case "3" :	case "4" :	case "5" :
-			approval.setThirdApprover(list.get(2));
+			approval.setThirdApprover(getFullApprover(list.get(2), approvalNo));
 		}
 		//4차결재자 채우기
 		switch(listSize) {
 		case "4" :	case "5" :
-			approval.setFourthApprover(list.get(3));
+			approval.setFourthApprover(getFullApprover(list.get(3), approvalNo));
 		}
 		//5차결재자 채우기
 		switch(listSize) {
 		case "5" :
-			approval.setFifthApprover(list.get(4));
+			approval.setFifthApprover(getFullApprover(list.get(4), approvalNo));
 		}
 		
 		return approval;

@@ -67,4 +67,12 @@ public class CodeDAOImpl implements CodeDAO {
 		return sqlSession.update("CodeMapper.updateCodeUsageStatus", code);
 	}
 
+	@Override
+	public void updateCodeUsageStatusList(List<Code> codelist) throws Exception {
+		// TODO Auto-generated method stub
+		for(Code code : codelist) {
+			sqlSession.update("CodeMapper.updateCodeUsageStatus", code);
+		} 
+	}
+
 }

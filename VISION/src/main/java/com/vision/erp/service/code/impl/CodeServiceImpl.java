@@ -76,4 +76,10 @@ public class CodeServiceImpl implements CodeService {
 		codeDAO.updateCodeUsageStatus(code);
 	}
 
+	@Override
+	public void convertCodeUsageStatusList(List<Code> codelist) throws Exception {
+		// TODO Auto-generated method stub
+		codeDAO.updateCodeUsageStatusList(codelist);
+	}
+
 }

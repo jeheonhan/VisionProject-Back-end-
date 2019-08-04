@@ -31,6 +31,82 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 	@Override
 	public Branch addBranch(Branch branch) throws Exception {
 		
+		String area = branch.getAddress().substring(0,2);
+		
+		switch(area) {
+		case "서울" :
+			branch.setLocalCodeNo("01");
+			break;
+			
+		case "경기" :
+			branch.setLocalCodeNo("02");
+			break;
+			
+		case "인천" :
+			branch.setLocalCodeNo("03");
+			break;
+		
+		case "강원" :
+			branch.setLocalCodeNo("04");
+			break;
+		
+		case "충북" :
+			branch.setLocalCodeNo("05");
+			break;
+        
+        case "충남" :
+			branch.setLocalCodeNo("06");
+			break;
+        
+        case "대전" :
+			branch.setLocalCodeNo("07");
+			break;
+        
+        case "세종" :
+			branch.setLocalCodeNo("08");
+			break;
+        
+        case "광주" :
+			branch.setLocalCodeNo("09");
+			break;
+        
+        case "전북" :
+			branch.setLocalCodeNo("10");
+			break;
+
+        case "전남" :
+			branch.setLocalCodeNo("11");
+			break;
+        
+        case "경북" :
+			branch.setLocalCodeNo("12");
+			break;
+
+        case "경남" :
+			branch.setLocalCodeNo("13");
+			break;
+        
+        case "대구" :
+			branch.setLocalCodeNo("14");
+			break;
+
+        case "부산" :
+			branch.setLocalCodeNo("15");
+			break;
+
+        case "울산" :
+			branch.setLocalCodeNo("16");
+			break;
+
+        case "제주" :
+			branch.setLocalCodeNo("17");
+			break;
+
+        default : 
+            System.out.println("businessSupport switch-case문");
+        
+	}
+		
 		String branchNo = businessSupportDAO.insertBranch(branch);
 		branch = businessSupportDAO.selectBranchDetail(branchNo);
 		

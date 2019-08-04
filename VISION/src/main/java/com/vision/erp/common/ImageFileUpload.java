@@ -32,7 +32,8 @@ public class ImageFileUpload {
 		
 		UUID name = UUID.randomUUID();
 //		ImageIO.write(bufImg, fileForm, new File("//Users//munmyeonghwan//git//VISION//VISION//WebContent//Images//"+name+"."+fileForm));
-		ImageIO.write(bufImg, fileForm, new File("C:\\Users\\qhdqh\\git\\VISION\\VISION\\WebContent\\Images\\"+name+"."+fileForm));
+//		ImageIO.write(bufImg, fileForm, new File("C:\\Users\\qhdqh\\git\\VISION\\VISION\\WebContent\\Images\\"+name+"."+fileForm));
+		ImageIO.write(bufImg, fileForm, new File("C:\\Users\\AAA\\git\\VISION\\VISION\\WebContent\\Images\\"+name+"."+fileForm));
 		System.out.println("File Upload Success!!!!!!!!!!!");
 		
 		return name+"."+fileForm;

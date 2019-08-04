@@ -30,13 +30,14 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 
 	@Override
 	public Branch addBranch(Branch branch) throws Exception {
+		
 		String branchNo = businessSupportDAO.insertBranch(branch);
 		branch = businessSupportDAO.selectBranchDetail(branchNo);
 		
 		Statement statement = new Statement();
 		statement.setTradeTargetName(branch.getBranchName());
 		statement.setStatementCategoryCodeNo("01");
-		statement.setStatementDetail(branch.getBranchName()+" °¡¸Íºñ");
+		statement.setStatementDetail(branch.getBranchName()+" °¡¸Í");
 		statement.setTradeDate(branch.getBranchRegDate());
 		statement.setTradeAmount("200000");
 		statement.setAccountNo("12393829384910");

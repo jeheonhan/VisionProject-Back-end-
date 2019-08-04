@@ -39,6 +39,10 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		Notice notice = noticeDAO.selectNoticeDetail(noticeNo);
 		
+		String completeTitle = notice.getNoticeHeaderCodeName()+" "+notice.getNoticeTitle();
+		
+		notice.setCompleteTitle(completeTitle);
+		
 		notice.setViewCount(Integer.toString(Integer.parseInt(notice.getViewCount()) + 1));
 		
 		noticeDAO.updateNoticeViewCount(notice);
@@ -55,7 +59,13 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public Notice modifyNotice(Notice notice) throws Exception {		
+	public Notice modifyNotice(Notice notice) throws Exception {
+		
+		if(!notice.getNoticeHeaderCodeName().contains("[")) {
+			String noticeHeader = "["+notice.getNoticeHeaderCodeName()+"]";
+			notice.setNoticeHeaderCodeName(noticeHeader);
+		}
+		
 		noticeDAO.updateNotice(notice);
 		
 		return noticeDAO.selectNoticeDetail(notice.getNoticeNo());

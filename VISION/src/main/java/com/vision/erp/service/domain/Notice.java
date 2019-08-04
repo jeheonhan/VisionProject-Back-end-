@@ -5,6 +5,7 @@ public class Notice {
 	private String noticeNo;
 	private String noticeRegDate;
 	private String noticeTitle;
+	private String completeTitle;
 	private String content;
 	private String employeeNo;
 	private String employeeName;
@@ -44,6 +45,14 @@ public class Notice {
 
 	public void setNoticeTitle(String noticeTitle) {
 		this.noticeTitle = noticeTitle;
+	}
+	
+	public String getCompleteTitle() {
+		return completeTitle;
+	}
+
+	public void setCompleteTitle(String completeTitle) {
+		this.completeTitle = completeTitle;
 	}
 
 	public String getContent() {
@@ -129,10 +138,11 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeRegDate=" + noticeRegDate + ", noticeTitle=" + noticeTitle
-				+ ", content=" + content + ", employeeNo=" + employeeNo + ", employeeName=" + employeeName
-				+ ", departCodeName=" + departCodeName + ", readAuthority=" + readAuthority + ", viewCount=" + viewCount
-				+ ", noticeStatusCodeNo=" + noticeStatusCodeNo + ", noticeStatusCodeName=" + noticeStatusCodeName
-				+ ", noticeHeaderCodeNo=" + noticeHeaderCodeNo + ", noticeHeaderCodeName=" + noticeHeaderCodeName + "]";
+				+ ", completeTitle=" + completeTitle + ", content=" + content + ", employeeNo=" + employeeNo
+				+ ", employeeName=" + employeeName + ", departCodeName=" + departCodeName + ", readAuthority="
+				+ readAuthority + ", viewCount=" + viewCount + ", noticeStatusCodeNo=" + noticeStatusCodeNo
+				+ ", noticeStatusCodeName=" + noticeStatusCodeName + ", noticeHeaderCodeNo=" + noticeHeaderCodeNo
+				+ ", noticeHeaderCodeName=" + noticeHeaderCodeName + "]";
 	}
-	
+
 }

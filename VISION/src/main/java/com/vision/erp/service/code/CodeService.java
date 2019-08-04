@@ -26,4 +26,7 @@ public interface CodeService {
 
 	//内靛 昏力/汗备
 	public void convertCodeUsageStatus(Code code) throws Exception;
+	
+	//内靛 昏力
+	public void convertCodeUsageStatusList(List<Code> codelist) throws Exception;
 }

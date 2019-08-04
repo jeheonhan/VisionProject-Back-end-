@@ -27,4 +27,7 @@ public interface CodeDAO {
 	//内靛 昏力/汗备
 	public int updateCodeUsageStatus(Code code) throws Exception;
 	
+	//内靛 昏力
+	public void updateCodeUsageStatusList(List<Code> codelist) throws Exception;
+	
 }

@@ -103,7 +103,7 @@
 			</if>
 			
 		</where>
-		ORDER BY account_reg_no ASC
+		ORDER BY account_reg_no DESC
 	</select>
 	
 	<select id="checkDuplicateAccount" parameterType="string" resultType="int">

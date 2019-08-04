@@ -3,11 +3,13 @@ package com.vision.erp.service.humanresource.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.vision.erp.common.ImageFileUpload;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.accounting.AccountingDAO;
 import com.vision.erp.service.code.CodeDAO;
@@ -45,6 +47,19 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 	@Override
 	public void addHumanResourceCard(HumanResourceCard humanResourceCard) throws Exception {
 		
+		//시급 콤마 제거
+		humanResourceCard.setWage(humanResourceCard.getWage().replaceAll(",", ""));
+		
+		//파일 업로
+		Map<String, Object> profileMap = humanResourceCard.getProfileFile();
+		Map<String, Object> signatureMap = humanResourceCard.getSignatureFile();
+		
+		if(profileMap != null) {
+			humanResourceCard.setProfileImage(ImageFileUpload.fileUpload(profileMap));
+		}
+		if(signatureMap != null) {
+			humanResourceCard.setSignatureImage(ImageFileUpload.fileUpload(signatureMap));
+		}
 		
 		Account account = humanResourceCard.getAccount();
 		account.setAccountHolder(humanResourceCard.getEmployeeName());
@@ -92,6 +107,17 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 	@Override
 	public void modifyHumanResourceCard(HumanResourceCard humanResourceCard) throws Exception {
+		
+		Map<String, Object> profileMap = humanResourceCard.getProfileFile();
+		Map<String, Object> signatureMap = humanResourceCard.getSignatureFile();
+		
+		if(profileMap != null) {
+			humanResourceCard.setProfileImage(ImageFileUpload.fileUpload(profileMap));
+		}
+		if(signatureMap != null) {
+			humanResourceCard.setSignatureImage(ImageFileUpload.fileUpload(signatureMap));
+		}
+		
 		humanResourceDAO.updateHumanResourceCard(humanResourceCard);		
 	}
 

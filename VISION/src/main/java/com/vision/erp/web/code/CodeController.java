@@ -48,6 +48,13 @@ public class CodeController {
 		codeService.convertCodeUsageStatus(code);
 	}
 	
+	//[코드그룹별조회] - 코드 삭제/복구하기 그룹코드, 코드번호, 코드사용상태 필요
+	//codeUsageStatus = D : 영구삭제
+	@RequestMapping(value="/code/convertCodeUsageStatusList")
+	public void convertCodeUsageStatusList(@RequestBody List<Code> codelist) throws Exception{
+		codeService.convertCodeUsageStatusList(codelist);
+	}
+	
 	//[코드그룹별조회] - 코드 등록요청시 코드번호 자동생성
 	//등록하려는 그룹코드 가져오기
 	@RequestMapping(value="/code/addCodePreparing/{groupCode}")

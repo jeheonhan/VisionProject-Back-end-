@@ -39,14 +39,6 @@ public class HumanResourceController {
 	public void addHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("/hr/addHumanResourceCard");
 		
-		
-		Map<String, Object> profileMap = humanResourceCard.getProfileFile();
-		Map<String, Object> signatureMap = humanResourceCard.getSignatureFile();
-		
-		humanResourceCard.setProfileImage(ImageFileUpload.fileUpload(profileMap));
-		humanResourceCard.setSignatureImage(ImageFileUpload.fileUpload(signatureMap));
-		
-		
 		humanResourceService.addHumanResourceCard(humanResourceCard);
 		
 	}
@@ -54,12 +46,9 @@ public class HumanResourceController {
 	@RequestMapping(value = "/hr/getHumanResourceCardList", method = RequestMethod.POST)
 	public List<HumanResourceCard> getHumanResourceCardList(@RequestBody Search search) throws Exception{
 		System.out.println("/hr/getHumanResourceCardList");
-		System.out.println(search);
 		
 		List<HumanResourceCard> list 
 				= humanResourceService.getHumanResourceCardList(search);
-		
-		System.out.println(list);
 		
 		return list;
 	}
@@ -68,7 +57,6 @@ public class HumanResourceController {
 	public HumanResourceCard getHumanResourceCardDetail(@PathVariable String employeeNo) throws Exception{
 		System.out.println("hr/getHumanResourceCardDetail");
 		
-		System.out.println(employeeNo);
 		
 		HumanResourceCard humanResourceCard
 					= humanResourceService.getHumanResourceCardDetailByEmployeeNo(employeeNo);
@@ -83,7 +71,6 @@ public class HumanResourceController {
 		List<SimpleHumanResourceCard> list
 					= humanResourceService.getSimpleHumanResourceCardList(search);
 		
-		System.out.println(list);
 		
 		return list;
 	}
@@ -102,16 +89,7 @@ public class HumanResourceController {
 	@RequestMapping(value = "/hr/modifyHumanResourceCard",method = RequestMethod.POST)
 	public void modifyHumanResourceCard(@RequestBody HumanResourceCard humanResourceCard) throws Exception{
 		System.out.println("hr/modifyHumanResourceCard");
-		
-		Map<String, Object> profileMap = humanResourceCard.getProfileFile();
-		Map<String, Object> signatureMap = humanResourceCard.getSignatureFile();
-		
-		if(profileMap != null) {
-			humanResourceCard.setProfileImage(ImageFileUpload.fileUpload(profileMap));
-		}
-		if(signatureMap != null) {
-			humanResourceCard.setSignatureImage(ImageFileUpload.fileUpload(signatureMap));
-		}
+
 		
 		humanResourceService.modifyHumanResourceCard(humanResourceCard);
 		

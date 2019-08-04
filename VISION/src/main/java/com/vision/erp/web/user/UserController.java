@@ -51,19 +51,7 @@ public class UserController {
 			return user;
 	}
 
-	//사원아이디찾기
-//	@RequestMapping(value="/user/proofMySelfForId1",method=RequestMethod.POST)
-//	public User proofMySelfForId1(@RequestBody HumanResourceCard hrc) throws Exception{
-//		
-//		User user = userService.proofMySelfForId1(hrc);
-//		if( user != null) {
-//			return user;
-//		}else {
-//			return new User();
-//		}
-//	}
-	
-	//Test 아이디찾기
+	//아이디찾기
 		@RequestMapping(value="/user/forgotId",method=RequestMethod.POST)
 		public User test(@RequestBody Map<String, String> map) throws Exception{
 			
@@ -84,14 +72,14 @@ public class UserController {
 			
 			User user = userService.proofMySelfForId1(humanResourceCard);
 			if( user != null) {
-				message = "고객님의 아이디는 "+user.getUserId()+"입니다.";
+				message = user.getEmployeeName()+"님의 아이디는 "+user.getUserId()+"입니다.";
 				sms.setContent(message);
 				sendSMS.sendSMS(sms);
 				return user;
 			}else {
 				user = userService.proofMySelfForId2(branch);
 				if( user != null) {
-					message = "고객님의 아이디는 "+user.getUserId()+"입니다.";
+					message = user.getBranchName()+" 지점의 아이디는 "+user.getUserId()+"입니다.";
 					sms.setContent(message);
 					sendSMS.sendSMS(sms);
 					return user;
@@ -101,43 +89,7 @@ public class UserController {
 			}
 		}
 
-	//점장아이디찾기
-//	@RequestMapping(value="/user/proofMySelfForId2",method=RequestMethod.POST)
-//	public User proofMySelfForId2(@RequestBody Branch branch) throws Exception{
-//
-//		User user = userService.proofMySelfForId2(branch);
-//		if( user != null) {
-//			return user;
-//		}else {
-//			return new User();
-//		}
-//	}
-
-//	//사원비밀번호찾기
-//	@RequestMapping(value="/user/proofMySelfForPassword1",method=RequestMethod.POST)
-//	public User proofMySelfForPassword1(@RequestBody HumanResourceCard hrc) throws Exception{
-//
-//		User user = userService.proofMySelfForPassword1(hrc);
-//		if( user != null) {
-//			return user;
-//		}else {
-//			return new User();
-//		}
-//	}
-//
-//	//점장비밀번호찾기
-//	@RequestMapping(value="/user/proofMySelfForPassword2",method=RequestMethod.POST)
-//	public User proofMySelfForPassword2(@RequestBody Branch branch) throws Exception{
-//
-//		User user = userService.proofMySelfForPassword2(branch);
-//		if( user != null) {
-//			return user;
-//		}else {
-//			return new User();
-//		}
-//	}
-	
-	//Test 비밀번호 찾기
+	//비밀번호 찾기
 	@RequestMapping(value="/user/forgotPassword",method=RequestMethod.POST)
 	public boolean proofMySelfForPassword1(@RequestBody Map<String, String> map) throws Exception{
 

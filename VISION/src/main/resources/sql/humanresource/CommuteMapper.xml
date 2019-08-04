@@ -22,7 +22,7 @@
 	</resultMap>
 	
 	
-	<insert id="insertCommute" parameterType="commute">
+	<!-- <insert id="insertCommute" parameterType="commute">
 		INSERT
 		  INTO	COMMUTE
 		  			(
@@ -37,6 +37,24 @@
 				,	#{employeeNo}
 				,	to_date(#{goToWorkTime}, 'YYYY-MM-DD HH24:MI:SS')
 				,	to_char(sysdate,'YYYY/MM/DD')
+					)
+	</insert> -->
+	
+	<insert id="insertCommute" parameterType="commute">
+		INSERT
+		  INTO	COMMUTE
+		  			(
+		  			COMMUTE_NUMBERING
+		  		,	EMPLOYEE_NO
+		  		,	GO_TO_WORK_TIME
+		  		,	COMMUTE_DATE
+		  			)
+		VALUES	
+					(
+					SEQ_COMMUTE_NUMBERING.NEXTVAL
+				,	#{employeeNo}
+				,	to_date(#{goToWorkTime}, 'YYYY-MM-DD HH24:MI:SS')
+				,	#{commuteDate}
 					)
 	</insert>
 	

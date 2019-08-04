@@ -101,7 +101,7 @@
 				OR LOWER(statement_detail) LIKE '%'||#{searchKeyword}||'%')
 			</if>
 		</where>
-		ORDER BY trade_date DESC
+		ORDER BY trade_date DESC, statement_no DESC
 	</select>
 	
 </mapper>

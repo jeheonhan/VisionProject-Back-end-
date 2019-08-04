@@ -56,6 +56,7 @@
 	<update id="updateProduct" parameterType="product">
 		UPDATE product
 		<set>
+			PRODUCT_NAME = #{productName},
 			PURCHASE_PRICE = #{purchasePrice},
 			SALES_PRICE = #{salesPrice},
 			QUANTITY = #{quantity}
@@ -77,16 +78,23 @@
 	</update>
 
 	<select id="selectproductList" resultMap="ProductSelectMap">
-      SELECT PRODUCT_NO,
+      SELECT 
+      PRODUCT_NO,
       PRODUCT_NAME,
       PURCHASE_PRICE,
       SALES_PRICE,
       QUANTITY,
 	  vendor_Name,
 	  vendor_No
+	  
       FROM product
+      
       WHERE
+      
       USAGE_STATUS_CODE_NO = '01'
+      
+      ORDER BY PRODUCT_NO DESC
+      
    </select>
 
 	<select id="selectDetailProduct" parameterType="string"

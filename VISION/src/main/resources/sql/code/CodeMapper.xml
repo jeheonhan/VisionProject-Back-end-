@@ -65,6 +65,9 @@
 				<if test="searchCondition==null">
 			AND code_usage_status = 'Y'
 				</if>
+				<if test="searchCondition==0">
+			AND code_usage_status NOT IN ('D')
+				</if>
 		</where>
 		ORDER BY code_no ASC
 	 </select>

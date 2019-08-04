@@ -89,17 +89,17 @@
 				,	#{rankCodeNo}
 				,	#{joinDate}
 				,	#{employeePhone}
-				,	#{employeeTel}
+				,	#{employeeTel:VARCHAR}
 				,	#{employeeEmail}
 				,	#{zipCode}
 				,	#{address}
-				,	#{detailAddress}
-				,	#{profileImage}
-				,	#{signatureImage}
+				,	#{detailAddress:VARCHAR}
+				,	#{profileImage:VARCHAR}
+				,	#{signatureImage:VARCHAR}
 				,	#{contractFile:VARCHAR}
-				,	#{wage}
-				,	#{refer}
-				,	#{resignation}
+				,	#{wage:VARCHAR}
+				,	#{refer:VARCHAR}
+				,	#{resignation:VARCHAR}
 				,	#{account.accountRegNo}
 					)
 					

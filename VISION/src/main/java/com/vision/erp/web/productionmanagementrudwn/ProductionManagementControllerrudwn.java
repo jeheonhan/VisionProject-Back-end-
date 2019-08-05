@@ -68,6 +68,7 @@ public class ProductionManagementControllerrudwn {
 	
 	@RequestMapping(value = "/pm/addProduct",method=RequestMethod.POST)
 	public void addProduct(@RequestBody Product product)throws Exception{
+		System.out.println("addProduct :: " + product);
 		productionManagementServicerudwn.addProduct(product);
 	}
 

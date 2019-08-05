@@ -72,6 +72,7 @@
              	  OR	vt.EMPLOYEE_NO		LIKE ('%'||#{searchKeyword}||'%'))
 			</if>
 		</where>
+		ORDER BY TO_NUMBER(WORK_ATTITUDE_NO) DESC
 	</select>
 	
 	<update id="updateWorkAttitude" parameterType="workAttitude">

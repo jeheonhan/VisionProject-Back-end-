@@ -19,6 +19,7 @@
 		<result property="signatureImage"           column="SIGNATURE_IMAGE"               jdbcType="VARCHAR"/>
 		<result property="employeeName"           column="EMPLOYEE_NAME"               jdbcType="VARCHAR"/>
 		<result property="branchName"           column="BRANCH_NAME"               jdbcType="VARCHAR"/>
+		<result property="rankCodeNo"           column="RANK_CODE_NO"               jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<insert id="insertUser" parameterType="user">
@@ -66,15 +67,18 @@
 				users.MEMBER_CODE_NO,
 				CODE_FUNCTION('member', MEMBER_CODE_NO) AS MEMBER_CODE_NAME,
 				users.USAGE_STATUS_CODE_NO,
-				users.ACCESS_MENU_CODE_NO,
+				department.ACCESS_MENU_CODE_NO,
 				human_resource_card.PROFILE_IMAGE,
 				human_resource_card.SIGNATURE_IMAGE,
 				human_resource_card.employee_name,
-				branch.branch_name
+				branch.branch_name,
+				human_resource_card.rank_code_no
 		  FROM	 users  left outer join human_resource_card on users.employee_no = human_resource_card.employee_no
                  left outer join branch on branch.branch_no = users.branch_no
+              ,	department
 		WHERE user_id = #{userId} and
 			 PASSWORD = #{password}
+			 and human_resource_card.depart_code_no = department.depart_code_no
 	 </select>
 	
 	<update id="modifyPassword" parameterType="user" >

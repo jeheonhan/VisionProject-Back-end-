@@ -15,6 +15,7 @@ public class User {
 	private String employeeName;
 	private String branchName;
 	private boolean loginFlag;
+	private String rankCodeNo;
 	
 	public String getUserId() {
 		return userId;
@@ -96,14 +97,22 @@ public class User {
 	public void setLoginFlag(boolean loginFlag) {
 		this.loginFlag = loginFlag;
 	}
+	public String getRankCodeNo() {
+		return rankCodeNo;
+	}
+	public void setRankCodeNo(String rankCodeNo) {
+		this.rankCodeNo = rankCodeNo;
+	}
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", employeeNo=" + employeeNo + ", branchNo=" + branchNo + ", password="
 				+ password + ", memberCodeNo=" + memberCodeNo + ", memberCodeName=" + memberCodeName
 				+ ", memberUsageStatusCodeNo=" + memberUsageStatusCodeNo + ", accessMenuCodeNo=" + accessMenuCodeNo
 				+ ", profileImage=" + profileImage + ", signatureImage=" + signatureImage + ", employeeName="
-				+ employeeName + ", branchName=" + branchName + ", loginFlag=" + loginFlag + "]";
+				+ employeeName + ", branchName=" + branchName + ", loginFlag=" + loginFlag + ", rankCodeNo="
+				+ rankCodeNo + "]";
 	}
+
 	
 	
 	

@@ -33,8 +33,18 @@ public class ProductionManagementServiceImplrudwn implements ProductionManagemen
 
 	@Override
 	public void addProduct(Product product) throws Exception {
-
+		
+		String replacePurchasePrice = product.getPurchasePrice();
+		String resultPurchasePrice = replacePurchasePrice.replaceAll("," , "");
+		String replaceSalesPrice = product.getSalesPrice();
+		String resultSalesPrice = replaceSalesPrice.replaceAll("," , "");
+		String replaceQuantity = product.getQuantity();
+		String resultQuantity = replaceQuantity.replaceAll("," , "");
+		
 		product.setProductUsageStatusCodeNo("01");
+		product.setPurchasePrice(resultPurchasePrice);
+		product.setSalesPrice(resultSalesPrice);
+		product.setQuantity(resultQuantity);
 
 		productionDAO.addProduct(product);
 

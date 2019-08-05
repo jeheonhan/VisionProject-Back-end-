@@ -50,12 +50,12 @@
 			('b'||SEQ_BRANCH_NO.NEXTVAL , 
 			#{branchManagerName} , 
 			#{branchManagerPhone} , 
-			#{branchTel} , 
+			#{branchTel:VARCHAR} , 
 			TO_CHAR(SYSDATE, 'YYYY/MM/DD'), 
 			#{localCodeNo} , 
 			#{zipCode}, 
 			#{address}, 
-			#{detailAddress}, 
+			#{detailAddress:VARCHAR}, 
 			#{businessLicenseNo},
 			'01', 
 			#{branchName})
@@ -92,11 +92,11 @@
 	 	<set>
 		 	BRANCH_MANAGER_NAME = #{branchManagerName}, 
 		 	BRANCH_MANAGER_PHONE = #{branchManagerPhone}, 
-		 	BRANCH_TEL = #{branchTel}, 
+		 	BRANCH_TEL = #{branchTel:VARCHAR}, 
 		 	LOCAL_CODE_NO = #{localCodeNo}, 
 		 	ZIP_CODE = #{zipCode}, 
 		 	ADDRESS = #{address}, 
-		 	DETAIL_ADDRESS = #{detailAddress},
+		 	DETAIL_ADDRESS = #{detailAddress:VARCHAR},
 		 	BUSINESS_LICENSE_NO = #{businessLicenseNo}, 
 		 	BRANCH_NAME = #{branchName}
 	 	</set>

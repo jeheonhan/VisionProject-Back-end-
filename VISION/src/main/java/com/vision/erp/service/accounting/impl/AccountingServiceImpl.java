@@ -113,6 +113,11 @@ public class AccountingServiceImpl implements AccountingService{
 
 	@Override
 	public void modifySalary(Salary salary) throws Exception {
+		
+		//특수문자 변환
+		String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]"; 
+		salary.setIndividualTotalSalary(salary.getIndividualTotalSalary().replaceAll(match, ""));
+		
 		accountingDAO.updateSalary(salary);
 	}
 

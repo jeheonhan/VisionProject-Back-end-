@@ -336,11 +336,11 @@ public class AccountingController {
 		System.out.println("/accounting/addCard");
 		System.out.println("들어론 카드 정보 :: "+card);
 		System.out.println(card.getCardImageFile());
-		Map<String, Object> cardImageMap = card.getCardImageFile();
 		
+		
+		Map<String, Object> cardImageMap = card.getCardImageFile();
 		card.setCardImage(ImageFileUpload.fileUpload(cardImageMap));
 		
-		accountingService.addCard(card);
 	}
 	
 	//카드 상세조회
@@ -362,9 +362,12 @@ public class AccountingController {
 		System.out.println("/accounting/modifyCard");
 		System.out.println("들어론 카드 정보 :: "+card);
 		System.out.println(card.getCardImageFile());
-		Map<String, Object> cardImageMap = card.getCardImageFile();
 		
+
+		Map<String, Object> cardImageMap = card.getCardImageFile();
 		card.setCardImage(ImageFileUpload.fileUpload(cardImageMap));
+
+		
 		accountingService.modifyCard(card);
 	}
 	

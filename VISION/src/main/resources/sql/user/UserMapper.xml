@@ -73,12 +73,15 @@
 				human_resource_card.employee_name,
 				branch.branch_name,
 				human_resource_card.rank_code_no
-		  FROM	 users  left outer join human_resource_card on users.employee_no = human_resource_card.employee_no
-                 left outer join branch on branch.branch_no = users.branch_no
-              ,	department
-		WHERE user_id = #{userId} and
-			 PASSWORD = #{password}
-			 and human_resource_card.depart_code_no = department.depart_code_no
+		 FROM   users 
+		 	, 	human_resource_card 
+		 	,	branch 
+            ,   department
+      	WHERE 	users.employee_no = human_resource_card.employee_no(+) 
+		  and	branch.branch_no(+) = users.branch_no 
+		  and	human_resource_card.depart_code_no = department.depart_code_no(+) 
+		  and 	users.user_id = #{userId} 
+		  and	PASSWORD = #{password}
 	 </select>
 	
 	<update id="modifyPassword" parameterType="user" >

@@ -41,7 +41,7 @@
 			#{cardCategoryCodeNo},
 			#{cardName},
 			#{cardCompanyCodeNo},
-			#{cardImage},
+			#{cardImage, jdbcType=VARCHAR},
 			'01',
 			#{accountNo}
 		)
@@ -77,7 +77,7 @@
 				card_category_code_no = #{cardCategoryCodeNo},
 				account_no = #{accountNo},
 				card_manager = #{cardManager},
-				card_image = #{cardImage}
+				card_image = #{cardImage, jdbcType=VARCHAR}
 			</set>
 		WHERE card_reg_no = #{cardRegNo}
 	</update>

@@ -223,7 +223,7 @@ public class HumanResourceController {
 							+")에 "+appointment.getAppointDepartCodeName()+", "+appointment.getAppointRankCodeName()
 							+"으로 발령되었습니다. ";
 			
-			sms.setSender("010-3739-1105");
+			sms.setSender("010-4468-0115");
 			sms.setReciever(reciever.replaceAll("-", ""));
 			sms.setContent(content);
 			
@@ -281,10 +281,6 @@ public class HumanResourceController {
 	@RequestMapping(value = "/hr/addCommute", method = RequestMethod.POST)
 	public void addCommute(@RequestBody Commute commute) throws Exception{
 		System.out.println("/hr/addCommute");
-		
-		SimpleDateFormat format = new SimpleDateFormat ("YYYY-MM-dd HH:mm:ss");
-	    String date = format.format (System.currentTimeMillis());
-		commute.setGoToWorkTime(date);
 		
 		humanResourceService.addCommute(commute);
 	}

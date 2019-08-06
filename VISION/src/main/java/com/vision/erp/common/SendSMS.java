@@ -36,12 +36,12 @@ public class SendSMS {
 	public void sendSMS(SMS sms) {
 		System.out.println("sendSMS");
 		String hostname = "api.bluehouselab.com";
-        String url = "https://"+hostname+"/smscenter/v1.0/sendsms";
+        String url = "https://"+hostname+"/smscenter/v1.0.3/sendsms";
 
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
             new AuthScope(hostname, 443, AuthScope.ANY_REALM),
-            new UsernamePasswordCredentials("vision", "c4f084089c5e11e989440cc47a1fcfae")
+            new UsernamePasswordCredentials("visionProject", "94ae834eb79311e9b8140cc47a1fcfae")
         );
 
         // Create AuthCache instance

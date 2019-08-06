@@ -44,7 +44,7 @@ public class CommonController {
 		String host = "smtp.naver.com";
 		
 		final String username = "glossator@naver.com";
-		final String password = "";
+		final String password = "whgdkdy888^^";
 		int port = 465;
 		
 		//메일내용

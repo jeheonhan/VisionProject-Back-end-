@@ -60,7 +60,7 @@ public class UserController {
 			
 			SendSMS sendSMS = SendSMS.getSendSMSInstance();
 			SMS sms = new SMS();
-			sms.setSender("010-3739-1105");
+			sms.setSender("010-4468-0115");
 			sms.setReciever(map.get("phone").replace("-", ""));
 			
 			String message = "";
@@ -72,14 +72,14 @@ public class UserController {
 			
 			User user = userService.proofMySelfForId1(humanResourceCard);
 			if( user != null) {
-				message = user.getEmployeeName()+"님의 아이디는 "+user.getUserId()+"입니다.";
+				message = "회원님의 아이디는 ["+user.getUserId()+"]입니다.";
 				sms.setContent(message);
 				sendSMS.sendSMS(sms);
 				return user;
 			}else {
 				user = userService.proofMySelfForId2(branch);
 				if( user != null) {
-					message = user.getBranchName()+" 지점의 아이디는 "+user.getUserId()+"입니다.";
+					message = "회원님의 아이디는 ["+user.getUserId()+"]입니다.";
 					sms.setContent(message);
 					sendSMS.sendSMS(sms);
 					return user;

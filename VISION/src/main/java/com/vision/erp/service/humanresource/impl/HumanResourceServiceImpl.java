@@ -237,6 +237,15 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 
 	@Override
 	public void addCommute(Commute commute) throws Exception {
+		
+
+		SimpleDateFormat format = new SimpleDateFormat ("YYYY-MM-dd HH:mm:ss");
+		SimpleDateFormat commuteFormat = new SimpleDateFormat("YYYY/MM/dd");
+	    String date = format.format (System.currentTimeMillis());
+	    String commuteDate = commuteFormat.format(System.currentTimeMillis());
+		commute.setGoToWorkTime(date);
+		commute.setCommuteDate(commuteDate);
+		
 		humanResourceDAO.insertCommute(commute);
 	}
 

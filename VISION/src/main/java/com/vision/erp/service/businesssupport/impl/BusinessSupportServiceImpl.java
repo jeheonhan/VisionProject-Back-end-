@@ -127,7 +127,7 @@ public class BusinessSupportServiceImpl implements BusinessSupportService {
 		user.setMemberCodeNo("02");
 		user.setMemberUsageStatusCodeNo("01");
 		
-		userDAO.addUser(user);
+		userDAO.insertUser(user);
 		
 		return branch;		
 		

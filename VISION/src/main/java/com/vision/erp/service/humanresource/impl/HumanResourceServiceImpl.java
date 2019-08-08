@@ -82,7 +82,7 @@ public class HumanResourceServiceImpl implements HumanResourceService {
 		user.setPassword("0000");
 		user.setUserId("U"+humanResourceCard.getEmployeeNo());
 		user.setProfileImage(humanResourceCard.getProfileImage());
-		userDAO.addUser(user);
+		userDAO.insertUser(user);
 	}
 
 	@Override

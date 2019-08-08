@@ -25,7 +25,6 @@ public class HumanResourceCard {
     private String detailAddress;
     private String profileImage;
     private String signatureImage;
-    private String contractFile;
     private String wage;
     private String refer;
     private Map<String, Object> profileFile;
@@ -158,12 +157,6 @@ public class HumanResourceCard {
 	public void setSignatureImage(String signatureImage) {
 		this.signatureImage = signatureImage;
 	}
-	public String getContractFile() {
-		return contractFile;
-	}
-	public void setContractFile(String contractFile) {
-		this.contractFile = contractFile;
-	}
 	public String getWage() {
 		return wage;
 	}
@@ -204,10 +197,10 @@ public class HumanResourceCard {
 				+ ", employeeTel=" + employeeTel + ", employeeEmail=" + employeeEmail + ", resignation=" + resignation
 				+ ", resignDate=" + resignDate + ", resignReason=" + resignReason + ", account=" + account
 				+ ", zipCode=" + zipCode + ", address=" + address + ", detailAddress=" + detailAddress
-				+ ", profileImage=" + profileImage + ", signatureImage=" + signatureImage + ", contractFile="
-				+ contractFile + ", wage=" + wage + ", refer=" + refer + ", profileFile=" + profileFile
-				+ ", signatureFile=" + signatureFile + "]";
+				+ ", profileImage=" + profileImage + ", signatureImage=" + signatureImage + ", wage=" + wage
+				+ ", refer=" + refer + ", profileFile=" + profileFile + ", signatureFile=" + signatureFile + "]";
 	}
+
 	
     
     

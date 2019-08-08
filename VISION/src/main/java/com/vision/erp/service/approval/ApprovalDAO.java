@@ -54,5 +54,5 @@ public interface ApprovalDAO {
 	public int updateApproverCountFromApproval(String approvalNo) throws Exception;
 	
 	//결재 완료할 수 있는지 확인하기(승인한결재자=총결재자수)
-	public boolean isApprovalEnd(String approvalNo) throws Exception;
+	public boolean selectApprovalEnd(String approvalNo) throws Exception;
 }

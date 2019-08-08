@@ -30,11 +30,12 @@ public class UserController {
 
 
 	//로그인하기위해 내 정보불러옴
-	@RequestMapping(value="/user/loginUser",method=RequestMethod.POST)
-	public User loginUser(@RequestBody User user) throws Exception{
+	@RequestMapping(value="/user/getLoginUser",method=RequestMethod.POST)
+	public User getLoginUser(@RequestBody User user) throws Exception{
 			
+			System.out.println("/user/getLoginUser");
 
-			User dbuser = userService.selectUser(user);
+			User dbuser = userService.getUser(user);
 			
 			if(dbuser != null) {
 				if(user.getUserId().equals(dbuser.getUserId()) && user.getPassword().equals(dbuser.getPassword()) ) {
@@ -52,8 +53,10 @@ public class UserController {
 	}
 
 	//아이디찾기
-		@RequestMapping(value="/user/forgotId",method=RequestMethod.POST)
-		public User test(@RequestBody Map<String, String> map) throws Exception{
+		@RequestMapping(value="/user/getForgotId",method=RequestMethod.POST)
+		public User getForgotId(@RequestBody Map<String, String> map) throws Exception{
+			
+			System.out.println("/user/getForgotId");
 			
 			HumanResourceCard humanResourceCard = new HumanResourceCard();
 			Branch branch = new Branch();
@@ -70,14 +73,14 @@ public class UserController {
 			branch.setBranchManagerName(map.get("name"));
 			branch.setBranchManagerPhone(map.get("phone"));
 			
-			User user = userService.proofMySelfForId1(humanResourceCard);
+			User user = userService.getProofMySelfForId1(humanResourceCard);
 			if( user != null) {
 				message = "회원님의 아이디는 ["+user.getUserId()+"]입니다.";
 				sms.setContent(message);
 				sendSMS.sendSMS(sms);
 				return user;
 			}else {
-				user = userService.proofMySelfForId2(branch);
+				user = userService.getProofMySelfForId2(branch);
 				if( user != null) {
 					message = "회원님의 아이디는 ["+user.getUserId()+"]입니다.";
 					sms.setContent(message);
@@ -90,14 +93,14 @@ public class UserController {
 		}
 
 	//비밀번호 찾기
-	@RequestMapping(value="/user/forgotPassword",method=RequestMethod.POST)
-	public boolean proofMySelfForPassword1(@RequestBody Map<String, String> map) throws Exception{
+	@RequestMapping(value="/user/getForgotPassword",method=RequestMethod.POST)
+	public boolean getForgotPassword(@RequestBody Map<String, String> map) throws Exception{
 
-		User user = userService.proofMySelfForPassword1(map);
+		User user = userService.getProofMySelfForPassword1(map);
 		if(user != null) {
 			return true;
 		}else {
-			user = userService.proofMySelfForPassword2(map);
+			user = userService.getProofMySelfForPassword2(map);
 			if(user != null) {
 				return true;
 			}else {
@@ -128,14 +131,14 @@ public class UserController {
 		
 		String message = "";
 		
-		User user = userService.proofMySelfForPassword1(map);
+		User user = userService.getProofMySelfForPassword1(map);
 		if(user != null) {
 			message = "고객님의 인증번호는 ["+buf+"]입니다. 올바르게 입력하세요.";
 			sms.setContent(message);
 			sendSMS.sendSMS(sms);
 			return buf;
 		}else {
-			user = userService.proofMySelfForPassword2(map);
+			user = userService.getProofMySelfForPassword2(map);
 			if(user != null) {
 				message = "고객님의 인증번호는 ["+buf+"]입니다. 올바르게 입력하세요.";
 				sms.setContent(message);
@@ -148,15 +151,17 @@ public class UserController {
 	}
 
 	//내정보보기
-	@RequestMapping(value="/user/selectInfo/{employeeNo}",method=RequestMethod.GET)
-	public Map<String, Object> selectInfo(@PathVariable String employeeNo) throws Exception{
-		return userService.selectInfo(employeeNo);
+	@RequestMapping(value="/user/getInfo/{employeeNo}",method=RequestMethod.GET)
+	public Map<String, Object> getInfo(@PathVariable String employeeNo) throws Exception{
+		System.out.println("/user/getInfo/{employeeNo}");
+		return userService.getInfo(employeeNo);
 	}
 
 	//비밀번호변경
 	@RequestMapping(value="/user/modifyPassword",method=RequestMethod.POST)
 	public void modifyPassword(@RequestBody User user) throws Exception{
-		userService.updatePassword(user);
+		System.out.println("/user/modifyPassword");
+		userService.modifyPassword(user);
 	}
 
 

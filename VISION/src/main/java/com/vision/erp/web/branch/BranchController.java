@@ -60,5 +60,11 @@ public class BranchController {
 			return branchService.modifySalesProduct(salesProductList);
 		
 	}
+	
+	@RequestMapping(value = "/branch/checkDuplicateSalesDate", method = RequestMethod.POST)
+	public boolean checkDuplicateSalesDate(@RequestBody BranchDailySales branchDailySales) throws Exception{
+		
+		return branchService.checkDuplicateSalesDate(branchDailySales);
+	}
 
 }

@@ -130,7 +130,7 @@ public class ApprovalDAOImpl implements ApprovalDAO {
 
 	//결재 완료할 수 있는지 확인하기(승인한결재자=총결재자수)
 	@Override
-	public boolean isApprovalEnd(String approvalNo) throws Exception {
+	public boolean selectApprovalEnd(String approvalNo) throws Exception {
 		// TODO Auto-generated method stub
 		Approval approval = selectApprovalDetail(approvalNo);
 		if(approval.getApproverCount().equals(approval.getTotalApproverCount())) {

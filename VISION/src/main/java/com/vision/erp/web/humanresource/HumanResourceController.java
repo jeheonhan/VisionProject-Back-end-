@@ -187,7 +187,7 @@ public class HumanResourceController {
 		System.out.println("/hr/addAppointment");
 		
 		if(appointment.getReference() == null) {
-			appointment.setReference("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+			appointment.setReference("ÂüÁ¶¾øÀ½");
 		}
 		humanResourceService.addAppointment(appointment);
 	}
@@ -294,9 +294,9 @@ public class HumanResourceController {
 		humanResourceService.modifyCommuteForLeaveWorkTime(commute);
 	}
 	
-	@RequestMapping(value = "/hr/sampleCommuteData", method = RequestMethod.POST)
-	public void sampleCommuteData(@RequestBody Map<String, String> paramMap) throws Exception{
-		System.out.println("/hr/sampleCommuteData");
+	@RequestMapping(value = "/hr/getSampleCommuteData", method = RequestMethod.POST)
+	public void getSampleCommuteData(@RequestBody Map<String, String> paramMap) throws Exception{
+		System.out.println("/hr/getSampleCommuteData");
 		
 		int untilMonth = Integer.parseInt(paramMap.get("untilMonth"));
 		String employeeNo = paramMap.get("employeeNo");

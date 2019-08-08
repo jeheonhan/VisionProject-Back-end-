@@ -17,5 +17,7 @@ public interface BranchDAO {
 	public void updateSalesProduct(List<SalesProduct> salesProductList) throws Exception;
 	
 	public List<SalesMenu> selectSalesMenuList() throws Exception;
+	
+	public List<BranchDailySales> selectDuplicateSalesDateByBranch(BranchDailySales branchDailySales) throws Exception;
 
 }

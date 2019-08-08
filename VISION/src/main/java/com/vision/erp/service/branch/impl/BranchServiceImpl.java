@@ -68,6 +68,18 @@ public class BranchServiceImpl implements BranchService{
 		return branchDAO.selectSalesMenuList();
 	}
 
+	@Override
+	public boolean checkDuplicateSalesDate(BranchDailySales branchDailySales) throws Exception {
+
+		List<BranchDailySales> list = branchDAO.selectDuplicateSalesDateByBranch(branchDailySales);
+		
+		if(list.size() == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+
 	
 	
 	

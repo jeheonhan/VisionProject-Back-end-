@@ -121,7 +121,8 @@
 				notice.READ_AUTHORITY, 
 				notice.VIEW_COUNT, 
 				notice.USAGE_STATUS_CODE,
-				human_resource_card.EMPLOYEE_NAME
+				human_resource_card.EMPLOYEE_NAME,
+				notice.NOTICE_HEADER_CODE_NO
 	 	FROM	notice, human_resource_card
 			<where>
 				notice.EMPLOYEE_NO = human_resource_card.EMPLOYEE_NO

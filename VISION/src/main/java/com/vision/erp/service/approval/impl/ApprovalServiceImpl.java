@@ -184,7 +184,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 			approvalDAO.updateApproverCountFromApproval(approval.getApprovalNo());
 			
 			//승인시 결재완료인지 확인하기
-			boolean complete = approvalDAO.isApprovalEnd(approval.getApprovalNo());
+			boolean complete = approvalDAO.selectApprovalEnd(approval.getApprovalNo());
 			if(complete) {
 				//완료일 때 결재서 상태 변경하기(진행2, 반려3, 완료4)
 				approval.setApprovalStatusCodeNo("04");

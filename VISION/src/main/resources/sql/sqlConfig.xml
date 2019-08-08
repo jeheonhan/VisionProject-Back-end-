@@ -55,7 +55,7 @@
 			 <mapper resource="sql/approval/ApprovalFormMapper.xml"/>
 			 <mapper resource="sql/approval/ApprovalMapper.xml"/>
 		 	 <mapper resource="sql/code/CodeMapper.xml"/>
-		 	 <mapper resource="sql/productionmanagementcodms/OrderFromBranchMapper.xml"/>
+		 <!-- 	 <mapper resource="sql/productionmanagementcodms/OrderFromBranchMapper.xml"/> -->
 
 			<!-- Shin -->
              <mapper resource="sql/accounting/AccountMapper.xml"/>
@@ -73,8 +73,15 @@
               
             <!-- Park -->
              <mapper resource="sql/user/UserMapper.xml"/>
-             <mapper resource="sql/productionmanagementrudwn/OrderToVendorMapper.xml"/>
+              <!--  <mapper resource="sql/productionmanagementrudwn/OrderToVendorMapper.xml"/>
              <mapper resource="sql/productionmanagementrudwn/OrderToVendorProductMapper.xml"/>
-             <mapper resource="sql/productionmanagementrudwn/ProductMapper.xml"/>
+             <mapper resource="sql/productionmanagementrudwn/ProductMapper.xml"/> -->
+             
+             <!-- Park & Ahn -->
+             <mapper resource="sql/productionmanagement/OrderToVendorMapper.xml"/>
+             <mapper resource="sql/productionmanagement/OrderToVendorProductMapper.xml"/>
+             <mapper resource="sql/productionmanagement/ProductMapper.xml"/>
+             <mapper resource="sql/productionmanagement/OrderFromBranchMapper.xml"/>
+             
 		</mappers>
   </configuration>

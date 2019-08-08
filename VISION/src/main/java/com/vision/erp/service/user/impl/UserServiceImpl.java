@@ -43,18 +43,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addUser(User user) throws Exception {
 		
-		userDAO.addUser(user);
+		userDAO.insertUser(user);
 		
+	}
+	@Override
+	public User getUser(User user) throws Exception {
+		
+		return userDAO.selectUser(user);
 	}
 	//안보여줄거임
 	@Override
-	public List<User> selectUserList(Search search) throws Exception {
+	public List<User> getUserList(Search search) throws Exception {
 		// TODO Auto-generated method stub
 		return userDAO.selectUserList(search);
 	}
 	//내정보보기(메소드이용)인사카드/근태/급여이력/지점정보(내 메소드 쓰는거아님)
 	@Override
-	public Map<String,Object> selectInfo(String employeeNo) throws Exception {
+	public Map<String,Object> getInfo(String employeeNo) throws Exception {
 		
 		Search search = new Search();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -74,40 +79,36 @@ public class UserServiceImpl implements UserService {
 	}
 	//비밀번호변경
 	@Override
-	public void updatePassword(User user) throws Exception {
+	public void modifyPassword(User user) throws Exception {
 		
 		userDAO.updatePassword(user);
 		
 	}
 	//사원아이디확인
 	@Override
-	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception {
+	public User getProofMySelfForId1(HumanResourceCard hrcInfo) throws Exception {
 		
-		return userDAO.proofMySelfForId1(hrcInfo);
+		return userDAO.selectProofMySelfForId1(hrcInfo);
 	}
 	//사원비밀번호확인
 	@Override
-	public User proofMySelfForPassword1(Map<String, String> map) throws Exception {
+	public User getProofMySelfForPassword1(Map<String, String> map) throws Exception {
 		
-		return userDAO.proofMySelfForPassword1(map);
+		return userDAO.selectProofMySelfForPassword1(map);
 	}
 	//점장아이디왁인
 	@Override
-	public User proofMySelfForId2(Branch branch) throws Exception {
+	public User getProofMySelfForId2(Branch branch) throws Exception {
 		
-		return userDAO.proofMySelfForId2(branch);
+		return userDAO.selectProofMySelfForId2(branch);
 	}
 	//점장비밀번호확인
 	@Override
-	public User proofMySelfForPassword2(Map<String, String> map) throws Exception {
+	public User getProofMySelfForPassword2(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
-		return userDAO.proofMySelfForPassword2(map);
+		return userDAO.selectProofMySelfForPassword2(map);
 	}
-	@Override
-	public User selectUser(User user) throws Exception {
-		
-		return userDAO.selectUser(user);
-	}
+
 	
 	
 

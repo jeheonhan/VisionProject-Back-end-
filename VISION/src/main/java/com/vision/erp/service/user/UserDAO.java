@@ -10,7 +10,7 @@ import com.vision.erp.service.domain.User;
 
 public interface UserDAO {
 	//회원가입
-	public void addUser(User user) throws Exception;
+	public void insertUser(User user) throws Exception;
 
 	//안보여줄거임
 	public List<User> selectUserList(Search search) throws Exception;
@@ -22,17 +22,15 @@ public interface UserDAO {
 	public void updatePassword(User user) throws Exception; 
 
 	//인증
-	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
+	public User selectProofMySelfForId1(HumanResourceCard hrcInfo) throws Exception;
 
 	//인증
-//	public User proofMySelfForPassword1(HumanResourceCard hrcInfo) throws Exception;
-	public User proofMySelfForPassword1(Map<String, String> map) throws Exception;
+	public User selectProofMySelfForPassword1(Map<String, String> map) throws Exception;
 
 	//인증
-	public User proofMySelfForId2(Branch branch) throws Exception;
+	public User selectProofMySelfForId2(Branch branch) throws Exception;
 
 	//인증
-//	public User proofMySelfForPassword2(Branch branch) throws Exception;
-	public User proofMySelfForPassword2(Map<String, String> map) throws Exception;
+	public User selectProofMySelfForPassword2(Map<String, String> map) throws Exception;
 
 }

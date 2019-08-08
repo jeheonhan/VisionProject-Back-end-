@@ -198,7 +198,6 @@ public class HumanResourceCardTest{
 		
 		//humanResourceCard.setAccount(account);
 		humanResourceCard.setAddress("");
-		humanResourceCard.setContractFile("");
 		humanResourceCard.setDepartCodeNo("01");
 		humanResourceCard.setDetailAddress("");
 		humanResourceCard.setEmployeeEmail("qhdqhdekd261@gmail.com");

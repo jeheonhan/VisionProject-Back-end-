@@ -93,5 +93,12 @@
 		GROUP BY BRANCH_NO, SALES_DATE
 		ORDER BY SALES_DATE DESC
 	 </select>	 	 
+	 
+	 <select id="selectDuplicateSalesDateByBranch" parameterType="branchDailySales" resultMap="branchDailySalesSelectMap">
+	 	SELECT	SALES_PRODUCT_NUMBERING
+		  FROM	SALES_PRODUCT
+		 WHERE	BRANCH_NO	= 	#{branchNo} 
+		   AND	SALES_DATE 	= 	#{salesDate}
+	 </select>
 
 </mapper>

@@ -157,6 +157,6 @@ public class ApprovalDAOImplTest{
 	//결재완료 확인하기
 	@Test
 	public void isApprovalEndTest() throws Exception{
-		System.out.println(approvalDAO.isApprovalEnd("10000"));
+		System.out.println(approvalDAO.selectApprovalEnd("10000"));
 	}
 }

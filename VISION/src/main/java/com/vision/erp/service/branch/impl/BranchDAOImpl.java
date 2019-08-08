@@ -49,5 +49,10 @@ public class BranchDAOImpl implements BranchDAO{
 		return sqlSession.selectList("SalesMenuMapper.selectMenuList");
 	}
 
+	@Override
+	public List<BranchDailySales> selectDuplicateSalesDateByBranch(BranchDailySales branchDailySales) throws Exception {
+		return sqlSession.selectList("SalesProductMapper.selectDuplicateSalesDateByBranch", branchDailySales);
+	}
+
 	
 }

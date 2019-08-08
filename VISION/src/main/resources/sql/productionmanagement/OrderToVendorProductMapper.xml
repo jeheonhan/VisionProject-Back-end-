@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OrderToVendorProductMapper">
+
+	<resultMap id="orderToVendorProductSelectMap" 	type="orderToVendorProduct">
+		<result property="orderToVendorNumber"                column="ORDER_TO_VENDOR_NUMBERING" jdbcType="VARCHAR" />
+		<result property="orderToVendorNo"                    column="ORDER_TO_VENDOR_NO" jdbcType="VARCHAR" />
+		<result property="productNo"                         column="PRODUCT_NO" jdbcType="VARCHAR" />
+		<result property="purchasePrice"                     column="PURCHASE_PRICE" 	jdbcType="VARCHAR" />
+		<result property="quantity"                          column="QUANTITY" jdbcType="VARCHAR" />
+		<result property="amount"                            column="AMOUNT" jdbcType="VARCHAR" />
+		<result property="orderToVendorProductStatusCodeNo"         column="ORDER_VENDOR_PROD_STATUS_CODE" jdbcType="VARCHAR" />
+		<result property="orderToVendorProductStatusCodeName"       column="ORD_VEN_PROD_STATUS_CODE_NAME" jdbcType="VARCHAR" />
+		<result property="productName"                            column="PRODUCT_NAME" jdbcType="VARCHAR" />
+		<result property="vendorName"                            column="VENDOR_NAME" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<insert id="insertOrderToVenItem"          parameterType="orderToVendorProduct">
+		INSERT
+		INTO order_to_vendor_product
+		(
+		ORDER_TO_VENDOR_NUMBERING,
+		ORDER_TO_VENDOR_NO,
+		PRODUCT_NO,
+		PURCHASE_PRICE,
+		QUANTITY,
+		AMOUNT,
+		ORDER_VENDOR_PROD_STATUS_CODE,
+		VENDOR_NAME
+		)
+		VALUES
+		(
+		SEQ_ORDER_TO_VENDOR_NUMBERING.NEXTVAL,
+		#{orderToVendorNo},
+		#{productNo},
+		#{purchasePrice},
+		#{quantity},
+		#{amount},
+		#{orderToVendorProductStatusCodeNo},
+		#{vendorName}
+		)
+	</insert>
+
+
+	<select id="orderToVendorDetailList" parameterType="orderToVendorProduct" resultMap="orderToVendorProductSelectMap">
+		select
+		     order_to_vendor_product.order_to_vendor_no,
+		     product.product_name,
+		     order_to_vendor_product.quantity,
+		     order_to_vendor_product.amount,
+		     ORDER_VENDOR_PROD_STATUS_CODE,
+		     CODE_FUNCTION('orderCompanyItem', ORDER_VENDOR_PROD_STATUS_CODE) AS ORD_VEN_PROD_STATUS_CODE_NAME,
+		     product.PRODUCT_NO,
+		     order_to_vendor_product.ORDER_TO_VENDOR_NUMBERING
+
+		from 
+		     product join ORDER_TO_VENDOR_PRODUCT on product.product_no =
+		     order_to_vendor_product.product_no
+
+		WHERE 
+		     ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+
+	</select>
+
+	<update id="modifyOrderToVenItemCode" parameterType="orderToVendorProduct">
+		UPDATE order_to_vendor_product
+		<set>
+			<if test="orderToVendorProductStatusCodeNo == '01'">
+				ORDER_VENDOR_PROD_STATUS_CODE = '02'
+			</if>
+		</set>
+		WHERE ORDER_TO_VENDOR_NUMBERING = #{orderToVendorNumber}
+	</update>
+	
+	<update id="modifyOrderToVenItemCode2" parameterType="orderToVendorProduct">
+		UPDATE order_to_vendor_product
+		<set>
+			
+				ORDER_VENDOR_PROD_STATUS_CODE = '03'
+			
+		</set>
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+	</update>
+
+
+
+</mapper>

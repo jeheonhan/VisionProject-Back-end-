@@ -13,7 +13,7 @@ import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.Code;
 import com.vision.erp.service.domain.OrderFromBranch;
 import com.vision.erp.service.domain.OrderFromBranchProduct;
-import com.vision.erp.service.productionmanagement.codms.impl.ProductionManagementDAOImplcodms;
+import com.vision.erp.service.productionmanagement.impl.ProductionManagementDAOImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -26,7 +26,7 @@ import com.vision.erp.service.productionmanagement.codms.impl.ProductionManageme
 public class ProductManagementDAOImplcodmsTest{
 
 	@Resource(name = "productionManagementDAOImplcodms")
-	private ProductionManagementDAOImplcodms codmsDAO;
+	private ProductionManagementDAOImpl codmsDAO;
 	
 	//[지점]주문요청-주문서등록
 	//@Test

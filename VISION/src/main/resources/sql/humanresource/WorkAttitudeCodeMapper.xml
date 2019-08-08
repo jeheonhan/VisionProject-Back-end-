@@ -84,6 +84,7 @@
 	   		 OR	WORK_ATTITUDE_CODE_NAME	LIKE ('%'||#{searchKeyword}||'%'))	
 	   		</if>
 	   </where>
+	   ORDER BY	WORK_ATTITUDE_CODE DESC
 	</select>
 	
 	<update id="updateWorkAttitudeCode" parameterType="workAttitudeCode">

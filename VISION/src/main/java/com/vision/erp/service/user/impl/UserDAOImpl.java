@@ -20,10 +20,10 @@ public class UserDAOImpl implements UserDAO {
 	@Qualifier("sqlSession")
 	private SqlSession sqlSession;
 	
-	public void addUser(User user) throws Exception{
+	@Override
+	public void insertUser(User user) throws Exception{
 		sqlSession.insert("UserMapper.insertUser",user);
 	}
-	
 	
 	
 	@Override
@@ -32,25 +32,25 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User proofMySelfForId1(HumanResourceCard hrcInfo) throws Exception {
+	public User selectProofMySelfForId1(HumanResourceCard hrcInfo) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("UserMapper.proofMySelfForId1",hrcInfo);
 	}
 
 	@Override
-	public User proofMySelfForPassword1(Map<String, String> map) throws Exception {
+	public User selectProofMySelfForPassword1(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("UserMapper.proofMySelfForPassword1",map);
 	}
 	
 	@Override
-	public User proofMySelfForId2(Branch branch) throws Exception {
+	public User selectProofMySelfForId2(Branch branch) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("UserMapper.proofMySelfForId2",branch);
 	}
 
 	@Override
-	public User proofMySelfForPassword2(Map<String, String> map) throws Exception {
+	public User selectProofMySelfForPassword2(Map<String, String> map) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("UserMapper.proofMySelfForPassword2",map);
 	}

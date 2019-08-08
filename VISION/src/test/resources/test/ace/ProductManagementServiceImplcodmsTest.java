@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.vision.erp.common.Search;
 import com.vision.erp.service.domain.OrderFromBranch;
 import com.vision.erp.service.domain.OrderFromBranchProduct;
-import com.vision.erp.service.productionmanagement.codms.ProductionManagementServicecodms;
+import com.vision.erp.service.productionmanagement.ProductionManagementService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -28,7 +28,7 @@ import com.vision.erp.service.productionmanagement.codms.ProductionManagementSer
 public class ProductManagementServiceImplcodmsTest{
 
 	@Resource(name = "productionManagementServiceImplcodms")
-	private ProductionManagementServicecodms codmsService;
+	private ProductionManagementService codmsService;
 	
 	//주문서등록
 	//@Test

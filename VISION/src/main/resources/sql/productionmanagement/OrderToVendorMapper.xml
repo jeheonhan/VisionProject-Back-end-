@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="OrderToVendorMapper">
+
+	<resultMap id="OrderToVendorSelectMap" type="orderToVendor" >
+		<result property="orderToVendorNo"               column="ORDER_TO_VENDOR_NO"                       jdbcType="VARCHAR"/>
+		<result property="statementNo"                   column="STATEMENT_NO"                             jdbcType="VARCHAR"/>
+		<result property="totalAmount"                   column="TOTAL_AMOUNT"                             jdbcType="VARCHAR"/>
+		<result property="orderToVendorDate"             column="ORDER_TO_VENDOR_DATE"                     jdbcType="VARCHAR"/>
+		<result property="orderToVenStatusCodeNo"     column="ORDER_TO_VEN_STATUS_CODE_NO"           jdbcType="VARCHAR"/>
+		<result property="orderToVenStatusCodeName"   column="ORDER_TO_VEN_STATUS_CODE_NAME"         jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<insert id="insertOrderToVendor" parameterType="orderToVendor">
+
+		INSERT
+		
+		<selectKey keyProperty="orderToVendorNo" resultType="string" order="AFTER">
+   			 select SEQ_ORDER_TO_VENDOR_NO.CURRVAL FROM dual
+ 		 </selectKey>
+		
+		  INTO	order_to_vendor
+		  			(
+		  			ORDER_TO_VENDOR_NO,
+		  			STATEMENT_NO,
+		  			TOTAL_AMOUNT,
+		  			ORDER_TO_VENDOR_DATE,
+		  			ORDER_TO_VEN_STATUS_CODE_NO
+		  			)
+		VALUES	
+				(
+					SEQ_ORDER_TO_VENDOR_NO.nextval,
+					#{statementNo},
+					#{totalAmount},
+					TO_CHAR(SYSDATE,'YYYY/MM/DD'),
+					#{orderToVenStatusCodeNo}
+				)
+	</insert>
+	
+	<select id="selectOrderToVendorList" resultMap="OrderToVendorSelectMap">  
+		SELECT	ORDER_TO_VENDOR_NO,
+				STATEMENT_NO,
+				TOTAL_AMOUNT,
+				ORDER_TO_VENDOR_DATE,
+				ORDER_TO_VEN_STATUS_CODE_NO,
+				CODE_FUNCTION('orderCompany', ORDER_TO_VEN_STATUS_CODE_NO) AS ORDER_TO_VEN_STATUS_CODE_NAME
+		  FROM	order_To_Vendor
+		  ORDER BY ORDER_TO_VENDOR_NO DESC
+	</select>
+	
+	
+	<update id="modifyOrderToVenCode" parameterType="orderToVendor">
+		UPDATE order_to_vendor
+			<set>
+			<if test="orderToVenStatusCodeNo == '01'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '04'
+			</if>
+			</set>
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+	</update>
+	
+	<update id="modifyOrderToVenCode1" parameterType="orderToVendor">
+		UPDATE order_to_vendor
+			<set>
+			<if test="orderToVenStatusCodeNo == '01'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '02'
+			</if>
+			<if test="orderToVenStatusCodeNo == '03'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '02'
+			</if>
+			</set>
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+	</update>
+	
+	<update id="modifyOrderToVenCode2" parameterType="orderToVendor">
+		UPDATE order_to_vendor
+			<set>
+			<if test="orderToVenStatusCodeNo == '01'">
+				ORDER_TO_VEN_STATUS_CODE_NO = '03'
+			</if>
+			</set>
+		WHERE ORDER_TO_VENDOR_NO = #{orderToVendorNo}
+	</update>
+	
+	
+	
+
+</mapper>

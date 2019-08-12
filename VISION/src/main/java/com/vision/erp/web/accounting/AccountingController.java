@@ -341,6 +341,7 @@ public class AccountingController {
 			Map<String, Object> cardImageMap = card.getCardImageFile();
 			card.setCardImage(ImageFileUpload.fileUpload(cardImageMap));
 		}
+		accountingService.addCard(card);
 	}
 	
 	//카드 상세조회

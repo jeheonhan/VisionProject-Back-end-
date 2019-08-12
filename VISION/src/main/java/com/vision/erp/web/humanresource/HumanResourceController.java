@@ -223,12 +223,12 @@ public class HumanResourceController {
 							+")에 "+appointment.getAppointDepartCodeName()+", "+appointment.getAppointRankCodeName()
 							+"으로 발령되었습니다. ";
 			
-			sms.setSender("010-4468-0115");
+			sms.setSender("010-4468-011");
 			sms.setReciever(reciever.replaceAll("-", ""));
 			sms.setContent(content);
 			
 			SendSMS sendSMS = SendSMS.getSendSMSInstance();
-			sendSMS.sendSMS(sms);
+			//sendSMS.sendSMS(sms);
 		}
 	
 		humanResourceService.convertAppointmentStatus(appointment);

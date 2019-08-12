@@ -26,7 +26,6 @@
 		<result property="detailAddress" column="DETAIL_ADDRESS" jdbcType="VARCHAR"/>
 		<result property="profileImage" column="PROFILE_IMAGE" jdbcType="VARCHAR"/>
 		<result property="signatureImage" column="SIGNATURE_IMAGE" jdbcType="VARCHAR"/>
-		<result property="contractFile" column="CONTRACT_FILE" jdbcType="VARCHAR"/>
 		<result property="wage" column="WAGE" jdbcType="VARCHAR"/>
 		<result property="refer" column="REFER" jdbcType="VARCHAR"/>
 		
@@ -74,7 +73,6 @@
 		  		,	DETAIL_ADDRESS
 		  		,	PROFILE_IMAGE
 		  		,	SIGNATURE_IMAGE
-		  		,	CONTRACT_FILE
 		  		,	WAGE
 		  		,	REFER
 		  		,	RESIGN_CODE
@@ -96,7 +94,6 @@
 				,	#{detailAddress:VARCHAR}
 				,	#{profileImage:VARCHAR}
 				,	#{signatureImage:VARCHAR}
-				,	#{contractFile:VARCHAR}
 				,	#{wage:VARCHAR}
 				,	#{refer:VARCHAR}
 				,	#{resignation:VARCHAR}
@@ -129,7 +126,6 @@
 	  		 ,	hr.DETAIL_ADDRESS
 	  		 ,	hr.PROFILE_IMAGE
 	  		 ,	hr.SIGNATURE_IMAGE
-	  		 ,	hr.CONTRACT_FILE
 	  		 ,	hr.WAGE
 	  		 ,	hr.REFER
 	  		 ,	a.ACCOUNT_REG_NO
@@ -152,6 +148,7 @@
 		   AND	hr.RESIGN_CODE	IN ('Y')
 		  	</if>
 		  </where>
+	  ORDER BY	hr.EMPLOYEE_NO DESC
 	</select>
 	
 	<select id="selectHumanResourceCardDetailByEmployeeNo" parameterType="int" resultMap="HumanResourceCardSelectMap">
@@ -174,7 +171,6 @@
 	  		 ,	hr.DETAIL_ADDRESS
 	  		 ,	hr.PROFILE_IMAGE
 	  		 ,	hr.SIGNATURE_IMAGE
-	  		 ,	hr.CONTRACT_FILE
 	  		 ,	hr.WAGE
 	  		 ,	hr.REFER
 	  		 ,	a.ACCOUNT_REG_NO
@@ -258,7 +254,6 @@
 		   	 ,	DETAIL_ADDRESS	=	#{detailAddress:VARCHAR}
 		   	 ,	PROFILE_IMAGE	=	#{profileImage:VARCHAR}
 		   	 ,	SIGNATURE_IMAGE	=	#{signatureImage:VARCHAR}
-		   	 ,	CONTRACT_FILE	=	#{contractFile:VARCHAR}
 		   	 ,	WAGE			=	#{wage:VARCHAR}
 		   	 ,	REFER			=	#{refer:VARCHAR}
 		   	 ,	ACCOUNT_REG_NO	=	#{account.accountRegNo:VARCHAR}

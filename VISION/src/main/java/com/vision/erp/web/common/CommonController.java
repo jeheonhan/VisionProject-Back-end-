@@ -10,6 +10,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -44,14 +45,53 @@ public class CommonController {
 		String host = "smtp.naver.com";
 		
 		final String username = "glossator@naver.com";
-		final String password = "whgdkdy888^^";
+		final String password = "vision1234";
 		int port = 465;
 		
 		//메일내용
 		String recipient = email.getRecipient();
 		String subject = email.getSubject();
-		String body = email.getContents();
-		
+//		String body = email.getContents();
+	
+		String body = "<html lang=\"kor\" dir=\"ltr\">\n" + 
+				"  <head>\n" + 
+				"    <meta charset=\"utf-8\">\n" + 
+				"    <title></title>\n" + 
+				"    <style media=\"screen\">\n" + 
+				"      .hr{\n" + 
+				"        border: 0;\n" + 
+				"        height: 3px;\n" + 
+				"        background: #DF4D4D;\n" + 
+				"      }\n" + 
+				"      .img{\n" + 
+				"        align:center;\n" + 
+				"      }\n" + 
+				"      #logo{\n" + 
+				"        height:50px;\n" + 
+				"      }\n" + 
+				"    </style>\n" + 
+				"  </head>\n" + 
+				"  <body>\n" + 
+				"    <div class=\"img\">\n" + 
+				"      <img id=\"logo\" src=\"https://1.bp.blogspot.com/-S3YOEyM-Cac/XU5Zf4He63I/AAAAAAAAALg/GP2Fyr7N99Y2JP1MIcm9knNRpoXcclKUgCLcBGAs/s320/VisionLogo.png\" alt=\"이미지\">\n" + 
+				"      &nbsp;<b><font size=\"130px\" text=\"bold\">비전 그룹웨어</font></b>\n" + 
+				"    </div>\n" + 
+				"\n" + 
+				"    <hr class=\"hr\"/>\n" + 
+				"    <h1>"+subject+"</h1>\n" + 
+				"    <br>\n" + 
+				"    <br>\n" + 
+				"    <br>\n" + 
+				"    <h3>"+email.getContents()+"</h3>\n" + 
+				"    <br>\n" + 
+				"    <br>\n" + 
+				"    <hr class=\"hr\"/>\n" + 
+				"    <br>\n" + 
+				"\n" + 
+				"\n" + 
+				"  </body>\n" + 
+				"</html>\n" + 
+				"";
 		
 		Properties props = System.getProperties();
 		
@@ -77,8 +117,10 @@ public class CommonController {
 		try {
 			mimeMessage.setFrom(new InternetAddress("glossator@naver.com"));
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-		    mimeMessage.setSubject(subject);
-		    mimeMessage.setText(body);
+		    mimeMessage.setSubject(MimeUtility.encodeText(subject, "UTF-8","B"));
+//		    mimeMessage.setText(body);
+		    mimeMessage.setContent(body, "text/html; charset=UTF-8");
+		    
 		   
 		    // 메일을 발신한다
 		    Transport.send(mimeMessage);

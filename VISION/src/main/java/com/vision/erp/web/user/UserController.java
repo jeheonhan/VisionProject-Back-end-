@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -126,7 +127,7 @@ public class UserController {
 		
 		SendSMS sendSMS = SendSMS.getSendSMSInstance();
 		SMS sms = new SMS();
-		sms.setSender("010-3739-1105");
+		sms.setSender("010-4468-0115");
 		sms.setReciever(map.get("phone").replace("-", ""));
 		
 		String message = "";
